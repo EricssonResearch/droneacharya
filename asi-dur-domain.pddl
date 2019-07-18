@@ -41,8 +41,7 @@
 	:duration (= ?duration (/ (distance ?srcComp ?destComp) (velocity ?drone)))
 	:condition (and
         	
-		;new condition
-		(at start(is-clear-perspective ?destPersp ?destComp)) ;AM: at end(is-clear-perspective ...) and perform collision avoidance at tactical
+		(at start(is-clear-perspective ?destPersp ?destComp)) ;AM: at end(is-clear-perspective ...) and perform collision avoidance at tactical  -  state space too large with "at end"
 
 		(at start(is-at ?drone ?srcComp ?srcPersp))
         	(at start(is-perspective ?destPersp ?destComp))
@@ -50,12 +49,9 @@
       	)
     	:effect (and
 
-		;new effect
-		;assuming the min time to change a perspective is higher than the time a drone clears a perspective
-		;we can use "at end" for maximum safety (but will increase duration) if the above assumption is wrong
+
 		(at start(is-clear-perspective ?srcPersp ?srcComp))
 
-		;new effect
 		(at start(not (is-clear-perspective ?destPersp ?destComp)))
 
         	(at start(not (is-at ?drone ?srcComp ?srcPersp)))
