@@ -136,7 +136,7 @@
 	:condition (and
         	(at start(is-at ?drone ?component ?perspective))
         	(over all(is-at ?drone ?component ?perspective))
-			(at start (is-charging-dock ?component ?perspective))
+			(at start (is-charging-dock ?component ?perspective)) ;now checking for charging-dock rather than launch-pad
         	(at end(is-at ?drone ?component ?perspective))
         	; (at start(is-launch-pad ?perspective))
         	(at start(< (charge-level ?drone)(max-charge-level ?drone)))
@@ -151,10 +151,10 @@
     	:duration (<= ?duration 10) ;duration <max duration
 	:condition (and
         	(at start(is-at ?drone ?component ?perspective))
-        	(over all(is-at ?drone ?component ?perspective)) ;SM: can this be added to signal measurement actions etc? Dorian: best practice.
+        	(over all(is-at ?drone ?component ?perspective)) ;SM: can this be added to signal measurement actions etc? Dorian: yes, best practice.
         	(at start (is-charging-dock ?component ?perspective))
 			(at end(is-at ?drone ?component ?perspective))
-        	; (at start(is-launch-pad ?perspective)) ;moving to charging-dock - no perspectives here
+        	; (at start(is-launch-pad ?perspective)) ;moving to charging-dock
         	(at start(< (charge-level ?drone)(max-charge-level ?drone)))
       	)
     	:effect (and
