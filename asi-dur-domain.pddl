@@ -146,20 +146,21 @@
       	)
   )
 
-  (:durative-action partial-charge
-    	:parameters (?drone - drone ?perspective - perspective ?component - component)
-    	:duration (<= ?duration 10) ;duration <max duration
-	:condition (and
-        	(at start(is-at ?drone ?component ?perspective))
-        	(over all(is-at ?drone ?component ?perspective)) ;SM: can this be added to signal measurement actions etc? Dorian: best practice.
-        	(at end(is-at ?drone ?component ?perspective))
-        	(at start(is-launch-pad ?perspective))
-        	(at start(< (charge-level ?drone)(max-charge-level ?drone)))
-      	)
-    	:effect (and
-        	(at end(assign (charge-level ?drone) (+ (charge-level ?drone) ?duration)))
-      	)
-  )
+;   this action will cause a segmentation fault (depletes the machine resources). Use "charge" action instead	
+;  (:durative-action partial-charge
+;    	:parameters (?drone - drone ?perspective - perspective ?component - component)
+;	:duration (<= ?duration (- (max-charge-level ?drone) (charge-level ?drone)))
+;	:condition (and
+;        	(at start(is-at ?drone ?component ?perspective))
+;        	(over all(is-at ?drone ?component ?perspective))
+;        	(at end(is-at ?drone ?component ?perspective))
+;        	(at start(is-launch-pad ?perspective))
+;        	(at start(< (charge-level ?drone)(max-charge-level ?drone)))
+;      	)
+;    	:effect (and
+;        	(at end(increase (charge-level ?drone) ?duration))
+;      	)
+;  )
 
   (:durative-action swap-battery
     	:parameters (?drone - drone ?perspective - perspective ?component - component)
