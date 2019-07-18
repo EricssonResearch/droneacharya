@@ -1,7 +1,7 @@
 ;discussion about distance between perspectives, model assumes max distance between perspectives needs a max charge of 2 and a duration of 2
 
 
-(define (domain asi-dur-domain)
+(define (domain asi-dur-domain-fullswap)
   
   (:requirements :typing :equality :fluents :durative-actions :disjunctive-preconditions :duration-inequalities)
   
@@ -23,9 +23,9 @@
     (has-capability ?d - drone ?c - capability)
     (is-at ?d - drone ?c - component ?p - perspective)
     (know ?k - knowledge-object ?c - component ?p - perspective)
-    (is-launch-pad ?lp - perspective) ;change to is-charging-dock
-	(is-charging-dock ?cd - perspective)
+    (is-launch-pad ?p - perspective)
     (is-clear-perspective ?p - perspective ?c - component)
+	(is-charging-dock ?c - component ?p - perspective)
   )
 
   (:functions 
@@ -130,20 +130,21 @@
       	)
   )
 
-;   (:durative-action charge ;MO: remove this action, merge with partial-charge.
-;     	:parameters (?drone - drone ?perspective - perspective ?component - component)
-;     	:duration (= ?duration (- (max-charge-level ?drone) (charge-level ?drone)))
-; 	:condition (and
-;         	(at start(is-at ?drone ?component ?perspective))
-;         	(over all(is-at ?drone ?component ?perspective))
-;         	(at end(is-at ?drone ?component ?perspective))
-;         	(at start(is-launch-pad ?perspective))
-;         	(at start(< (charge-level ?drone)(max-charge-level ?drone)))
-;       	)
-;     	:effect (and
-;         	(at end(assign (charge-level ?drone) (max-charge-level ?drone)))
-;       	)
-;   )
+  (:durative-action charge ;MO: remove this action, merge with partial-charge.
+    	:parameters (?drone - drone ?perspective - perspective ?component - component)
+    	:duration (= ?duration (- (max-charge-level ?drone) (charge-level ?drone)))
+	:condition (and
+        	(at start(is-at ?drone ?component ?perspective))
+        	(over all(is-at ?drone ?component ?perspective))
+			(at start (is-charging-dock ?component ?perspective))
+        	(at end(is-at ?drone ?component ?perspective))
+        	; (at start(is-launch-pad ?perspective))
+        	(at start(< (charge-level ?drone)(max-charge-level ?drone)))
+      	)
+    	:effect (and
+        	(at end(assign (charge-level ?drone) (max-charge-level ?drone)))
+      	)
+  )
 
   (:durative-action partial-charge
     	:parameters (?drone - drone ?perspective - perspective ?component - component)
@@ -151,8 +152,9 @@
 	:condition (and
         	(at start(is-at ?drone ?component ?perspective))
         	(over all(is-at ?drone ?component ?perspective)) ;SM: can this be added to signal measurement actions etc? Dorian: best practice.
-        	(at end(is-at ?drone ?component ?perspective))
-        	(at start(is-launch-pad ?perspective))
+        	(at start (is-charging-dock ?component ?perspective))
+			(at end(is-at ?drone ?component ?perspective))
+        	; (at start(is-launch-pad ?perspective)) ;moving to charging-dock - no perspectives here
         	(at start(< (charge-level ?drone)(max-charge-level ?drone)))
       	)
     	:effect (and

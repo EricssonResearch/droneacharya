@@ -1,0 +1,19 @@
+; States evaluated: 4489
+; Cost: 164.215
+; Time 36.26
+0.000: (charge drone1 launch-pad-1 first-tower-launchpad)  [65.000]
+65.001: (goto drone1 first-tower-launchpad s1-antenna-1 launch-pad-1 above)  [5.800]
+70.802: (take-image drone1 s1-antenna-1 above)  [1.000]
+70.803: (change-perspective drone1 s1-antenna-1 above below)  [2.000]
+72.804: (take-image drone1 s1-antenna-1 below)  [1.000]
+72.805: (change-perspective drone1 s1-antenna-1 below front)  [2.000]
+74.806: (take-image drone1 s1-antenna-1 front)  [1.000]
+74.807: (goto drone1 s1-antenna-1 first-tower-launchpad front launch-pad-1)  [5.800]
+80.608: (charge drone1 launch-pad-1 first-tower-launchpad)  [68.000]
+148.609: (goto drone1 first-tower-launchpad s1-antenna-1 launch-pad-1 front-below)  [5.800]
+154.410: (take-image drone1 s1-antenna-1 front-below)  [1.000]
+154.411: (change-perspective drone1 s1-antenna-1 front-below left)  [2.000]
+156.412: (take-image drone1 s1-antenna-1 left)  [1.000]
+156.413: (change-perspective drone1 s1-antenna-1 left right)  [2.000]
+158.414: (take-image drone1 s1-antenna-1 right)  [1.000]
+158.415: (goto drone1 s1-antenna-1 first-tower-launchpad right launch-pad-1)  [5.800]
