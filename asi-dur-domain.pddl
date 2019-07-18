@@ -86,6 +86,8 @@
 	:condition (and
         	(at start(is-available image ?perspective))
         	(at start(is-at ?drone ?component ?perspective))
+        	(over all(is-at ?drone ?component ?perspective))
+        	(at end(is-at ?drone ?component ?perspective))
         	(at start(has-capability ?drone camera))
         	(at start(> (charge-level ?drone) 2))
       	)
@@ -101,6 +103,8 @@
 	:condition (and
         	(at start(is-available thermal-image ?perspective))
         	(at start(is-at ?drone ?component ?perspective))
+        	(over all(is-at ?drone ?component ?perspective))
+        	(at end(is-at ?drone ?component ?perspective))
         	(at start(has-capability ?drone thermal-camera))
         	(at start(> (charge-level ?drone) 2))
       	)
@@ -116,6 +120,8 @@
 	:condition (and
         	(at start(is-available signal-measurement ?perspective))
         	(at start(is-at ?drone ?component ?perspective))
+        	(over all(is-at ?drone ?component ?perspective))
+        	(at end(is-at ?drone ?component ?perspective))
         	(at start(has-capability ?drone signal-measurer))
         	(at start(> (charge-level ?drone)2))
       	)
