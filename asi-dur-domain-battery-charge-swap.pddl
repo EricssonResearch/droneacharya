@@ -152,7 +152,10 @@
 
 ;  (:durative-action dynamic-charge
 ;    	:parameters (?drone - drone ?perspective - perspective ?component - component ?battery - battery)
+
+	; works if duration is defined as a number (ex. 170) and "swap-battery" and "full-charge" are disabled
 ;    	:duration (<= ?duration (- (max-charge-battery ?battery) (battery-charge ?battery)))
+
 ;	:condition (and
 ;        	(at start(is-at ?drone ?component ?perspective))
 ;        	(over all(is-at ?drone ?component ?perspective))
