@@ -43,9 +43,9 @@
     ; AM: Change launchpad (for charging) - place it between first and second towers
     ;; first site
     (is-perspective launch-pad-1 first-tower-launchpad)
-    (is-perspective launch-pad-2 first-tower-launchpad)
-    (is-perspective launch-pad-3 first-tower-launchpad)
-    (is-perspective launch-pad-4 first-tower-launchpad)
+    ; (is-perspective launch-pad-2 first-tower-launchpad)
+    ; (is-perspective launch-pad-3 first-tower-launchpad)
+    ; (is-perspective launch-pad-4 first-tower-launchpad)
     (not (is-clear-perspective launch-pad-1 first-tower-launchpad))
     (not (is-clear-perspective launch-pad-2 first-tower-launchpad))
     (not (is-clear-perspective launch-pad-3 first-tower-launchpad))
@@ -328,8 +328,8 @@
 
     (has-capability drone1 camera)
     (is-at drone1 first-tower-launchpad launch-pad-1)
-    (= (charge-level drone1) 25)
-    (= (max-charge-level drone1) 200)
+    (= (charge-level drone1) 5)
+    (= (max-charge-level drone1) 70)
     (= (velocity drone1) 5)
 
     (has-capability drone2 camera)
