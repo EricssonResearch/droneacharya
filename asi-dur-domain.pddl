@@ -42,7 +42,8 @@
 	:condition (and
         	
 		(at start(is-clear-perspective ?destPersp ?destComp)) ;AM: at end(is-clear-perspective ...) and perform collision avoidance at tactical  -  state space too large with "at end"
-
+		;; DRB - at end causes large state spaces, not feasible for planners - ER can try.
+		;; Can we achieve in a different way? Perhaps strategic-tactical planning
 		(at start(is-at ?drone ?srcComp ?srcPersp))
         	(at start(is-perspective ?destPersp ?destComp))
         	(at start(>= (charge-level ?drone)(distance ?srcComp ?destComp)))
