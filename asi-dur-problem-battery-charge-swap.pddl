@@ -8,7 +8,7 @@
  
   (:objects 
 	first-tower-launchpad s1-antenna-1 s1-antenna-2 s1-antenna-3 s1-antenna-4 s1-antenna-5 s1-antenna-6 - component 
-	front above below left right front-below launch-pad-1 launch-pad-2 launch-pad-3 - perspective 
+	front above below left right front-below launch-pad dock - perspective 
 	drone1 drone2 drone3 - drone
 	battery1 battery2 battery3 battery4 battery5 battery6 - battery)
 
@@ -16,14 +16,9 @@
  
     
 
-    (is-perspective launch-pad-1 first-tower-launchpad)
-    (is-perspective launch-pad-2 first-tower-launchpad)
-    (is-perspective launch-pad-3 first-tower-launchpad)
-    ;(is-perspective launch-pad-4 first-tower-launchpad)
-    (not (is-clear-perspective launch-pad-1 first-tower-launchpad))
-    (not (is-clear-perspective launch-pad-2 first-tower-launchpad))
-    (not (is-clear-perspective launch-pad-3 first-tower-launchpad))
-    ;(not (is-clear-perspective launch-pad-4 first-tower-launchpad))
+
+    (is-perspective launch-pad first-tower-launchpad)
+
     (= (distance first-tower-launchpad s1-antenna-1) 29)
     (= (distance first-tower-launchpad s1-antenna-2) 29)
     (= (distance first-tower-launchpad s1-antenna-3) 30)
@@ -31,6 +26,7 @@
     (= (distance first-tower-launchpad s1-antenna-5) 29)
     (= (distance first-tower-launchpad s1-antenna-6) 29)
 
+    (is-perspective dock s1-antenna-1)
     (is-perspective front s1-antenna-1)
     (is-perspective above s1-antenna-1)
     (is-perspective below s1-antenna-1)
@@ -50,6 +46,7 @@
     (= (distance s1-antenna-1 s1-antenna-5) 2)
     (= (distance s1-antenna-1 s1-antenna-6) 2)
 
+    (is-perspective dock s1-antenna-2)    
     (is-perspective front s1-antenna-2)
     (is-perspective above s1-antenna-2)
     (is-perspective below s1-antenna-2)
@@ -69,6 +66,7 @@
     (= (distance s1-antenna-2 s1-antenna-5) 2)
     (= (distance s1-antenna-2 s1-antenna-6) 2)
 
+    (is-perspective dock s1-antenna-3)
     (is-perspective front s1-antenna-3)
     (is-perspective above s1-antenna-3)
     (is-perspective below s1-antenna-3)
@@ -88,6 +86,7 @@
     (= (distance s1-antenna-3 s1-antenna-5) 2)
     (= (distance s1-antenna-3 s1-antenna-6) 2)
 
+    (is-perspective dock s1-antenna-4)
     (is-perspective front s1-antenna-4)
     (is-perspective above s1-antenna-4)
     (is-perspective below s1-antenna-4)
@@ -107,6 +106,7 @@
     (= (distance s1-antenna-4 s1-antenna-5) 2)
     (= (distance s1-antenna-4 s1-antenna-6) 2)
 
+    (is-perspective dock s1-antenna-5)
     (is-perspective front s1-antenna-5)
     (is-perspective above s1-antenna-5)
     (is-perspective below s1-antenna-5)
@@ -126,6 +126,7 @@
     (= (distance s1-antenna-5 s1-antenna-4) 2)
     (= (distance s1-antenna-5 s1-antenna-6) 1)
 
+    (is-perspective dock s1-antenna-6)
     (is-perspective front s1-antenna-6)
     (is-perspective above s1-antenna-6)
     (is-perspective below s1-antenna-6)
@@ -158,25 +159,25 @@
     (is-available image front-below)
     (is-available thermal-image front-below)
 
-    (is-launch-pad launch-pad-1)
-    (is-launch-pad launch-pad-2)
-    (is-launch-pad launch-pad-3)
+    (is-launch-pad launch-pad)
+    (is-dock launch-pad)
+    (is-dock dock)
 
     (has-capability drone1 camera)
-    (is-at drone1 first-tower-launchpad launch-pad-1)
+    (is-at drone1 first-tower-launchpad launch-pad)
     (has-battery drone1 battery1)
     (= (max-charge-drone drone1) 70)
     (= (velocity drone1) 5)
 
-    (has-capability drone2 camera)
+    ;(has-capability drone2 camera)
     (has-capability drone2 thermal-camera)
-    (is-at drone2 first-tower-launchpad launch-pad-2)
+    (is-at drone2 first-tower-launchpad launch-pad)
     (has-battery drone2 battery2)
     (= (max-charge-drone drone2) 170)
     (= (velocity drone2) 1)
 
     (has-capability drone3 thermal-camera)
-    (is-at drone3 first-tower-launchpad launch-pad-3)
+    (is-at drone3 first-tower-launchpad launch-pad)
     (has-battery drone3 battery3)
     (= (max-charge-drone drone3) 80)
     (= (velocity drone3) 2)
@@ -184,9 +185,16 @@
     (= (battery-charge battery1) 5)
     (= (battery-charge battery2) 30)
     (= (battery-charge battery3) 45)
+    
     (= (battery-charge battery4) 70)
     (= (battery-charge battery5) 170)
     (= (battery-charge battery6) 80)
+
+
+    (is-free battery4)
+    (is-free battery5)
+    (is-free battery6)
+
     (= (max-charge-battery battery1) 70)
     (= (max-charge-battery battery2) 170)
     (= (max-charge-battery battery3) 80)
@@ -196,10 +204,9 @@
   )
 
   (:goal (and
-      (is-at drone1 first-tower-launchpad launch-pad-1)
-      (is-at drone2 first-tower-launchpad launch-pad-2)
-      (is-at drone3 first-tower-launchpad launch-pad-3)
-      ;(is-at drone4 first-tower-launchpad launch-pad-4)
+      (is-at drone1 first-tower-launchpad launch-pad)
+      (is-at drone2 first-tower-launchpad launch-pad)
+      (is-at drone3 first-tower-launchpad launch-pad)
       
       ;(know image s1-antenna-1 left)
       ;(know image s1-antenna-2 left)

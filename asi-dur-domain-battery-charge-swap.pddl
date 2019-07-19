@@ -26,8 +26,13 @@
     (is-at ?d - drone ?c - component ?p - perspective)
     (know ?k - knowledge-object ?c - component ?p - perspective)
     (is-launch-pad ?lp - perspective)
+    
+    ;multiple drones are allowed to be at the same time at a perspective tagged with the is dock predicate
+    (is-dock ?d - perspective)
+    
     (is-clear-perspective ?p - perspective ?c - component)
     (has-battery ?d - drone ?b - battery)
+    (is-free ?b - battery)
   )
 
   (:functions 
@@ -48,7 +53,7 @@
         	(over all(has-battery ?drone ?battery))
         	(at end(has-battery ?drone ?battery))
 	
-		(at start(is-clear-perspective ?destPersp ?destComp))
+		(at start(is-dock ?destPersp))
 
 		(at start(is-at ?drone ?srcComp ?srcPersp))
         	(at start(is-perspective ?destPersp ?destComp))
@@ -57,8 +62,6 @@
     	:effect (and
 
 		(at start(is-clear-perspective ?srcPersp ?srcComp))
-
-		(at start(not (is-clear-perspective ?destPersp ?destComp)))
 
         	(at start(not (is-at ?drone ?srcComp ?srcPersp)))
         	(at start(decrease (battery-charge ?battery) (distance ?srcComp ?destComp)))
@@ -150,65 +153,49 @@
 
 
 
-;  (:durative-action dynamic-charge
-;    	:parameters (?drone - drone ?perspective - perspective ?component - component ?battery - battery)
+  (:durative-action dynamic-charge
+    	:parameters (?drone - drone ?perspective - perspective ?component - component ?battery - battery)
 
-	; works if duration is defined as a number (ex. 170) and "swap-battery" and "full-charge" are disabled
-;    	:duration (<= ?duration (- (max-charge-battery ?battery) (battery-charge ?battery)))
+    	:duration (<= ?duration (- (max-charge-battery ?battery) (battery-charge ?battery)))
 
-;	:condition (and
-;        	(at start(is-at ?drone ?component ?perspective))
-;        	(over all(is-at ?drone ?component ?perspective))
-;        	(at end(is-at ?drone ?component ?perspective))
-;		(at start(has-battery ?drone ?battery))
-;        	(over all(has-battery ?drone ?battery))
-;        	(at end(has-battery ?drone ?battery))
-;        	(at start(is-launch-pad ?perspective))
-;        	(at start(< (battery-charge ?battery)(max-charge-battery ?battery)))
-;      	)
-;    	:effect (and
-;        	(at end(increase (battery-charge ?battery) ?duration))
-;      	)
-;  )
-
-;   (:durative-action full-charge
-;    	:parameters (?drone - drone ?perspective - perspective ?component - component ?battery - battery)
-;    	:duration (= ?duration (- (max-charge-battery ?battery) (battery-charge ?battery)))
-;	:condition (and
-;        	(at start(is-at ?drone ?component ?perspective))
-;        	(over all(is-at ?drone ?component ?perspective))
-;        	(at end(is-at ?drone ?component ?perspective))
-;		(at start(has-battery ?drone ?battery))
-;        	(over all(has-battery ?drone ?battery))
-;        	(at end(has-battery ?drone ?battery))
-;        	(at start(is-launch-pad ?perspective))
-;        	(at start(< (battery-charge ?battery)(max-charge-battery ?battery)))
-;      	)
-;    	:effect (and
-;        	(at end(assign (battery-charge ?battery) (max-charge-battery ?battery)))
-;      	)
-;  )
-
-
-  (:durative-action swap-battery
-    	:parameters (?drone - drone ?perspective - perspective ?component - component ?battery ?swap-battery - battery)
-    	:duration (= ?duration 50)
 	:condition (and
-		
-		(at start(has-battery ?drone ?battery))
-       	(at start(is-at ?drone ?component ?perspective))
+        	(at start(is-at ?drone ?component ?perspective))
         	(over all(is-at ?drone ?component ?perspective))
         	(at end(is-at ?drone ?component ?perspective))
+		(at start(has-battery ?drone ?battery))
+        	(over all(has-battery ?drone ?battery))
+        	(at end(has-battery ?drone ?battery))
         	(at start(is-launch-pad ?perspective))
-        	(at start(> (battery-charge ?swap-battery) (battery-charge ?battery)))
-        	(at start(< (battery-charge ?battery)(max-charge-drone ?drone)))
-		(at start(< (battery-charge ?swap-battery)(max-charge-drone ?drone)))
+         	(at start(< (battery-charge ?battery)(max-charge-battery ?battery)))
       	)
     	:effect (and
-        	(at end(not (has-battery ?drone ?battery)))
-		(at end(has-battery ?drone ?swap-battery))
+        	(at end(increase (battery-charge ?battery) ?duration))
       	)
   )
+
+
+;  (:durative-action swap-battery
+;    	:parameters (?drone - drone ?perspective - perspective ?component - component ?battery ?swap-battery - battery)
+;    	:duration (= ?duration 50)
+;	:condition (and
+		
+;		(at start(is-free ?swap-battery))
+;		(at start(has-battery ?drone ?battery))
+;       		(at start(is-at ?drone ?component ?perspective))
+;        	(over all(is-at ?drone ?component ?perspective))
+;        	(at end(is-at ?drone ?component ?perspective))
+;        	(at start(is-launch-pad ?perspective))
+;        	(at start(> (battery-charge ?swap-battery) (battery-charge ?battery)))
+;        	(at start(< (battery-charge ?battery)(max-charge-drone ?drone)));
+;		(at start(<= (battery-charge ?swap-battery)(max-charge-drone ?drone)))
+;      	)
+;    	:effect (and
+;        	(at end(not (has-battery ?drone ?battery)))
+;		(at end(has-battery ?drone ?swap-battery))
+;		(at end(not (is-free ?swap-battery)))
+;                (at end(is-free ?battery))
+;      	)
+;  )
 
 )
  
