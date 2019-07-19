@@ -1,0 +1,20 @@
+; States evaluated: 5795
+; Cost: 230.015
+; Time 225.04
+0.000: (swap-battery drone1 launch-pad-1 first-tower-launchpad battery1 battery2)  [50.000]
+0.000: (swap-battery drone2 launch-pad-2 first-tower-launchpad battery2 battery4)  [50.000]
+50.001: (goto drone2 first-tower-launchpad s1-antenna-1 launch-pad-2 above battery4)  [29.000]
+79.002: (take-image drone2 s1-antenna-1 above battery4)  [1.000]
+80.003: (change-perspective drone2 s1-antenna-1 above below battery4)  [2.000]
+82.004: (take-image drone2 s1-antenna-1 below battery4)  [1.000]
+83.005: (change-perspective drone2 s1-antenna-1 below front battery4)  [2.000]
+85.006: (take-image drone2 s1-antenna-1 front battery4)  [1.000]
+86.007: (goto drone2 s1-antenna-1 first-tower-launchpad front launch-pad-2 battery4)  [29.000]
+115.008: (swap-battery drone2 launch-pad-2 first-tower-launchpad battery4 battery6)  [50.000]
+165.009: (goto drone2 first-tower-launchpad s1-antenna-1 launch-pad-2 front-below battery6)  [29.000]
+194.010: (take-image drone2 s1-antenna-1 front-below battery6)  [1.000]
+195.011: (change-perspective drone2 s1-antenna-1 front-below left battery6)  [2.000]
+197.012: (take-image drone2 s1-antenna-1 left battery6)  [1.000]
+198.013: (change-perspective drone2 s1-antenna-1 left right battery6)  [2.000]
+200.014: (take-image drone2 s1-antenna-1 right battery6)  [1.000]
+201.015: (goto drone2 s1-antenna-1 first-tower-launchpad right launch-pad-2 battery6)  [29.000]
