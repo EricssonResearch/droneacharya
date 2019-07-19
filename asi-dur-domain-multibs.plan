@@ -1,0 +1,10 @@
+;; Plan with ER files
+0.000: (goto drone1 first-tower-launchpad charging-dock-1 launch-pad-1 launch-pad-2)  [12.000]
+12.001: (change-perspective drone1 charging-dock-1 launch-pad-2 launch-pad-1)  [2.000]
+14.002: (change-perspective drone1 charging-dock-1 launch-pad-1 launch-pad-2)  [2.000]
+16.003: (change-perspective drone1 charging-dock-1 launch-pad-2 launch-pad-1)  [2.000]
+18.004: (change-perspective drone1 charging-dock-1 launch-pad-1 launch-pad-2)  [2.000]
+20.005: (change-perspective drone1 charging-dock-1 launch-pad-2 launch-pad-1)  [2.000]
+22.006: (partial-charge drone1 launch-pad-1 charging-dock-1)  [20.000]
+42.007: (partial-charge drone1 launch-pad-1 charging-dock-1)  [40.000]
+82.008: (goto drone1 charging-dock-1 second-tower-launchpad launch-pad-1 launch-pad-4)  [12.000]
