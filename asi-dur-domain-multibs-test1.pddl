@@ -148,7 +148,7 @@
 
   (:durative-action partial-charge
     	:parameters (?drone - drone ?perspective - perspective ?component - component)
-    	:duration (<= ?duration 40) ;duration <max duration
+    	:duration (<= ?duration 100) ;duration <max duration
 	:condition (and
         	(at start(is-at ?drone ?component ?perspective))
         	(over all(is-at ?drone ?component ?perspective)) ;SM: can this be added to signal measurement actions etc? Dorian: yes, best practice.
