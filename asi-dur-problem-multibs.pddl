@@ -328,7 +328,7 @@
 
     (has-capability drone1 camera)
     (is-at drone1 first-tower-launchpad launch-pad-1)
-    (= (charge-level drone1) 25)
+    (= (charge-level drone1) 125)
     (= (max-charge-level drone1) 200)
     (= (velocity drone1) 5)
 
@@ -355,8 +355,8 @@
 
   (:goal (and
       (is-at drone1 second-tower-launchpad launch-pad-1)
-      ; (is-at drone2 first-tower-launchpad launch-pad-2)
-      ; (is-at drone3 first-tower-launchpad launch-pad-3)
+      (is-at drone2 first-tower-launchpad launch-pad-2)
+      (is-at drone3 first-tower-launchpad launch-pad-3)
       ; (is-at drone4 first-tower-launchpad launch-pad-4)
       
       ;(know image s1-antenna-1 left)
@@ -373,12 +373,12 @@
       ;(know thermal-image s1-antenna-6 left)
 
       ;scenario for inspecting multiple prespectives of the same component
-      ; (know image s1-antenna-1 front)
-      ; (know image s1-antenna-1 above)
-      ; (know image s1-antenna-1 below)
-      ; (know image s1-antenna-1 left)
-      ; (know image s1-antenna-1 right)
-      ; (know image s1-antenna-1 front-below)
+      (know image s1-antenna-1 front)
+      (know image s1-antenna-1 above)
+      (know image s1-antenna-1 below)
+      (know image s1-antenna-1 left)
+      (know image s1-antenna-1 right)
+      (know image s1-antenna-1 front-below)
 
       ; (know image s2-antenna-2 front)
       ; (know image s2-antenna-2 above)
