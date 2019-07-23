@@ -130,21 +130,21 @@
       	)
   )
 
-;   (:durative-action charge ;MO: remove this action, merge with partial-charge.
-;     	:parameters (?drone - drone ?perspective - perspective ?component - component)
-;     	:duration (= ?duration (- (max-charge-level ?drone) (charge-level ?drone)))
-; 	:condition (and
-;         	(at start(is-at ?drone ?component ?perspective))
-;         	(over all(is-at ?drone ?component ?perspective))
-; 			(at start (is-charging-dock ?component ?perspective)) ;now checking for charging-dock rather than launch-pad
-;         	(at end(is-at ?drone ?component ?perspective))
-;         	; (at start(is-launch-pad ?perspective))
-;         	(at start(< (charge-level ?drone)(max-charge-level ?drone)))
-;       	)
-;     	:effect (and
-;         	(at end(assign (charge-level ?drone) (max-charge-level ?drone)))
-;       	)
-;   )
+  (:durative-action charge ;MO: remove this action, merge with partial-charge.
+    	:parameters (?drone - drone ?perspective - perspective ?component - component)
+    	:duration (= ?duration (- (max-charge-level ?drone) (charge-level ?drone)))
+	:condition (and
+        	(at start(is-at ?drone ?component ?perspective))
+        	(over all(is-at ?drone ?component ?perspective))
+			(at start (is-charging-dock ?component ?perspective)) ;now checking for charging-dock rather than launch-pad
+        	(at end(is-at ?drone ?component ?perspective))
+        	; (at start(is-launch-pad ?perspective))
+        	(at start(< (charge-level ?drone)(max-charge-level ?drone)))
+      	)
+    	:effect (and
+        	(at end(assign (charge-level ?drone) (max-charge-level ?drone)))
+      	)
+  )
 
   (:durative-action partial-charge
     	:parameters (?drone - drone ?perspective - perspective ?component - component)
