@@ -25,6 +25,7 @@
     (has-capability ?d - drone ?c - capability)
     (is-at ?d - drone ?c - component ?p - perspective)
     (know ?k - knowledge-object ?c - component ?p - perspective)
+    (know-simultaneous ?k - knowledge-object ?c - component ?p1 ?p2 - perspective)
     (is-launch-pad ?lp - perspective)
     
     ;multiple drones are allowed to be at the same time at a perspective tagged with the is dock predicate
@@ -33,7 +34,10 @@
     (is-clear-perspective ?p - perspective ?c - component)
     (has-battery ?d - drone ?b - battery)
     (is-free ?b - battery)
-    (different ?c1 ?c2 - component)
+    (different-component ?c1 ?c2 - component)
+    (different-drone ?d1 ?d2 - drone)
+    (is-dynamic-inspection360 ?p - perspective)
+    (is-radiation-pattern ?p - perspective)
   )
 
   (:functions 
@@ -57,7 +61,7 @@
 	
 		(at start(is-dock ?destPersp))
                 (at start(>= (max-dock ?destComp) 1))
-		(at start(different ?srcComp ?destComp))		
+		(at start(different-component ?srcComp ?destComp))		
 
 		(at start(is-at ?drone ?srcComp ?srcPersp))
         	(at start(is-perspective ?destPersp ?destComp))
@@ -95,6 +99,55 @@
 		(at end(is-at ?drone ?component ?destPersp))
 	)
 )
+
+
+  (:durative-action inventory-mapping
+	:parameters (?staticDrone ?movingDrone - drone ?component - component ?radiation ?dynamic360 - perspective ?battery1 ?battery2 - battery)
+    	:duration (= ?duration 2)
+	:condition (and
+
+		(at start(different-drone ?staticDrone ?movingDrone))
+
+        	(at start(is-available signal-measurement ?radiation))
+		(at start(is-available signal-measurement ?dynamic360))
+
+        	(at start(is-radiation-pattern ?radiation))
+		(at start(is-dynamic-inspection360 ?dynamic360))
+		
+		(at start(is-at ?staticDrone ?component ?radiation))
+		(over all(is-at ?staticDrone ?component ?radiation))
+        	(at end(is-at ?staticDrone ?component ?radiation))
+
+		(at start(is-at ?movingDrone ?component ?dynamic360))
+		(over all(is-at ?movingDrone ?component ?dynamic360))
+        	(at end(is-at ?movingDrone ?component ?dynamic360))
+
+
+		(at start(has-battery ?staticDrone ?battery1))
+        	(over all(has-battery ?staticDrone ?battery1))
+        	(at end(has-battery ?staticDrone ?battery1))
+
+		(at start(has-battery ?movingDrone ?battery2))
+        	(over all(has-battery ?movingDrone ?battery2))
+        	(at end(has-battery ?movingDrone ?battery2))
+
+
+        	(at start(has-capability ?staticDrone signal-measurer))
+		(at start(has-capability ?movingDrone signal-measurer))
+
+
+
+        	(at start(> (battery-charge ?battery1)2))
+                (at start(> (battery-charge ?battery2)2))
+      	)
+    	:effect (and
+        	(at start(decrease (battery-charge ?battery1) 2))
+                (at start(decrease (battery-charge ?battery2) 2))
+
+	      	(at end(know-simultaneous signal-measurement ?component ?radiation ?dynamic360))
+
+      	)
+  )
 
   (:durative-action take-image
 	:parameters (?drone - drone ?component - component ?perspective - perspective ?battery - battery)
