@@ -67,7 +67,7 @@
 
 		(at start(is-clear-perspective ?srcPersp ?srcComp))
                 (at start(decrease(max-dock ?destComp) 1))
-		(at start(increase(max-dock ?srcComp) 1))
+		(at end(increase(max-dock ?srcComp) 1))
         	(at start(not (is-at ?drone ?srcComp ?srcPersp)))
         	(at start(decrease (battery-charge ?battery) (distance ?srcComp ?destComp)))
 		(at end(is-at ?drone ?destComp ?destPersp))
