@@ -33,6 +33,7 @@
     (is-clear-perspective ?p - perspective ?c - component)
     (has-battery ?d - drone ?b - battery)
     (is-free ?b - battery)
+    (different ?c1 ?c2 - component)
   )
 
   (:functions 
@@ -42,6 +43,7 @@
     (velocity ?d - drone)
     (battery-charge ?b - battery)
     (max-charge-battery ?b - battery)
+    (max-dock ?c - component)
   )
 
   (:durative-action goto
@@ -54,6 +56,8 @@
         	(at end(has-battery ?drone ?battery))
 	
 		(at start(is-dock ?destPersp))
+                (at start(>= (max-dock ?destComp) 1))
+		(at start(different ?srcComp ?destComp))		
 
 		(at start(is-at ?drone ?srcComp ?srcPersp))
         	(at start(is-perspective ?destPersp ?destComp))
@@ -62,7 +66,8 @@
     	:effect (and
 
 		(at start(is-clear-perspective ?srcPersp ?srcComp))
-
+                (at start(decrease(max-dock ?destComp) 1))
+		(at start(increase(max-dock ?srcComp) 1))
         	(at start(not (is-at ?drone ?srcComp ?srcPersp)))
         	(at start(decrease (battery-charge ?battery) (distance ?srcComp ?destComp)))
 		(at end(is-at ?drone ?destComp ?destPersp))

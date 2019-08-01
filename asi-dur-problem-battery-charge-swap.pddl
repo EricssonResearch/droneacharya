@@ -13,7 +13,8 @@
 	battery1 battery2 battery3 battery4 battery5 battery6 - battery)
 
   (:init
- 
+    
+
     
 
 
@@ -162,6 +163,65 @@
     (is-launch-pad launch-pad)
     (is-dock launch-pad)
     (is-dock dock)
+
+
+(= (max-dock first-tower-launchpad) 0) 
+(= (max-dock s1-antenna-1) 3)
+(= (max-dock s1-antenna-2) 3) 
+(= (max-dock s1-antenna-3) 3) 
+(= (max-dock s1-antenna-4) 3) 
+(= (max-dock s1-antenna-5) 3) 
+(= (max-dock s1-antenna-6) 3)
+
+(different first-tower-launchpad s1-antenna-1)
+(different first-tower-launchpad s1-antenna-2)
+(different first-tower-launchpad s1-antenna-3)
+(different first-tower-launchpad s1-antenna-4)
+(different first-tower-launchpad s1-antenna-5)
+(different first-tower-launchpad s1-antenna-6)
+
+(different s1-antenna-1 first-tower-launchpad)
+(different s1-antenna-1 s1-antenna-2)
+(different s1-antenna-1 s1-antenna-3)
+(different s1-antenna-1 s1-antenna-4)
+(different s1-antenna-1 s1-antenna-5)
+(different s1-antenna-1 s1-antenna-6)
+
+(different s1-antenna-2 first-tower-launchpad)
+(different s1-antenna-2 s1-antenna-1)
+(different s1-antenna-2 s1-antenna-3)
+(different s1-antenna-2 s1-antenna-4)
+(different s1-antenna-2 s1-antenna-5)
+(different s1-antenna-2 s1-antenna-6)
+
+(different s1-antenna-3 first-tower-launchpad)
+(different s1-antenna-3 s1-antenna-1)
+(different s1-antenna-3 s1-antenna-2)
+(different s1-antenna-3 s1-antenna-4)
+(different s1-antenna-3 s1-antenna-5)
+(different s1-antenna-3 s1-antenna-6)
+
+(different s1-antenna-4 first-tower-launchpad)
+(different s1-antenna-4 s1-antenna-1)
+(different s1-antenna-4 s1-antenna-2)
+(different s1-antenna-4 s1-antenna-3)
+(different s1-antenna-4 s1-antenna-5)
+(different s1-antenna-4 s1-antenna-6)
+
+(different s1-antenna-5 first-tower-launchpad)
+(different s1-antenna-5 s1-antenna-1)
+(different s1-antenna-5 s1-antenna-2)
+(different s1-antenna-5 s1-antenna-3)
+(different s1-antenna-5 s1-antenna-4)
+(different s1-antenna-5 s1-antenna-6)
+
+(different s1-antenna-6 first-tower-launchpad)
+(different s1-antenna-6 s1-antenna-1)
+(different s1-antenna-6 s1-antenna-2)
+(different s1-antenna-6 s1-antenna-3)
+(different s1-antenna-6 s1-antenna-4)
+(different s1-antenna-6 s1-antenna-5)
+
 
     (has-capability drone1 camera)
     (is-at drone1 first-tower-launchpad launch-pad)
