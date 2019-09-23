@@ -762,7 +762,7 @@
 
 
     (has-capability drone1 camera)
-    ;(has-capability drone1 signal-measurer)
+    (has-capability drone1 signal-measurer)
     (is-at drone1 s1-tower-launchpad launch-pad)
     (has-battery drone1 battery1d)
     (= (max-charge-drone drone1) 200)
@@ -770,7 +770,7 @@
 
     (has-capability drone2 camera)
     (has-capability drone2 thermal-camera)
-    ;(has-capability drone2 signal-measurer)
+    (has-capability drone2 signal-measurer)
     (is-at drone2 s1-tower-launchpad launch-pad)
     (has-battery drone2 battery2d)
     (= (max-charge-drone drone2) 200)
@@ -836,7 +836,6 @@
     (know thermal-image s1-antenna-5 left)
     (know thermal-image s1-antenna-6 left)
 
-    ;scenario for inspecting multiple prespectives of the same component
     (know image s1-antenna-1 front)
     (know image s1-antenna-1 above)
     (know image s1-antenna-1 below)
@@ -851,6 +850,11 @@
     (know image s2-antenna-2 right)
     (know image s2-antenna-2 front-below)
 
+    (know thermal-image s2-antenna-2 above)
+    (know thermal-image s2-antenna-3 front)
+
+    (know image s3-antenna-1 left)
+    (know image s3-antenna-1 above)
     (know image s3-antenna-1 front)
 
     ;scenario for dual drone inventory-mapping signal measurement
