@@ -14,8 +14,8 @@
     front above below left right front-below launch-pad dock radiation-pattern dynamic-inspection360 - perspective 
 	drone1 drone2 - drone
 	battery1d battery2d battery1s battery2s - battery 
-    ;drone3 drone4 - drone
-    ;battery2d battery3d battery2s battery3s - battery
+    drone3 drone4 - drone
+    battery3d battery4d battery3s battery4s - battery
   )
 
   (:init
@@ -86,12 +86,13 @@
 
     (is-perspective launch-pad charging-dock-1)
     (is-charging-dock charging-dock-1 launch-pad)
+    (= (max-dock charging-dock-1) 4)
 
     ;2nd charging-dock
 
     (is-perspective launch-pad charging-dock-2)
     (is-charging-dock charging-dock-2 launch-pad)
-
+    (= (max-dock charging-dock-2) 4)
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -511,7 +512,7 @@
     (connected-component s2-antenna-6 s2-antenna-4)
     (connected-component s2-antenna-6 s2-antenna-5)
 
-    (= (max-dock s2-tower-launchpad) 3) 
+    (= (max-dock s2-tower-launchpad) 4) 
     (= (max-dock s2-antenna-1) 3)
     (= (max-dock s2-antenna-2) 3) 
     (= (max-dock s2-antenna-3) 3) 
@@ -747,6 +748,9 @@
     (is-available image front-below)
     (is-available thermal-image front-below)
 
+    (is-available signal-measurement front)
+    (is-available signal-measurement left)
+
     (is-available signal-measurement radiation-pattern)
     (is-available signal-measurement dynamic-inspection360)
 
@@ -762,7 +766,7 @@
 
 
     (has-capability drone1 camera)
-    (has-capability drone1 signal-measurer)
+    ;(has-capability drone1 signal-measurer)
     (is-at drone1 s1-tower-launchpad launch-pad)
     (has-battery drone1 battery1d)
     (= (max-charge-drone drone1) 200)
@@ -770,85 +774,75 @@
 
     (has-capability drone2 camera)
     (has-capability drone2 thermal-camera)
-    (has-capability drone2 signal-measurer)
+    ;(has-capability drone2 signal-measurer)
     (is-at drone2 s1-tower-launchpad launch-pad)
     (has-battery drone2 battery2d)
     (= (max-charge-drone drone2) 200)
     (= (velocity drone2) 1)
 
-    ;(has-capability drone3 thermal-camera)
-    ;(has-capability drone3 signal-measurer)
-    ;(is-at drone3 s1-tower-launchpad launch-pad)
-    ;(has-battery drone3 battery3d)
-    ;(= (max-charge-drone drone3) 200)
-    ;(= (velocity drone3) 2)
+    (has-capability drone3 thermal-camera)
+    (has-capability drone3 signal-measurer)
+    (is-at drone3 s1-tower-launchpad launch-pad)
+    (has-battery drone3 battery3d)
+    (= (max-charge-drone drone3) 200)
+    (= (velocity drone3) 2)
 
-    ;(has-capability drone4 thermal-camera)
+    (has-capability drone4 camera)
     ;(has-capability drone4 signal-measurer)
-    ;(is-at drone3 s1-tower-launchpad launch-pad)
-    ;(has-battery drone4 battery4d)
-    ;(= (max-charge-drone drone4) 200)
-    ;(= (velocity drone4) 2)
+    (is-at drone4 s3-tower-launchpad launch-pad)
+    (has-battery drone4 battery4d)
+    (= (max-charge-drone drone4) 200)
+    (= (velocity drone4) 2)
       
     (= (battery-charge battery1d) 95)
     (= (battery-charge battery2d) 190)
-    ;(= (battery-charge battery3d) 200)
-    ;(= (battery-charge battery4d) 80)
+    (= (battery-charge battery3d) 200)
+    (= (battery-charge battery4d) 80)
 
     (= (battery-charge battery1s) 200)
     (= (battery-charge battery2s) 200)
-    ;(= (battery-charge battery3s) 200)
-    ;(= (battery-charge battery4s) 80)
+    (= (battery-charge battery3s) 200)
+    (= (battery-charge battery4s) 80)
 
 
     
     (is-free battery1s)
     (is-free battery2s)
-    ;(is-free battery3s)
-    ;(is-free battery4s)
+    (is-free battery3s)
+    (is-free battery4s)
 
     (= (max-charge-battery battery1d) 200)
     (= (max-charge-battery battery2d) 200)
-    ;(= (max-charge-battery battery3d) 200)
-    ;(= (max-charge-battery battery4d) 80)
+    (= (max-charge-battery battery3d) 200)
+    (= (max-charge-battery battery4d) 80)
     (= (max-charge-battery battery1s) 200)
     (= (max-charge-battery battery2s) 200)
-    ;(= (max-charge-battery battery3s) 200)
-    ;(= (max-charge-battery battery4s) 80)
+    (= (max-charge-battery battery3s) 200)
+    (= (max-charge-battery battery4s) 80)
   )
 
   (:goal (and
-    (is-at drone1 s2-tower-launchpad launch-pad)
+
+    ;scenario goals
+    (is-at drone1 s1-tower-launchpad launch-pad)
     (is-at drone2 s2-tower-launchpad launch-pad)
-    ; (is-at drone3 s2-tower-launchpad launch-pad-1)
-    ; (is-at drone4 s3-tower-launchpad launch-pad-1)
+    (is-at drone3 s2-tower-launchpad launch-pad)
+    (is-at drone4 s3-tower-launchpad launch-pad)
       
-    (know image s1-antenna-1 front)
-    (know image s1-antenna-2 left)
-    (know image s1-antenna-3 left)
-    (know image s1-antenna-4 left)
-    (know image s1-antenna-5 left)
+    (know image s1-antenna-1 front-below)  
+    (know image s1-antenna-2 front)
+    (know image s1-antenna-3 above)
+    (know image s1-antenna-4 above)
+    (know image s1-antenna-5 front)
+    (know image s1-antenna-6 right)
+    
 
-    (know thermal-image s1-antenna-1 front)
-    (know thermal-image s1-antenna-2 left)
-    (know thermal-image s1-antenna-3 left)
-    (know thermal-image s1-antenna-4 left)
-    (know thermal-image s1-antenna-5 left)
-    (know thermal-image s1-antenna-6 left)
-
-    (know image s1-antenna-1 front)
-    (know image s1-antenna-1 above)
-    (know image s1-antenna-1 below)
-    (know image s1-antenna-1 left)
-    (know image s1-antenna-1 right)
-    (know image s1-antenna-1 front-below)
-
-    (know image s2-antenna-2 front)
+    (know image s2-antenna-1 left)
     (know image s2-antenna-2 above)
-    (know image s2-antenna-2 below)
-    (know image s2-antenna-2 left)
-    (know image s2-antenna-2 right)
-    (know image s2-antenna-2 front-below)
+    (know image s2-antenna-3 front)
+    (know image s2-antenna-4 above)
+    (know image s2-antenna-5 front)
+    (know image s2-antenna-6 right)
 
     (know thermal-image s2-antenna-2 above)
     (know thermal-image s2-antenna-3 front)
@@ -857,8 +851,14 @@
     (know image s3-antenna-1 above)
     (know image s3-antenna-1 front)
 
-    ;scenario for dual drone inventory-mapping signal measurement
-    ;(know-simultaneous signal-measurement s1-antenna-1 radiation-pattern dynamic-inspection360)
+    ;extra goals
+    (know signal-measurement s3-antenna-1 front)
+    (know signal-measurement s3-antenna-2 left)
+    (know signal-measurement s3-antenna-3 left)
+    (know signal-measurement s3-antenna-4 left)
+    (know signal-measurement s3-antenna-5 left)
+    (know signal-measurement s3-antenna-6 left)
+
     )
   )
 
