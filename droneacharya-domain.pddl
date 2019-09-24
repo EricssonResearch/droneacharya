@@ -221,7 +221,7 @@
       (at start(has-battery ?drone ?battery))
       (over all(has-battery ?drone ?battery))
       (at end(has-battery ?drone ?battery))
-      (at start(is-launch-pad ?perspective))
+      (at start(is-charging-dock ?component ?perspective))
       (at start(< (battery-charge ?battery)(max-charge-battery ?battery)))
     )
     :effect (and

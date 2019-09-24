@@ -99,6 +99,7 @@
     ;first site
 
     (is-perspective launch-pad s1-tower-launchpad)
+    (is-charging-dock s1-tower-launchpad launch-pad)
     (= (distance s1-tower-launchpad s1-antenna-1) 29)
     (= (distance s1-tower-launchpad s1-antenna-2) 29)
     (= (distance s1-tower-launchpad s1-antenna-3) 30)
@@ -312,6 +313,7 @@
     ;second site
 
     (is-perspective launch-pad s2-tower-launchpad)
+    (is-charging-dock s2-tower-launchpad launch-pad)
     (= (distance s2-tower-launchpad s2-antenna-1) 29)
     (= (distance s2-tower-launchpad s2-antenna-2) 29)
     (= (distance s2-tower-launchpad s2-antenna-3) 30)
@@ -525,6 +527,7 @@
     ;third site
 
     (is-perspective launch-pad s3-tower-launchpad)
+    (is-charging-dock s3-tower-launchpad launch-pad)
     (= (distance s3-tower-launchpad s3-antenna-1) 29)
     (= (distance s3-tower-launchpad s3-antenna-2) 29)
     (= (distance s3-tower-launchpad s3-antenna-3) 30)
@@ -754,6 +757,7 @@
     (is-available signal-measurement radiation-pattern)
     (is-available signal-measurement dynamic-inspection360)
 
+    
     (is-launch-pad launch-pad)
     (is-dock launch-pad)
     (is-dock dock)
