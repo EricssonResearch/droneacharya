@@ -14,10 +14,6 @@
 
   (:init
     
-
-    
-
-
     (is-perspective launch-pad first-tower-launchpad)
 
     (= (distance first-tower-launchpad s1-antenna-1) 29)
@@ -194,7 +190,6 @@
     (is-dynamic-inspection360 dynamic-inspection360)
     (is-radiation-pattern radiation-pattern)
 
-
 (= (max-dock first-tower-launchpad) 0) 
 (= (max-dock s1-antenna-1) 3)
 (= (max-dock s1-antenna-2) 3) 
@@ -290,9 +285,6 @@
 (different-battery battery6 battery4)
 (different-battery battery6 battery5)
 
-
-
-
     ;(has-capability drone1 camera)
     (has-capability drone1 signal-measurer)
     (is-at drone1 first-tower-launchpad launch-pad)
@@ -322,7 +314,6 @@
     (= (battery-charge battery4) 70)
     (= (battery-charge battery5) 170)
     (= (battery-charge battery6) 80)
-
 
     (is-free battery4)
     (is-free battery5)
