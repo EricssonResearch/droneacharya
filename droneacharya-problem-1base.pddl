@@ -328,6 +328,10 @@
     (is-free battery5)
     (is-free battery6)
 
+    (is-at-battery battery4 first-tower-launchpad launch-pad)
+    (is-at-battery battery5 first-tower-launchpad launch-pad)
+    (is-at-battery battery6 first-tower-launchpad launch-pad)    
+
     (= (max-charge-battery battery1) 70)
     (= (max-charge-battery battery2) 170)
     (= (max-charge-battery battery3) 80)

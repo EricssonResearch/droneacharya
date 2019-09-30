@@ -21,36 +21,44 @@
   (:predicates 
 
     (is-perspective ?p - perspective ?c - component)
-    (is-available ?k - knowledge-object ?p - perspective)
+    
+    
+
+    ;drone and battery predicates
     (has-capability ?d - drone ?c - capability)
     (is-at ?d - drone ?c - component ?p - perspective)
-    (know ?k - knowledge-object ?c - component ?p - perspective)
-    (know-simultaneous ?k - knowledge-object ?c - component ?p1 ?p2 - perspective)
-    (is-launch-pad ?lp - perspective)
-    
-    ;multiple drones are allowed to be at the same time at a perspective tagged with the is-dock predicate.
-    ;multiple drones are not allowed at perspective not tagged by the is-dock predicate.
-
-    (is-dock ?d - perspective)
-    (is-clear-perspective ?p - perspective ?c - component)
     (has-battery ?d - drone ?b - battery)
+    (is-at-battery ?b - battery ?c - component ?p - perspective)
     (is-free ?b - battery)
+
+    ;prespective roles predicates
+    (is-launch-pad ?lp - perspective)
+    (is-dock ?d - perspective)
+    (is-charging-dock ?c - component ?p - perspective)
+    (is-clear-perspective ?p - perspective ?c - component)
+    
+    ;object relantionships predicates
     (connected-component ?c1 ?c2 - component)
     (different-drone ?d1 ?d2 - drone)
     (different-battery ?b1 ?b2 - battery)
+
+    ;sensing related predicates
+    (is-available ?k - knowledge-object ?p - perspective)
+    (know ?k - knowledge-object ?c - component ?p - perspective)
+    (know-simultaneous ?k - knowledge-object ?c - component ?p1 ?p2 - perspective)
     (is-dynamic-inspection360 ?p - perspective)
     (is-radiation-pattern ?p - perspective)
-    (is-charging-dock ?c - component ?p - perspective)
+
 
   )
 
   (:functions 
 
     (max-charge-drone ?d - drone)
-    (distance ?sc ?dc - component)
-    (velocity ?d - drone)
     (battery-charge ?b - battery)
     (max-charge-battery ?b - battery)
+    (velocity ?d - drone)
+    (distance ?sc ?dc - component)
     (max-dock ?c - component)
   )
 
@@ -238,6 +246,7 @@
 ;    :condition (and
 ;    
 ;      (at start(is-free ?swap-battery))
+;      (at start(is-at-battery ?swap-battery ?component ?perspective))
 ;      (at start(has-battery ?drone ?battery))
 ;      (at start(is-at ?drone ?component ?perspective))
 ;      (over all(is-at ?drone ?component ?perspective))
@@ -249,9 +258,11 @@
 ;    )
 ;    :effect (and
 ;      (at start(not (is-free ?swap-battery)))
+;      (at end(is-free ?battery))
 ;      (at end(not (has-battery ?drone ?battery)))
 ;      (at end(has-battery ?drone ?swap-battery))
-;      (at end(is-free ?battery))
+;      (at end(not (is-at-battery ?swap-battery ?component ?perspective)))
+;      (at end(is-at-battery ?battery ?component ?perspective))
 ;    )
 ;  )
 

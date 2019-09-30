@@ -59,7 +59,7 @@ def generatePDDLDrones(int):
         for j in range(int):
             sa = i + 1;
             sb = j + 1;
-            output = "(different-drone drone" + str(sa) + " drone" + str(sb)+")"
+            output = "    (different-drone drone" + str(sa) + " drone" + str(sb)+")"
             if not str(sa) == str(sb):
                 print(output)
 
@@ -68,7 +68,7 @@ def generatePDDLBatteries(int):
         for j in range(int):
             sa = i + 1;
             sb = j + 1;
-            output = "(different-battery battery" + str(sa) + " battery" + str(sb)+")"
+            output = "    (different-battery battery" + str(sa) + " battery" + str(sb)+")"
             if not str(sa) == str(sb):
                 print(output)
 
@@ -76,5 +76,5 @@ def generatePDDLBatteries(int):
 #generatePDDLConnectedComponents(SeoulStationsDistances)
 #generatePDDLStationsComponents(SeoulStationsDistances)
 #generatePDDLStationsObjects(SeoulStationsDistances)
-generatePDDLDrones(3)
-generatePDDLBatteries(6)
+generatePDDLDrones(12)
+generatePDDLBatteries(24)
