@@ -37,6 +37,7 @@
     (is-free ?b - battery)
     (connected-component ?c1 ?c2 - component)
     (different-drone ?d1 ?d2 - drone)
+    (different-battery ?b1 ?b2 - battery)
     (is-dynamic-inspection360 ?p - perspective)
     (is-radiation-pattern ?p - perspective)
     (is-charging-dock ?c - component ?p - perspective)
@@ -112,6 +113,7 @@
     :condition (and
 
       (at start(different-drone ?staticDrone ?movingDrone))
+      (at start(different-battery ?battery1 ?battery2))
 
       (at start(is-available signal-measurement ?radiation))
       (at start(is-available signal-measurement ?dynamic360))
@@ -234,7 +236,7 @@
 ;    :parameters (?drone - drone ?battery ?swap-battery - battery ?perspective - perspective ?component - component)
 ;    :duration (= ?duration 50)
 ;    :condition (and
-    
+;    
 ;      (at start(is-free ?swap-battery))
 ;      (at start(has-battery ?drone ?battery))
 ;      (at start(is-at ?drone ?component ?perspective))
@@ -246,9 +248,9 @@
 ;      (at start(<= (battery-charge ?swap-battery)(max-charge-drone ?drone)))
 ;    )
 ;    :effect (and
+;      (at start(not (is-free ?swap-battery)))
 ;      (at end(not (has-battery ?drone ?battery)))
 ;      (at end(has-battery ?drone ?swap-battery))
-;      (at end(not (is-free ?swap-battery)))
 ;      (at end(is-free ?battery))
 ;    )
 ;  )

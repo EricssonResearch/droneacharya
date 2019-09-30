@@ -54,7 +54,27 @@ def generatePDDLStationsObjects(matrix):
         print("    "+station+"-tower-launchpad "+station+"-antenna-1 "+station+"-antenna-2 "+station+"-antenna-3 "+station+"-antenna-4 "+station+"-antenna-5 "+station+"-antenna-6 - component")
 
 
+def generatePDDLDrones(int):
+    for i in range(int):
+        for j in range(int):
+            sa = i + 1;
+            sb = j + 1;
+            output = "(different-drone drone" + str(sa) + " drone" + str(sb)+")"
+            if not str(sa) == str(sb):
+                print(output)
+
+def generatePDDLBatteries(int):
+    for i in range(int):
+        for j in range(int):
+            sa = i + 1;
+            sb = j + 1;
+            output = "(different-battery battery" + str(sa) + " battery" + str(sb)+")"
+            if not str(sa) == str(sb):
+                print(output)
+
 #generatePDDLDistanceFunctions(SeoulStationsDistances)
 #generatePDDLConnectedComponents(SeoulStationsDistances)
 #generatePDDLStationsComponents(SeoulStationsDistances)
 #generatePDDLStationsObjects(SeoulStationsDistances)
+generatePDDLDrones(3)
+generatePDDLBatteries(6)
