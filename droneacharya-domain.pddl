@@ -49,8 +49,6 @@
     (mission_at ?m - mission ?c - component)
     (mission_complete ?m - mission)
     (not_busy ?d - drone)
-    ;(mission_active ?m - mission)  ;; ??? need it ???
-
 
   )
 
@@ -192,7 +190,6 @@
     )
   )
 
-
   (:durative-action dynamic-charge
     :parameters (?drone - drone ?perspective - perspective ?component - component)
     :duration (<= ?duration (- (max-charge-drone ?drone) (drone-charge ?drone)))
@@ -208,8 +205,6 @@
     )
   )
 
-
-
   (:durative-action complete-mission
     :parameters (?mission - mission ?drone1 ?drone2 - drone ?component - component)
     :duration (= ?duration (mission_duration ?mission))
@@ -221,19 +216,15 @@
       (at start (has-capability ?drone2 thermal-camera))
       (at start (is-at-component ?drone1 ?component))
       (at start (is-at-component ?drone2 ?component))
-      ;(at start (is-at-component ?drone3 ?component))
       (at start (not_busy ?drone1))
       (at start (not_busy ?drone2))  
-      ;(at start (not_busy ?drone3))  
     )  
     :effect (and 
       (at start (not (not_busy ?drone1)))
       (at start (not (not_busy ?drone2)))  
-      ;(at start (not (not_busy ?drone3)))
       (at end (mission_complete ?mission))
       (at end (not_busy ?drone1))
       (at end (not_busy ?drone2))  
-      ;(at end (not_busy ?drone3)) 
     )
   )
 

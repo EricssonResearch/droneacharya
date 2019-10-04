@@ -463,8 +463,6 @@
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-    ;s1-site
-
     (is-perspective launch-pad s1-tower-launchpad)
     (= (max-dock s1-tower-launchpad) 3) 
     (is-charging-dock s1-tower-launchpad launch-pad)
@@ -513,7 +511,6 @@
     ;;;;;;;;;;;;;;;drone start location 1
 
     (has-capability drone1 camera)
-    ;(has-capability drone1 signal-measurer)
     (is-at drone1 s4-tower-launchpad launch-pad)
     (is-at-component drone1 s4-tower-launchpad)
     (= (drone-charge drone1) 95)
@@ -540,7 +537,6 @@
     ;;;;;;;;;;;;;;;drone start location 2
 
     (has-capability drone4 camera)
-    ;(has-capability drone4 signal-measurer)
     (is-at drone4 s10-tower-launchpad launch-pad)
     (is-at-component drone4 s10-tower-launchpad)
     (= (drone-charge drone4) 95)
@@ -567,7 +563,6 @@
      ;;;;;;;;;;;;;;;drone start location 3
 
     (has-capability drone7 camera)
-    ;(has-capability drone7 signal-measurer)
     (is-at drone7 s13-tower-launchpad launch-pad)
     (is-at-component drone7 s13-tower-launchpad)
     (= (drone-charge drone7) 95)
@@ -594,7 +589,6 @@
      ;;;;;;;;;;;;;;;drone start location 4
 
     (has-capability drone10 camera)
-    ;(has-capability drone10 signal-measurer)
     (is-at drone10 s19-tower-launchpad launch-pad)
     (is-at-component drone10 s19-tower-launchpad)
     (= (drone-charge drone10) 95)
@@ -618,8 +612,6 @@
     (= (max-charge-drone drone12) 300)
     (= (velocity drone12) 2)
 
-
-
     (mission_at mission1 s1-tower-launchpad)
     (mission_at mission2 s4-tower-launchpad)
     (mission_at mission3 s7-tower-launchpad)
@@ -635,7 +627,6 @@
     (= (mission_duration mission5) 5)
     (= (mission_duration mission6) 6)
     (= (mission_duration mission7) 7)
-
   )
 
   (:goal (and
