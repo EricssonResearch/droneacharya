@@ -11,7 +11,8 @@
   drone 
   capability 
   knowledge
-  battery - object
+  battery
+  mission - object
   )
 
   (:constants 
@@ -20,26 +21,20 @@
   
   (:predicates 
 
-    (is-perspective ?p - perspective ?c - component)
     
-    
-
     ;drone and battery predicates
     (has-capability ?d - drone ?c - capability)
     (is-at ?d - drone ?c - component ?p - perspective)
-    (has-battery ?d - drone ?b - battery)
-    (is-at-battery ?b - battery ?c - component ?p - perspective)
-    (is-free ?b - battery)
+    (different-drone ?d1 ?d2 - drone)
 
     ;prespective roles predicates
-    (is-launch-pad ?lp - perspective)
+    (is-perspective ?p - perspective ?c - component)
     (is-dock ?d - perspective)
     (is-charging-dock ?c - component ?p - perspective)
     (is-clear-perspective ?p - perspective ?c - component)
     
     ;object relantionships predicates
-    (connected-component ?c1 ?c2 - component)
-    (different-drone ?d1 ?d2 - drone)
+    (connected-component ?c1 ?c2 - component) ; not needed
     (different-battery ?b1 ?b2 - battery)
 
     ;sensing related predicates
@@ -49,37 +44,36 @@
     (is-dynamic-inspection360 ?p - perspective)
     (is-radiation-pattern ?p - perspective)
 
+    ;strategic tactical :predicates
+    (is-at-component ?d - drone ?c - component)
+    (mission_at ?m - mission ?c - component)
+    (mission_complete ?m - mission)
+    (not_busy ?d - drone)
+    ;(mission_active ?m - mission)  ;; ??? need it ???
+
 
   )
 
   (:functions 
 
     (max-charge-drone ?d - drone)
-    (battery-charge ?b - battery)
-    (max-charge-battery ?b - battery)
+    (drone-charge ?d - drone)
     (velocity ?d - drone)
     (distance ?sc ?dc - component)
     (max-dock ?c - component)
+
+    (mission_duration ?m - mission)
   )
 
   (:durative-action goto
-    :parameters (?drone - drone ?battery - battery ?srcComp - component ?srcPersp - perspective ?destComp - component ?destPersp - perspective)
+    :parameters (?drone - drone ?srcComp - component ?srcPersp - perspective ?destComp - component ?destPersp - perspective)
     :duration (= ?duration (/ (distance ?srcComp ?destComp) (velocity ?drone)))
     :condition (and
-          
-      (at start(has-battery ?drone ?battery))
-      (over all(has-battery ?drone ?battery))
-      (at end(has-battery ?drone ?battery))
-  
       (at start(is-dock ?destPersp))
       (at start(>= (max-dock ?destComp) 1))
-
-      ;changed from different-component to connected-component to increase state space and problem file complexity
-      (at start(connected-component ?srcComp ?destComp))    
-
       (at start(is-at ?drone ?srcComp ?srcPersp))
       (at start(is-perspective ?destPersp ?destComp))
-      (at start(>= (battery-charge ?battery)(distance ?srcComp ?destComp)))
+      (at start(>= (drone-charge ?drone)(distance ?srcComp ?destComp)))
     )
 
     :effect (and
@@ -88,40 +82,37 @@
       (at start(decrease(max-dock ?destComp) 1))
       (at end(increase(max-dock ?srcComp) 1))
       (at start(not (is-at ?drone ?srcComp ?srcPersp)))
-      (at start(decrease (battery-charge ?battery) (distance ?srcComp ?destComp)))
+      (at start(not (is-at-component ?drone ?srcComp)))
+      (at start(decrease (drone-charge ?drone) (distance ?srcComp ?destComp)))
       (at end(is-at ?drone ?destComp ?destPersp))
+      (at end(is-at-component ?drone ?destComp))
     )
   )
 
   (:durative-action change-perspective
-    :parameters (?drone - drone  ?battery - battery ?component - component ?srcPersp ?destPersp - perspective)
+    :parameters (?drone - drone ?component - component ?srcPersp ?destPersp - perspective)
     :duration (= ?duration 2) 
     :condition (and
-      (at start(has-battery ?drone ?battery))
-      (over all(has-battery ?drone ?battery))
-      (at end(has-battery ?drone ?battery))
       (at start(is-clear-perspective ?destPersp ?component))
       (at start(is-at ?drone ?component ?srcPersp))
       (at start(is-perspective ?destPersp ?component))
-      (at start(>= (battery-charge ?battery) 2))
+      (at start(>= (drone-charge ?drone) 2))
   )
     :effect (and
       (at start(is-clear-perspective ?srcPersp ?component))
       (at start(not (is-clear-perspective ?destPersp ?component)))
       (at start(not (is-at ?drone ?component ?srcPersp)))
-      (at start(decrease (battery-charge ?battery) 2))
+      (at start(decrease (drone-charge ?drone) 2))
       (at end(is-at ?drone ?component ?destPersp))
     )
   )
 
-
   (:durative-action inventory-mapping
-    :parameters (?staticDrone - drone ?battery1 - battery ?movingDrone - drone ?battery2 - battery ?component - component ?radiation ?dynamic360 - perspective)
+    :parameters (?staticDrone ?movingDrone - drone ?component - component ?radiation ?dynamic360 - perspective)
     :duration (= ?duration 2)
     :condition (and
 
       (at start(different-drone ?staticDrone ?movingDrone))
-      (at start(different-battery ?battery1 ?battery2))
 
       (at start(is-available signal-measurement ?radiation))
       (at start(is-available signal-measurement ?dynamic360))
@@ -137,133 +128,116 @@
       (over all(is-at ?movingDrone ?component ?dynamic360))
       (at end(is-at ?movingDrone ?component ?dynamic360))
 
-
-      (at start(has-battery ?staticDrone ?battery1))
-      (over all(has-battery ?staticDrone ?battery1))
-      (at end(has-battery ?staticDrone ?battery1))
-
-      (at start(has-battery ?movingDrone ?battery2))
-      (over all(has-battery ?movingDrone ?battery2))
-      (at end(has-battery ?movingDrone ?battery2))
-
       (at start(has-capability ?staticDrone signal-measurer))
       (at start(has-capability ?movingDrone signal-measurer))
 
-      (at start(> (battery-charge ?battery1)2))
-      (at start(> (battery-charge ?battery2)2))
+      (at start(> (drone-charge ?staticDrone)2))
+      (at start(> (drone-charge ?movingDrone)2))
     )
     :effect (and
-      (at start(decrease (battery-charge ?battery1) 2))
-      (at start(decrease (battery-charge ?battery2) 2))
+      (at start(decrease (drone-charge ?staticDrone) 2))
+      (at start(decrease (drone-charge ?movingDrone) 2))
       (at end(know-simultaneous signal-measurement ?component ?radiation ?dynamic360))
     )
   )
 
   (:durative-action take-image
-    :parameters (?drone - drone ?battery - battery ?component - component ?perspective - perspective)
+    :parameters (?drone - drone ?component - component ?perspective - perspective)
     :duration (= ?duration 1)
     :condition (and
       (at start(is-available image ?perspective))
       (at start(is-at ?drone ?component ?perspective))
       (over all(is-at ?drone ?component ?perspective))
       (at end(is-at ?drone ?component ?perspective))
-      (at start(has-battery ?drone ?battery))
-      (over all(has-battery ?drone ?battery))
-      (at end(has-battery ?drone ?battery))
       (at start(has-capability ?drone camera))
-      (at start(> (battery-charge ?battery)2))
+      (at start(> (drone-charge ?drone)2))
   )
     :effect (and
-      (at start(decrease (battery-charge ?battery) 2))
+      (at start(decrease (drone-charge ?drone) 2))
       (at end(know image ?component ?perspective))
     )
   )
 
   (:durative-action take-thermal-image
-    :parameters (?drone - drone ?battery - battery ?component - component ?perspective - perspective)
+    :parameters (?drone - drone ?component - component ?perspective - perspective)
     :duration (= ?duration 2)
     :condition (and
       (at start(is-available thermal-image ?perspective))
       (at start(is-at ?drone ?component ?perspective))
       (over all(is-at ?drone ?component ?perspective))
       (at end(is-at ?drone ?component ?perspective))
-      (at start(has-battery ?drone ?battery))
-      (over all(has-battery ?drone ?battery))
-      (at end(has-battery ?drone ?battery))
       (at start(has-capability ?drone thermal-camera))
-      (at start(> (battery-charge ?battery)2))
+      (at start(> (drone-charge ?drone)2))
     )
     :effect (and
-      (at start(decrease (battery-charge ?battery) 2))
+      (at start(decrease (drone-charge ?drone) 2))
       (at end(know thermal-image ?component ?perspective))
     )
   )
 
   (:durative-action take-signal-measurement
-    :parameters (?drone - drone ?battery - battery ?component - component ?perspective - perspective)
+    :parameters (?drone - drone ?component - component ?perspective - perspective)
     :duration (= ?duration 2)
     :condition (and
       (at start(is-available signal-measurement ?perspective))
       (at start(is-at ?drone ?component ?perspective))
       (over all(is-at ?drone ?component ?perspective))
       (at end(is-at ?drone ?component ?perspective))
-      (at start(has-battery ?drone ?battery))
-      (over all(has-battery ?drone ?battery))
-      (at end(has-battery ?drone ?battery))
       (at start(has-capability ?drone signal-measurer))
-      (at start(> (battery-charge ?battery)2))
+      (at start(> (drone-charge ?drone)2))
     )
     :effect (and
-      (at start(decrease (battery-charge ?battery) 2))
+      (at start(decrease (drone-charge ?drone) 2))
       (at end(know signal-measurement ?component ?perspective))
     )
   )
 
 
-
   (:durative-action dynamic-charge
-    :parameters (?drone - drone ?battery - battery ?perspective - perspective ?component - component)
-    :duration (<= ?duration (- (max-charge-battery ?battery) (battery-charge ?battery)))
+    :parameters (?drone - drone ?perspective - perspective ?component - component)
+    :duration (<= ?duration (- (max-charge-drone ?drone) (drone-charge ?drone)))
     :condition (and
       (at start(is-at ?drone ?component ?perspective))
       (over all(is-at ?drone ?component ?perspective))
       (at end(is-at ?drone ?component ?perspective))
-      (at start(has-battery ?drone ?battery))
-      (over all(has-battery ?drone ?battery))
-      (at end(has-battery ?drone ?battery))
       (at start(is-charging-dock ?component ?perspective))
-      (at start(< (battery-charge ?battery)(max-charge-battery ?battery)))
+      (at start(< (drone-charge ?drone)(max-charge-drone ?drone)))
     )
     :effect (and
-      (at end(increase (battery-charge ?battery) ?duration))
+      (at end(increase (drone-charge ?drone) ?duration))
     )
   )
 
 
-;  (:durative-action swap-battery
-;    :parameters (?drone - drone ?battery ?swap-battery - battery ?perspective - perspective ?component - component)
-;    :duration (= ?duration 50)
-;    :condition (and
-;    
-;      (at start(is-free ?swap-battery))
-;      (at start(is-at-battery ?swap-battery ?component ?perspective))
-;      (at start(has-battery ?drone ?battery))
-;      (at start(is-at ?drone ?component ?perspective))
-;      (over all(is-at ?drone ?component ?perspective))
-;      (at end(is-at ?drone ?component ?perspective))
-;      (at start(is-launch-pad ?perspective))
-;      (at start(> (battery-charge ?swap-battery) (battery-charge ?battery)))
-;      (at start(< (battery-charge ?battery)(max-charge-drone ?drone)));
-;      (at start(<= (battery-charge ?swap-battery)(max-charge-drone ?drone)))
-;    )
-;    :effect (and
-;      (at start(not (is-free ?swap-battery)))
-;      (at end(is-free ?battery))
-;      (at end(not (has-battery ?drone ?battery)))
-;      (at end(has-battery ?drone ?swap-battery))
-;      (at end(not (is-at-battery ?swap-battery ?component ?perspective)))
-;      (at end(is-at-battery ?battery ?component ?perspective))
-;    )
-;  )
+
+  (:durative-action complete-mission
+    :parameters (?mission - mission ?drone1 ?drone2 - drone ?component - component)
+    :duration (= ?duration (mission_duration ?mission))
+    :condition (and 
+      (over all (mission_at ?mission ?component))
+      (at start (has-capability ?drone1 camera))
+      (at start (has-capability ?drone1 signal-measurer))
+      (at start (has-capability ?drone2 signal-measurer))
+      (at start (has-capability ?drone2 thermal-camera))
+      (at start (is-at-component ?drone1 ?component))
+      (at start (is-at-component ?drone2 ?component))
+      ;(at start (is-at-component ?drone3 ?component))
+      (at start (not_busy ?drone1))
+      (at start (not_busy ?drone2))  
+      ;(at start (not_busy ?drone3))  
+    )  
+    :effect (and 
+      (at start (not (not_busy ?drone1)))
+      (at start (not (not_busy ?drone2)))  
+      ;(at start (not (not_busy ?drone3)))
+      (at end (mission_complete ?mission))
+      (at end (not_busy ?drone1))
+      (at end (not_busy ?drone2))  
+      ;(at end (not_busy ?drone3)) 
+    )
+  )
+
 
 )
+
+
