@@ -3,11 +3,11 @@
 
 
 
-(define (problem asi-dur-problem-fullswap)
-  (:domain asi-dur-domain-fullswap)
+(define (problem droneacharya-problem-21base)
+  (:domain droneacharya-domain)
  
   (:objects 
-	s1-tower-launchpad s1-antenna-1 s1-antenna-2 s1-antenna-3 s1-antenna-4 s1-antenna-5 s1-antenna-6 - component 
+    s1-tower-launchpad s1-antenna-1 s1-antenna-2 s1-antenna-3 s1-antenna-4 s1-antenna-5 s1-antenna-6 - component 
     s2-tower-launchpad s2-antenna-1 s2-antenna-2 s2-antenna-3 s2-antenna-4 s2-antenna-5 s2-antenna-6 - component 
     s3-tower-launchpad s3-antenna-1 s3-antenna-2 s3-antenna-3 s3-antenna-4 s3-antenna-5 s3-antenna-6 - component 
     s4-tower-launchpad s4-antenna-1 s4-antenna-2 s4-antenna-3 s4-antenna-4 s4-antenna-5 s4-antenna-6 - component
@@ -629,7 +629,7 @@
     ;s2-site
 
     (is-perspective launch-pad s2-tower-launchpad)
-    (is-charging-dock s2-tower-launchpad launch-pad)
+    ;(is-charging-dock s2-tower-launchpad launch-pad)
     (= (distance s2-tower-launchpad s2-antenna-1) 5)
     (= (distance s2-tower-launchpad s2-antenna-2) 5)
     (= (distance s2-tower-launchpad s2-antenna-3) 6)
@@ -794,7 +794,7 @@
     ;s3-site
 
     (is-perspective launch-pad s3-tower-launchpad)
-    (is-charging-dock s3-tower-launchpad launch-pad)
+    ;is-charging-dock s3-tower-launchpad launch-pad)
     (= (distance s3-tower-launchpad s3-antenna-1) 5)
     (= (distance s3-tower-launchpad s3-antenna-2) 5)
     (= (distance s3-tower-launchpad s3-antenna-3) 6)
@@ -1124,7 +1124,7 @@
     ;s5-site
 
     (is-perspective launch-pad s5-tower-launchpad)
-    (is-charging-dock s5-tower-launchpad launch-pad)
+    ;(is-charging-dock s5-tower-launchpad launch-pad)
     (= (distance s5-tower-launchpad s5-antenna-1) 5)
     (= (distance s5-tower-launchpad s5-antenna-2) 5)
     (= (distance s5-tower-launchpad s5-antenna-3) 6)
@@ -1289,7 +1289,7 @@
     ;s6-site
 
     (is-perspective launch-pad s6-tower-launchpad)
-    (is-charging-dock s6-tower-launchpad launch-pad)
+    ;(is-charging-dock s6-tower-launchpad launch-pad)
     (= (distance s6-tower-launchpad s6-antenna-1) 5)
     (= (distance s6-tower-launchpad s6-antenna-2) 5)
     (= (distance s6-tower-launchpad s6-antenna-3) 6)
@@ -1619,7 +1619,7 @@
     ;s8-site
 
     (is-perspective launch-pad s8-tower-launchpad)
-    (is-charging-dock s8-tower-launchpad launch-pad)
+    ;(is-charging-dock s8-tower-launchpad launch-pad)
     (= (distance s8-tower-launchpad s8-antenna-1) 5)
     (= (distance s8-tower-launchpad s8-antenna-2) 5)
     (= (distance s8-tower-launchpad s8-antenna-3) 6)
@@ -1784,7 +1784,7 @@
     ;s9-site
 
     (is-perspective launch-pad s9-tower-launchpad)
-    (is-charging-dock s9-tower-launchpad launch-pad)
+    ;(is-charging-dock s9-tower-launchpad launch-pad)
     (= (distance s9-tower-launchpad s9-antenna-1) 5)
     (= (distance s9-tower-launchpad s9-antenna-2) 5)
     (= (distance s9-tower-launchpad s9-antenna-3) 6)
@@ -2114,7 +2114,7 @@
     ;s11-site
 
     (is-perspective launch-pad s11-tower-launchpad)
-    (is-charging-dock s11-tower-launchpad launch-pad)
+    ;(is-charging-dock s11-tower-launchpad launch-pad)
     (= (distance s11-tower-launchpad s11-antenna-1) 5)
     (= (distance s11-tower-launchpad s11-antenna-2) 5)
     (= (distance s11-tower-launchpad s11-antenna-3) 6)
@@ -2279,7 +2279,7 @@
     ;s12-site
 
     (is-perspective launch-pad s12-tower-launchpad)
-    (is-charging-dock s12-tower-launchpad launch-pad)
+    ;(is-charging-dock s12-tower-launchpad launch-pad)
     (= (distance s12-tower-launchpad s12-antenna-1) 5)
     (= (distance s12-tower-launchpad s12-antenna-2) 5)
     (= (distance s12-tower-launchpad s12-antenna-3) 6)
@@ -2609,7 +2609,7 @@
     ;s14-site
 
     (is-perspective launch-pad s14-tower-launchpad)
-    (is-charging-dock s14-tower-launchpad launch-pad)
+    ;(is-charging-dock s14-tower-launchpad launch-pad)
     (= (distance s14-tower-launchpad s14-antenna-1) 5)
     (= (distance s14-tower-launchpad s14-antenna-2) 5)
     (= (distance s14-tower-launchpad s14-antenna-3) 6)
@@ -2774,7 +2774,7 @@
     ;s15-site
 
     (is-perspective launch-pad s15-tower-launchpad)
-    (is-charging-dock s15-tower-launchpad launch-pad)
+    ;(is-charging-dock s15-tower-launchpad launch-pad)
     (= (distance s15-tower-launchpad s15-antenna-1) 5)
     (= (distance s15-tower-launchpad s15-antenna-2) 5)
     (= (distance s15-tower-launchpad s15-antenna-3) 6)
@@ -3104,7 +3104,7 @@
     ;s17-site
 
     (is-perspective launch-pad s17-tower-launchpad)
-    (is-charging-dock s17-tower-launchpad launch-pad)
+    ;(is-charging-dock s17-tower-launchpad launch-pad)
     (= (distance s17-tower-launchpad s17-antenna-1) 5)
     (= (distance s17-tower-launchpad s17-antenna-2) 5)
     (= (distance s17-tower-launchpad s17-antenna-3) 6)
@@ -3269,7 +3269,7 @@
     ;s18-site
 
     (is-perspective launch-pad s18-tower-launchpad)
-    (is-charging-dock s18-tower-launchpad launch-pad)
+    ;(is-charging-dock s18-tower-launchpad launch-pad)
     (= (distance s18-tower-launchpad s18-antenna-1) 5)
     (= (distance s18-tower-launchpad s18-antenna-2) 5)
     (= (distance s18-tower-launchpad s18-antenna-3) 6)
@@ -3599,7 +3599,7 @@
     ;s20-site
 
     (is-perspective launch-pad s20-tower-launchpad)
-    (is-charging-dock s20-tower-launchpad launch-pad)
+    ;(is-charging-dock s20-tower-launchpad launch-pad)
     (= (distance s20-tower-launchpad s20-antenna-1) 5)
     (= (distance s20-tower-launchpad s20-antenna-2) 5)
     (= (distance s20-tower-launchpad s20-antenna-3) 6)
@@ -3764,7 +3764,7 @@
     ;s21-site
 
     (is-perspective launch-pad s21-tower-launchpad)
-    (is-charging-dock s21-tower-launchpad launch-pad)
+    ;(is-charging-dock s21-tower-launchpad launch-pad)
     (= (distance s21-tower-launchpad s21-antenna-1) 5)
     (= (distance s21-tower-launchpad s21-antenna-2) 5)
     (= (distance s21-tower-launchpad s21-antenna-3) 6)
@@ -4199,61 +4199,61 @@
 
   (:goal (and
       
-    (know signal-measurement s1-antenna-1 below)
-    (know signal-measurement s1-antenna-3 above)
-    (know-simultaneous signal-measurement s2-antenna-2 radiation-pattern dynamic-inspection360)
-    (know thermal-image s2-antenna-2 right)
-    (know image s2-antenna-4 left)
-    (know thermal-image s3-antenna-3 front-below)
-    (know thermal-image s3-antenna-3 above)
+    (know thermal-image s1-antenna-3 below)
+    (know-simultaneous signal-measurement s1-antenna-1 radiation-pattern dynamic-inspection360)
+    (know image s1-antenna-1 above)
+    (know signal-measurement s2-antenna-3 front-below)
+    (know signal-measurement s2-antenna-6 front)
+    (know image s3-antenna-5 right)
+    (know signal-measurement s3-antenna-4 front-below)
 
-    (know image s4-antenna-5 front-below)
-    (know thermal-image s4-antenna-3 below)
-    (know-simultaneous signal-measurement s5-antenna-2 radiation-pattern dynamic-inspection360)
-    (know thermal-image s5-antenna-2 right)
-    (know thermal-image s5-antenna-4 above)
-    (know thermal-image s6-antenna-4 right)
-    (know thermal-image s6-antenna-2 front)
+    (know-simultaneous signal-measurement s4-antenna-1 radiation-pattern dynamic-inspection360)
+    (know signal-measurement s4-antenna-1 right)
+    (know image s4-antenna-5 above)
+    (know image s5-antenna-4 below)
+    (know signal-measurement s5-antenna-5 above)
+    (know signal-measurement s6-antenna-2 below)
+    (know image s6-antenna-3 above)
 
-    (know signal-measurement s7-antenna-5 front-below)
-    (know signal-measurement s7-antenna-6 right)
-    (know signal-measurement s8-antenna-3 right)
-    (know signal-measurement s8-antenna-1 front)
-    (know thermal-image s9-antenna-2 above)
-    (know-simultaneous signal-measurement s9-antenna-6 radiation-pattern dynamic-inspection360)
-    (know thermal-image s9-antenna-6 above)
+    (know signal-measurement s7-antenna-2 front)
+    (know-simultaneous signal-measurement s7-antenna-5 radiation-pattern dynamic-inspection360)
+    (know thermal-image s7-antenna-5 front-below)
+    (know thermal-image s8-antenna-4 above)
+    (know thermal-image s8-antenna-1 above)
+    (know signal-measurement s9-antenna-6 front)
+    (know image s9-antenna-5 front)
 
-    (know image s10-antenna-2 front)
-    (know thermal-image s10-antenna-6 front-below)
-    (know image s11-antenna-5 below)
+    (know signal-measurement s10-antenna-5 front-below)
+    (know thermal-image s10-antenna-2 front-below)
+    (know signal-measurement s11-antenna-6 right)
     (know-simultaneous signal-measurement s11-antenna-5 radiation-pattern dynamic-inspection360)
-    (know signal-measurement s11-antenna-5 below)
-    (know signal-measurement s12-antenna-2 above)
-    (know image s12-antenna-2 front)
+    (know thermal-image s11-antenna-5 front-below)
+    (know image s12-antenna-4 front)
+    (know image s12-antenna-6 front-below)
 
-    (know thermal-image s13-antenna-5 above)
-    (know thermal-image s13-antenna-4 below)
-    (know-simultaneous signal-measurement s14-antenna-2 radiation-pattern dynamic-inspection360)
-    (know thermal-image s14-antenna-2 right)
-    (know signal-measurement s14-antenna-6 front-below)
-    (know image s15-antenna-5 left)
-    (know image s15-antenna-1 left)
+    (know thermal-image s13-antenna-5 front-below)
+    (know thermal-image s13-antenna-5 below)
+    (know image s14-antenna-5 below)
+    (know-simultaneous signal-measurement s14-antenna-5 radiation-pattern dynamic-inspection360)
+    (know thermal-image s14-antenna-5 front-below)
+    (know signal-measurement s15-antenna-2 above)
+    (know thermal-image s15-antenna-5 below)
 
-    (know image s16-antenna-5 front)
-    (know signal-measurement s16-antenna-5 left)
-    (know thermal-image s17-antenna-1 left)
-    (know image s17-antenna-2 front-below)
-    (know image s18-antenna-3 front)
-    (know-simultaneous signal-measurement s18-antenna-6 radiation-pattern dynamic-inspection360)
-    (know thermal-image s18-antenna-6 front)
+    (know image s16-antenna-3 front-below)
+    (know thermal-image s16-antenna-1 below)
+    (know signal-measurement s17-antenna-4 right)
+    (know thermal-image s17-antenna-2 front)
+    (know-simultaneous signal-measurement s18-antenna-5 radiation-pattern dynamic-inspection360)
+    (know thermal-image s18-antenna-5 front)
+    (know image s18-antenna-4 left)
 
-    (know-simultaneous signal-measurement s19-antenna-5 radiation-pattern dynamic-inspection360)
-    (know image s19-antenna-5 front-below)
-    (know signal-measurement s19-antenna-3 below)
-    (know thermal-image s20-antenna-3 right)
-    (know thermal-image s20-antenna-4 above)
-    (know image s21-antenna-3 front)
-    (know signal-measurement s21-antenna-2 front)
+    (know image s19-antenna-2 front)
+    (know-simultaneous signal-measurement s19-antenna-6 radiation-pattern dynamic-inspection360)
+    (know thermal-image s19-antenna-6 front)
+    (know signal-measurement s20-antenna-4 above)
+    (know image s20-antenna-1 front)
+    (know thermal-image s21-antenna-1 right)
+    (know signal-measurement s21-antenna-6 below)
 
     )
   )
