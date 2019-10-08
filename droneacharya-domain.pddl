@@ -1,7 +1,7 @@
 ;discussion about distance between perspectives, model assumes max distance between perspectives needs a max charge of 2 and a duration of 2
 
 
-(define (domain asi-dur-domain-fullswap)
+(define (domain droneacharya-domain)
   
   (:requirements :typing :equality :fluents :durative-actions :disjunctive-preconditions :duration-inequalities)
   
@@ -32,10 +32,6 @@
     (is-dock ?d - perspective)
     (is-charging-dock ?c - component ?p - perspective)
     (is-clear-perspective ?p - perspective ?c - component)
-    
-    ;object relantionships predicates
-    (connected-component ?c1 ?c2 - component) ; not needed
-    (different-battery ?b1 ?b2 - battery)
 
     ;sensing related predicates
     (is-available ?k - knowledge-object ?p - perspective)
@@ -71,7 +67,7 @@
       (at start(>= (max-dock ?destComp) 1))
       (at start(is-at ?drone ?srcComp ?srcPersp))
       (at start(is-perspective ?destPersp ?destComp))
-      (at start(>= (drone-charge ?drone)(distance ?srcComp ?destComp)))
+      (at start(>= (drone-charge ?drone)(/ (distance ?srcComp ?destComp) (velocity ?drone))))
     )
 
     :effect (and
@@ -81,7 +77,7 @@
       (at end(increase(max-dock ?srcComp) 1))
       (at start(not (is-at ?drone ?srcComp ?srcPersp)))
       (at start(not (is-at-component ?drone ?srcComp)))
-      (at start(decrease (drone-charge ?drone) (distance ?srcComp ?destComp)))
+      (at start(decrease (drone-charge ?drone) (/ (distance ?srcComp ?destComp) (velocity ?drone))))
       (at end(is-at ?drone ?destComp ?destPersp))
       (at end(is-at-component ?drone ?destComp))
     )
