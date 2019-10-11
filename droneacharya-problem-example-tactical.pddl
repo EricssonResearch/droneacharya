@@ -556,6 +556,9 @@
     (different-drone drone5 drone3)
     (different-drone drone3 drone5)
 
+    (not_busy drone5)
+    (not_busy drone3)
+
     ;;;;;;;;;;;;;;;drone start location 2
 
     (has-capability drone5 camera)

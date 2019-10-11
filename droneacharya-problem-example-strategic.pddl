@@ -620,13 +620,14 @@
     (mission_at mission6 s16-tower-launchpad)
     (mission_at mission7 s19-tower-launchpad)
             
-    (= (mission_duration mission1) 1)
-    (= (mission_duration mission2) 2)
-    (= (mission_duration mission3) 3)
-    (= (mission_duration mission4) 4)
-    (= (mission_duration mission5) 5)
-    (= (mission_duration mission6) 6)
-    (= (mission_duration mission7) 7)
+    ;duration is an approximation at this stage       
+    (= (mission_duration mission1) 374)
+    (= (mission_duration mission2) 374)
+    (= (mission_duration mission3) 374)
+    (= (mission_duration mission4) 374)
+    (= (mission_duration mission5) 374)
+    (= (mission_duration mission6) 374)
+    (= (mission_duration mission7) 374)
   )
 
   (:goal (and

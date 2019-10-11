@@ -30,7 +30,7 @@
     s21-tower-launchpad s21-antenna-1 s21-antenna-2 s21-antenna-3 s21-antenna-4 s21-antenna-5 s21-antenna-6 - component
 
     front above below left right front-below launch-pad dock radiation-pattern dynamic-inspection360 - perspective 
-    drone1 drone2 drone3 drone4 drone5 drone6 drone7 drone8 drone9 drone10 drone11 drone12 - drone
+    drone2 drone3 - drone
   
   )
 
@@ -2101,7 +2101,7 @@
     (= (distance s10-antenna-6 s10-antenna-4) 2)
     (= (distance s10-antenna-6 s10-antenna-5) 1)
 
-    (= (max-dock s10-tower-launchpad) 0) 
+    (= (max-dock s10-tower-launchpad) 3) 
     (= (max-dock s10-antenna-1) 3)
     (= (max-dock s10-antenna-2) 3) 
     (= (max-dock s10-antenna-3) 3) 
@@ -2596,7 +2596,7 @@
     (= (distance s13-antenna-6 s13-antenna-4) 2)
     (= (distance s13-antenna-6 s13-antenna-5) 1)
 
-    (= (max-dock s13-tower-launchpad) 0) 
+    (= (max-dock s13-tower-launchpad) 3) 
     (= (max-dock s13-antenna-1) 3)
     (= (max-dock s13-antenna-2) 3) 
     (= (max-dock s13-antenna-3) 3) 
@@ -3586,7 +3586,7 @@
     (= (distance s19-antenna-6 s19-antenna-4) 2)
     (= (distance s19-antenna-6 s19-antenna-5) 1)
 
-    (= (max-dock s19-tower-launchpad) 0) 
+    (= (max-dock s19-tower-launchpad) 3) 
     (= (max-dock s19-antenna-1) 3)
     (= (max-dock s19-antenna-2) 3) 
     (= (max-dock s19-antenna-3) 3) 
@@ -3926,138 +3926,12 @@
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-    (different-drone drone1 drone2)
-    (different-drone drone1 drone3)
-    (different-drone drone1 drone4)
-    (different-drone drone1 drone5)
-    (different-drone drone1 drone6)
-    (different-drone drone1 drone7)
-    (different-drone drone1 drone8)
-    (different-drone drone1 drone9)
-    (different-drone drone1 drone10)
-    (different-drone drone1 drone11)
-    (different-drone drone1 drone12)
-    (different-drone drone2 drone1)
-    (different-drone drone2 drone3)
-    (different-drone drone2 drone4)
-    (different-drone drone2 drone5)
-    (different-drone drone2 drone6)
-    (different-drone drone2 drone7)
-    (different-drone drone2 drone8)
-    (different-drone drone2 drone9)
-    (different-drone drone2 drone10)
-    (different-drone drone2 drone11)
-    (different-drone drone2 drone12)
-    (different-drone drone3 drone1)
     (different-drone drone3 drone2)
-    (different-drone drone3 drone4)
-    (different-drone drone3 drone5)
-    (different-drone drone3 drone6)
-    (different-drone drone3 drone7)
-    (different-drone drone3 drone8)
-    (different-drone drone3 drone9)
-    (different-drone drone3 drone10)
-    (different-drone drone3 drone11)
-    (different-drone drone3 drone12)
-    (different-drone drone4 drone1)
-    (different-drone drone4 drone2)
-    (different-drone drone4 drone3)
-    (different-drone drone4 drone5)
-    (different-drone drone4 drone6)
-    (different-drone drone4 drone7)
-    (different-drone drone4 drone8)
-    (different-drone drone4 drone9)
-    (different-drone drone4 drone10)
-    (different-drone drone4 drone11)
-    (different-drone drone4 drone12)
-    (different-drone drone5 drone1)
-    (different-drone drone5 drone2)
-    (different-drone drone5 drone3)
-    (different-drone drone5 drone4)
-    (different-drone drone5 drone6)
-    (different-drone drone5 drone7)
-    (different-drone drone5 drone8)
-    (different-drone drone5 drone9)
-    (different-drone drone5 drone10)
-    (different-drone drone5 drone11)
-    (different-drone drone5 drone12)
-    (different-drone drone6 drone1)
-    (different-drone drone6 drone2)
-    (different-drone drone6 drone3)
-    (different-drone drone6 drone4)
-    (different-drone drone6 drone5)
-    (different-drone drone6 drone7)
-    (different-drone drone6 drone8)
-    (different-drone drone6 drone9)
-    (different-drone drone6 drone10)
-    (different-drone drone6 drone11)
-    (different-drone drone6 drone12)
-    (different-drone drone7 drone1)
-    (different-drone drone7 drone2)
-    (different-drone drone7 drone3)
-    (different-drone drone7 drone4)
-    (different-drone drone7 drone5)
-    (different-drone drone7 drone6)
-    (different-drone drone7 drone8)
-    (different-drone drone7 drone9)
-    (different-drone drone7 drone10)
-    (different-drone drone7 drone11)
-    (different-drone drone7 drone12)
-    (different-drone drone8 drone1)
-    (different-drone drone8 drone2)
-    (different-drone drone8 drone3)
-    (different-drone drone8 drone4)
-    (different-drone drone8 drone5)
-    (different-drone drone8 drone6)
-    (different-drone drone8 drone7)
-    (different-drone drone8 drone9)
-    (different-drone drone8 drone10)
-    (different-drone drone8 drone11)
-    (different-drone drone8 drone12)
-    (different-drone drone9 drone1)
-    (different-drone drone9 drone2)
-    (different-drone drone9 drone3)
-    (different-drone drone9 drone4)
-    (different-drone drone9 drone5)
-    (different-drone drone9 drone6)
-    (different-drone drone9 drone7)
-    (different-drone drone9 drone8)
-    (different-drone drone9 drone10)
-    (different-drone drone9 drone11)
-    (different-drone drone9 drone12)
-    (different-drone drone10 drone1)
-    (different-drone drone10 drone2)
-    (different-drone drone10 drone3)
-    (different-drone drone10 drone4)
-    (different-drone drone10 drone5)
-    (different-drone drone10 drone6)
-    (different-drone drone10 drone7)
-    (different-drone drone10 drone8)
-    (different-drone drone10 drone9)
-    (different-drone drone10 drone11)
-    (different-drone drone10 drone12)
-    (different-drone drone11 drone1)
-    (different-drone drone11 drone2)
-    (different-drone drone11 drone3)
-    (different-drone drone11 drone4)
-    (different-drone drone11 drone5)
-    (different-drone drone11 drone6)
-    (different-drone drone11 drone7)
-    (different-drone drone11 drone8)
-    (different-drone drone11 drone9)
-    (different-drone drone11 drone10)
-    (different-drone drone11 drone12)
-    (different-drone drone12 drone1)
-    (different-drone drone12 drone2)
-    (different-drone drone12 drone3)
-    (different-drone drone12 drone4)
-    (different-drone drone12 drone5)
-    (different-drone drone12 drone6)
-    (different-drone drone12 drone7)
-    (different-drone drone12 drone8)
-    (different-drone drone12 drone9)
-    (different-drone drone12 drone10)
-    (different-drone drone12 drone11)
+    (different-drone drone2 drone3)
+
+    (not_busy drone2)
+    (not_busy drone3)
+
 
     (is-available image front)
     (is-available thermal-image front)
@@ -4089,14 +3963,6 @@
 
     ;;;;;;;;;;;;;;;drone start location 1
 
-    (has-capability drone1 camera)
-    ;(has-capability drone1 signal-measurer)
-    (is-at drone1 s4-tower-launchpad launch-pad)
-    (is-at-component drone1 s4-tower-launchpad)
-    (= (drone-charge drone1) 95)
-    (= (max-charge-drone drone1) 300)
-    (= (velocity drone1) 5)
-
     (has-capability drone2 camera)
     (has-capability drone2 thermal-camera)
     (has-capability drone2 signal-measurer)
@@ -4114,91 +3980,14 @@
     (= (max-charge-drone drone3) 300)
     (= (velocity drone3) 2)
 
-    ;;;;;;;;;;;;;;;drone start location 2
 
-    (has-capability drone4 camera)
-    ;(has-capability drone4 signal-measurer)
-    (is-at drone4 s10-tower-launchpad launch-pad)
-    (is-at-component drone4 s10-tower-launchpad)
-    (= (drone-charge drone4) 95)
-    (= (max-charge-drone drone4) 300)
-    (= (velocity drone4) 5)
-
-    (has-capability drone5 camera)
-    (has-capability drone5 thermal-camera)
-    (has-capability drone5 signal-measurer)
-    (is-at drone5 s10-tower-launchpad launch-pad)
-    (is-at-component drone5 s10-tower-launchpad)
-    (= (drone-charge drone5) 190)
-    (= (max-charge-drone drone5) 300)
-    (= (velocity drone5) 1)
-
-    (has-capability drone6 thermal-camera)
-    (has-capability drone6 signal-measurer)
-    (is-at drone6 s10-tower-launchpad launch-pad)
-    (is-at-component drone6 s10-tower-launchpad)
-    (= (drone-charge drone6) 200)
-    (= (max-charge-drone drone6) 300)
-    (= (velocity drone6) 2)
-
-     ;;;;;;;;;;;;;;;drone start location 3
-
-    (has-capability drone7 camera)
-    ;(has-capability drone7 signal-measurer)
-    (is-at drone7 s13-tower-launchpad launch-pad)
-    (is-at-component drone7 s13-tower-launchpad)
-    (= (drone-charge drone7) 95)
-    (= (max-charge-drone drone7) 300)
-    (= (velocity drone7) 5)
-
-    (has-capability drone8 camera)
-    (has-capability drone8 thermal-camera)
-    (has-capability drone8 signal-measurer)
-    (is-at drone8 s13-tower-launchpad launch-pad)
-    (is-at-component drone8 s13-tower-launchpad)
-    (= (drone-charge drone8) 190)
-    (= (max-charge-drone drone8) 300)
-    (= (velocity drone8) 1)
-
-    (has-capability drone9 thermal-camera)
-    (has-capability drone9 signal-measurer)
-    (is-at drone9 s13-tower-launchpad launch-pad)
-    (is-at-component drone9 s13-tower-launchpad)
-    (= (drone-charge drone9) 200)
-    (= (max-charge-drone drone9) 300)
-    (= (velocity drone9) 2)
-
-     ;;;;;;;;;;;;;;;drone start location 4
-
-    (has-capability drone10 camera)
-    ;(has-capability drone10 signal-measurer)
-    (is-at drone10 s19-tower-launchpad launch-pad)
-    (is-at-component drone10 s19-tower-launchpad)
-    (= (drone-charge drone10) 95)
-    (= (max-charge-drone drone10) 300)
-    (= (velocity drone10) 5)
-
-    (has-capability drone11 camera)
-    (has-capability drone11 thermal-camera)
-    (has-capability drone11 signal-measurer)
-    (is-at drone11 s19-tower-launchpad launch-pad)
-    (is-at-component drone11 s19-tower-launchpad)
-    (= (drone-charge drone11) 190)
-    (= (max-charge-drone drone11) 300)
-    (= (velocity drone11) 1)
-
-    (has-capability drone12 thermal-camera)
-    (has-capability drone12 signal-measurer)
-    (is-at drone12 s19-tower-launchpad launch-pad)
-    (is-at-component drone12 s19-tower-launchpad)
-    (= (drone-charge drone12) 200)
-    (= (max-charge-drone drone12) 300)
-    (= (velocity drone12) 2)
 
   )
 
   (:goal (and
-      
+    ;random generated goals, 7 goals per cluster   
+
+    ;cluster1
     (know thermal-image s1-antenna-3 below)
     (know-simultaneous signal-measurement s1-antenna-1 radiation-pattern dynamic-inspection360)
     (know image s1-antenna-1 above)
@@ -4207,6 +3996,7 @@
     (know image s3-antenna-5 right)
     (know signal-measurement s3-antenna-4 front-below)
 
+    ;cluster2
     (know-simultaneous signal-measurement s4-antenna-1 radiation-pattern dynamic-inspection360)
     (know signal-measurement s4-antenna-1 right)
     (know image s4-antenna-5 above)
@@ -4215,6 +4005,7 @@
     (know signal-measurement s6-antenna-2 below)
     (know image s6-antenna-3 above)
 
+    ;cluster3
     (know signal-measurement s7-antenna-2 front)
     (know-simultaneous signal-measurement s7-antenna-5 radiation-pattern dynamic-inspection360)
     (know thermal-image s7-antenna-5 front-below)
@@ -4223,6 +4014,7 @@
     (know signal-measurement s9-antenna-6 front)
     (know image s9-antenna-5 front)
 
+    ;cluster4
     (know signal-measurement s10-antenna-5 front-below)
     (know thermal-image s10-antenna-2 front-below)
     (know signal-measurement s11-antenna-6 right)
@@ -4231,6 +4023,7 @@
     (know image s12-antenna-4 front)
     (know image s12-antenna-6 front-below)
 
+    ;cluster5
     (know thermal-image s13-antenna-5 front-below)
     (know thermal-image s13-antenna-5 below)
     (know image s14-antenna-5 below)
@@ -4239,6 +4032,7 @@
     (know signal-measurement s15-antenna-2 above)
     (know thermal-image s15-antenna-5 below)
 
+    ;cluster6
     (know image s16-antenna-3 front-below)
     (know thermal-image s16-antenna-1 below)
     (know signal-measurement s17-antenna-4 right)
@@ -4247,6 +4041,7 @@
     (know thermal-image s18-antenna-5 front)
     (know image s18-antenna-4 left)
 
+    ;cluster7
     (know image s19-antenna-2 front)
     (know-simultaneous signal-measurement s19-antenna-6 radiation-pattern dynamic-inspection360)
     (know thermal-image s19-antenna-6 front)
@@ -4254,6 +4049,8 @@
     (know image s20-antenna-1 front)
     (know thermal-image s21-antenna-1 right)
     (know signal-measurement s21-antenna-6 below)
+
+
 
     )
   )

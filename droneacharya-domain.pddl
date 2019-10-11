@@ -63,6 +63,7 @@
     :parameters (?drone - drone ?srcComp - component ?srcPersp - perspective ?destComp - component ?destPersp - perspective)
     :duration (= ?duration (/ (distance ?srcComp ?destComp) (velocity ?drone)))
     :condition (and
+      (at start(not_busy ?drone))
       (at start(is-dock ?destPersp))
       (at start(>= (max-dock ?destComp) 1))
       (at start(is-at ?drone ?srcComp ?srcPersp))
@@ -71,7 +72,7 @@
     )
 
     :effect (and
-
+      (at start(not (not_busy ?drone)))
       (at start(is-clear-perspective ?srcPersp ?srcComp))
       (at start(decrease(max-dock ?destComp) 1))
       (at end(increase(max-dock ?srcComp) 1))
@@ -80,6 +81,7 @@
       (at start(decrease (drone-charge ?drone) (/ (distance ?srcComp ?destComp) (velocity ?drone))))
       (at end(is-at ?drone ?destComp ?destPersp))
       (at end(is-at-component ?drone ?destComp))
+      (at end(not_busy ?drone))
     )
   )
 
@@ -87,17 +89,20 @@
     :parameters (?drone - drone ?component - component ?srcPersp ?destPersp - perspective)
     :duration (= ?duration 2) 
     :condition (and
+      (at start(not_busy ?drone))
       (at start(is-clear-perspective ?destPersp ?component))
       (at start(is-at ?drone ?component ?srcPersp))
       (at start(is-perspective ?destPersp ?component))
       (at start(>= (drone-charge ?drone) 2))
   )
     :effect (and
+      (at start(not (not_busy ?drone)))
       (at start(is-clear-perspective ?srcPersp ?component))
       (at start(not (is-clear-perspective ?destPersp ?component)))
       (at start(not (is-at ?drone ?component ?srcPersp)))
       (at start(decrease (drone-charge ?drone) 2))
       (at end(is-at ?drone ?component ?destPersp))
+      (at end(not_busy ?drone))
     )
   )
 
@@ -105,6 +110,9 @@
     :parameters (?staticDrone ?movingDrone - drone ?component - component ?radiation ?dynamic360 - perspective)
     :duration (= ?duration 2)
     :condition (and
+
+      (at start(not_busy ?staticDrone))
+      (at start(not_busy ?movingDrone))
 
       (at start(different-drone ?staticDrone ?movingDrone))
 
@@ -115,12 +123,7 @@
       (at start(is-dynamic-inspection360 ?dynamic360))
     
       (at start(is-at ?staticDrone ?component ?radiation))
-      (over all(is-at ?staticDrone ?component ?radiation))
-      (at end(is-at ?staticDrone ?component ?radiation))
-
       (at start(is-at ?movingDrone ?component ?dynamic360))
-      (over all(is-at ?movingDrone ?component ?dynamic360))
-      (at end(is-at ?movingDrone ?component ?dynamic360))
 
       (at start(has-capability ?staticDrone signal-measurer))
       (at start(has-capability ?movingDrone signal-measurer))
@@ -129,9 +132,13 @@
       (at start(> (drone-charge ?movingDrone)2))
     )
     :effect (and
+      (at start(not (not_busy ?staticDrone)))
+      (at start(not (not_busy ?movingDrone)))
       (at start(decrease (drone-charge ?staticDrone) 2))
       (at start(decrease (drone-charge ?movingDrone) 2))
       (at end(know-simultaneous signal-measurement ?component ?radiation ?dynamic360))
+      (at end(not_busy ?staticDrone))
+      (at end(not_busy ?movingDrone))
     )
   )
 
@@ -139,16 +146,17 @@
     :parameters (?drone - drone ?component - component ?perspective - perspective)
     :duration (= ?duration 1)
     :condition (and
+      (at start(not_busy ?drone))
       (at start(is-available image ?perspective))
       (at start(is-at ?drone ?component ?perspective))
-      (over all(is-at ?drone ?component ?perspective))
-      (at end(is-at ?drone ?component ?perspective))
       (at start(has-capability ?drone camera))
       (at start(> (drone-charge ?drone)2))
   )
     :effect (and
+      (at start(not (not_busy ?drone)))
       (at start(decrease (drone-charge ?drone) 2))
       (at end(know image ?component ?perspective))
+      (at end(not_busy ?drone))
     )
   )
 
@@ -156,16 +164,17 @@
     :parameters (?drone - drone ?component - component ?perspective - perspective)
     :duration (= ?duration 2)
     :condition (and
+      (at start(not_busy ?drone))
       (at start(is-available thermal-image ?perspective))
       (at start(is-at ?drone ?component ?perspective))
-      (over all(is-at ?drone ?component ?perspective))
-      (at end(is-at ?drone ?component ?perspective))
       (at start(has-capability ?drone thermal-camera))
       (at start(> (drone-charge ?drone)2))
     )
     :effect (and
+      (at start(not (not_busy ?drone)))
       (at start(decrease (drone-charge ?drone) 2))
       (at end(know thermal-image ?component ?perspective))
+      (at end(not_busy ?drone))
     )
   )
 
@@ -173,16 +182,17 @@
     :parameters (?drone - drone ?component - component ?perspective - perspective)
     :duration (= ?duration 2)
     :condition (and
+      (at start(not_busy ?drone))
       (at start(is-available signal-measurement ?perspective))
       (at start(is-at ?drone ?component ?perspective))
-      (over all(is-at ?drone ?component ?perspective))
-      (at end(is-at ?drone ?component ?perspective))
       (at start(has-capability ?drone signal-measurer))
       (at start(> (drone-charge ?drone)2))
     )
     :effect (and
+      (at start(not (not_busy ?drone)))
       (at start(decrease (drone-charge ?drone) 2))
       (at end(know signal-measurement ?component ?perspective))
+      (at end(not_busy ?drone))
     )
   )
 
@@ -190,14 +200,15 @@
     :parameters (?drone - drone ?perspective - perspective ?component - component)
     :duration (<= ?duration (- (max-charge-drone ?drone) (drone-charge ?drone)))
     :condition (and
+      (at start(not_busy ?drone))
       (at start(is-at ?drone ?component ?perspective))
-      (over all(is-at ?drone ?component ?perspective))
-      (at end(is-at ?drone ?component ?perspective))
       (at start(is-charging-dock ?component ?perspective))
       (at start(< (drone-charge ?drone)(max-charge-drone ?drone)))
     )
     :effect (and
+      (at start(not (not_busy ?drone)))
       (at end(increase (drone-charge ?drone) ?duration))
+      (at end(not_busy ?drone))
     )
   )
 
@@ -212,9 +223,11 @@
       (at start (has-capability ?drone2 thermal-camera))
       (at start (is-at-component ?drone1 ?component))
       (at start (is-at-component ?drone2 ?component))
+      (at start (= (drone-charge ?drone1)(max-charge-drone ?drone1)))
+      (at start (= (drone-charge ?drone2)(max-charge-drone ?drone2)))
       (at start (not_busy ?drone1))
       (at start (not_busy ?drone2))  
-    )  
+    ) 
     :effect (and 
       (at start (not (not_busy ?drone1)))
       (at start (not (not_busy ?drone2)))  
