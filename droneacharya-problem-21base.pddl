@@ -30,7 +30,7 @@
     s21-tower-launchpad s21-antenna-1 s21-antenna-2 s21-antenna-3 s21-antenna-4 s21-antenna-5 s21-antenna-6 - component
 
     front above below left right front-below launch-pad dock radiation-pattern dynamic-inspection360 - perspective 
-    drone2 drone3 - drone
+    drone1 drone2 drone3 drone4 drone5 drone6 drone7 drone8 drone9 drone10 drone11 drone12 - drone
   
   )
 
@@ -3926,11 +3926,18 @@
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-    (different-drone drone3 drone2)
-    (different-drone drone2 drone3)
-
+    (not_busy drone1)
     (not_busy drone2)
     (not_busy drone3)
+    (not_busy drone4)
+    (not_busy drone5)
+    (not_busy drone6)
+    (not_busy drone7)
+    (not_busy drone8)
+    (not_busy drone9)
+    (not_busy drone10)
+    (not_busy drone11)
+    (not_busy drone12)
 
 
     (is-available image front)
@@ -3963,6 +3970,14 @@
 
     ;;;;;;;;;;;;;;;drone start location 1
 
+    (has-capability drone1 camera)
+    ;(has-capability drone1 signal-measurer)
+    (is-at drone1 s4-tower-launchpad launch-pad)
+    (is-at-component drone1 s4-tower-launchpad)
+    (= (drone-charge drone1) 95)
+    (= (max-charge-drone drone1) 300)
+    (= (velocity drone1) 5)
+
     (has-capability drone2 camera)
     (has-capability drone2 thermal-camera)
     (has-capability drone2 signal-measurer)
@@ -3980,77 +3995,184 @@
     (= (max-charge-drone drone3) 300)
     (= (velocity drone3) 2)
 
+    ;;;;;;;;;;;;;;;drone start location 2
+
+    (has-capability drone4 camera)
+    ;(has-capability drone4 signal-measurer)
+    (is-at drone4 s10-tower-launchpad launch-pad)
+    (is-at-component drone4 s10-tower-launchpad)
+    (= (drone-charge drone4) 95)
+    (= (max-charge-drone drone4) 300)
+    (= (velocity drone4) 5)
+
+    (has-capability drone5 camera)
+    (has-capability drone5 thermal-camera)
+    (has-capability drone5 signal-measurer)
+    (is-at drone5 s10-tower-launchpad launch-pad)
+    (is-at-component drone5 s10-tower-launchpad)
+    (= (drone-charge drone5) 190)
+    (= (max-charge-drone drone5) 300)
+    (= (velocity drone5) 1)
+
+    (has-capability drone6 thermal-camera)
+    (has-capability drone6 signal-measurer)
+    (is-at drone6 s10-tower-launchpad launch-pad)
+    (is-at-component drone6 s10-tower-launchpad)
+    (= (drone-charge drone6) 200)
+    (= (max-charge-drone drone6) 300)
+    (= (velocity drone6) 2)
+
+     ;;;;;;;;;;;;;;;drone start location 3
+
+    (has-capability drone7 camera)
+    ;(has-capability drone7 signal-measurer)
+    (is-at drone7 s13-tower-launchpad launch-pad)
+    (is-at-component drone7 s13-tower-launchpad)
+    (= (drone-charge drone7) 95)
+    (= (max-charge-drone drone7) 300)
+    (= (velocity drone7) 5)
+
+    (has-capability drone8 camera)
+    (has-capability drone8 thermal-camera)
+    (has-capability drone8 signal-measurer)
+    (is-at drone8 s13-tower-launchpad launch-pad)
+    (is-at-component drone8 s13-tower-launchpad)
+    (= (drone-charge drone8) 190)
+    (= (max-charge-drone drone8) 300)
+    (= (velocity drone8) 1)
+
+    (has-capability drone9 thermal-camera)
+    (has-capability drone9 signal-measurer)
+    (is-at drone9 s13-tower-launchpad launch-pad)
+    (is-at-component drone9 s13-tower-launchpad)
+    (= (drone-charge drone9) 200)
+    (= (max-charge-drone drone9) 300)
+    (= (velocity drone9) 2)
+
+     ;;;;;;;;;;;;;;;drone start location 4
+
+    (has-capability drone10 camera)
+    ;(has-capability drone10 signal-measurer)
+    (is-at drone10 s19-tower-launchpad launch-pad)
+    (is-at-component drone10 s19-tower-launchpad)
+    (= (drone-charge drone10) 95)
+    (= (max-charge-drone drone10) 300)
+    (= (velocity drone10) 5)
+
+    (has-capability drone11 camera)
+    (has-capability drone11 thermal-camera)
+    (has-capability drone11 signal-measurer)
+    (is-at drone11 s19-tower-launchpad launch-pad)
+    (is-at-component drone11 s19-tower-launchpad)
+    (= (drone-charge drone11) 190)
+    (= (max-charge-drone drone11) 300)
+    (= (velocity drone11) 1)
+
+    (has-capability drone12 thermal-camera)
+    (has-capability drone12 signal-measurer)
+    (is-at drone12 s19-tower-launchpad launch-pad)
+    (is-at-component drone12 s19-tower-launchpad)
+    (= (drone-charge drone12) 200)
+    (= (max-charge-drone drone12) 300)
+    (= (velocity drone12) 2)
+
 
 
   )
 
   (:goal (and
-    ;random generated goals, 7 goals per cluster   
+    ;random generated goals, 7 goals per cluster  
 
-    ;cluster1
-    (know thermal-image s1-antenna-3 below)
-    (know-simultaneous signal-measurement s1-antenna-1 radiation-pattern dynamic-inspection360)
-    (know image s1-antenna-1 above)
-    (know signal-measurement s2-antenna-3 front-below)
-    (know signal-measurement s2-antenna-6 front)
-    (know image s3-antenna-5 right)
-    (know signal-measurement s3-antenna-4 front-below)
+    ; normal goals 2 clusters (cluster 2 and 3 - drone 2 and 3) ok - without drones returning
+    ; States evaluated: 680
+    ; Cost: 986.297
+    ; Time 1072.42 
 
-    ;cluster2
-    (know-simultaneous signal-measurement s4-antenna-1 radiation-pattern dynamic-inspection360)
-    (know signal-measurement s4-antenna-1 right)
-    (know image s4-antenna-5 above)
-    (know image s5-antenna-4 below)
-    (know signal-measurement s5-antenna-5 above)
-    (know signal-measurement s6-antenna-2 below)
-    (know image s6-antenna-3 above)
+    ; extended goals 2 clusters (cluster 2 and 3 - drone 2 and 3) ok - without drones returning
+    ; States evaluated: 323
+    ; Cost: 709.765
+    ; Time 916.78
 
-    ;cluster3
+
+    ; extended goals 2 clusters (cluster 2 and 3 - drone 2 and 3) ok - WITH DRONES returning !!!!
+    ; States evaluated: 3303
+    ; Cost: 524.711
+    ; Time 1190.28
+
+    ; extended goals 3 clusters (cluster 2,3 and 4 - drone 2 and 3) terminate called after throwing an instance of 'std::bad_alloc'
+
+    (is-at-component drone2 s4-tower-launchpad)
+    (is-at-component drone3 s4-tower-launchpad)
+
+    (know image s1-antenna-2 front-below)
+    (know signal-measurement s1-antenna-5 right)
+    (know signal-measurement s1-antenna-5 left)
+    (know signal-measurement s2-antenna-4 front)
+    (know image s2-antenna-2 right)
+    (know image s2-antenna-3 above)
+    (know signal-measurement s3-antenna-6 right)
+    (know thermal-image s3-antenna-6 left)
+    (know image s3-antenna-3 right)
+
+    (know signal-measurement s4-antenna-3 front-below)
+    (know signal-measurement s4-antenna-3 left)
+    (know image s4-antenna-6 left)
+    (know signal-measurement s5-antenna-1 below)
+    (know image s5-antenna-6 right)
+    (know signal-measurement s5-antenna-6 above)
+    (know signal-measurement s6-antenna-4 below)
+    (know image s6-antenna-5 front)
+    (know thermal-image s6-antenna-2 above)
+
     (know signal-measurement s7-antenna-2 front)
-    (know-simultaneous signal-measurement s7-antenna-5 radiation-pattern dynamic-inspection360)
-    (know thermal-image s7-antenna-5 front-below)
-    (know thermal-image s8-antenna-4 above)
-    (know thermal-image s8-antenna-1 above)
-    (know signal-measurement s9-antenna-6 front)
-    (know image s9-antenna-5 front)
+    (know thermal-image s7-antenna-2 below)
+    (know thermal-image s7-antenna-6 left)
+    (know signal-measurement s8-antenna-3 above)
+    (know signal-measurement s8-antenna-2 left)
+    (know signal-measurement s8-antenna-5 below)
+    (know thermal-image s9-antenna-2 above)
+    (know signal-measurement s9-antenna-5 left)
+    (know thermal-image s9-antenna-1 left)
 
-    ;cluster4
-    (know signal-measurement s10-antenna-5 front-below)
-    (know thermal-image s10-antenna-2 front-below)
-    (know signal-measurement s11-antenna-6 right)
-    (know-simultaneous signal-measurement s11-antenna-5 radiation-pattern dynamic-inspection360)
-    (know thermal-image s11-antenna-5 front-below)
-    (know image s12-antenna-4 front)
-    (know image s12-antenna-6 front-below)
+    (know signal-measurement s10-antenna-5 left)
+    (know image s10-antenna-2 front-below)
+    (know image s10-antenna-1 left)
+    (know thermal-image s11-antenna-4 left)
+    (know thermal-image s11-antenna-4 above)
+    (know thermal-image s11-antenna-4 left)
+    (know image s12-antenna-3 above)
+    (know image s12-antenna-3 above)
+    (know thermal-image s12-antenna-1 front-below)
 
-    ;cluster5
-    (know thermal-image s13-antenna-5 front-below)
-    (know thermal-image s13-antenna-5 below)
-    (know image s14-antenna-5 below)
-    (know-simultaneous signal-measurement s14-antenna-5 radiation-pattern dynamic-inspection360)
-    (know thermal-image s14-antenna-5 front-below)
-    (know signal-measurement s15-antenna-2 above)
-    (know thermal-image s15-antenna-5 below)
+    (know image s13-antenna-2 right)
+    (know signal-measurement s13-antenna-1 front-below)
+    (know image s13-antenna-4 right)
+    (know thermal-image s14-antenna-5 front)
+    (know signal-measurement s14-antenna-3 above)
+    (know thermal-image s14-antenna-1 right)
+    (know thermal-image s15-antenna-5 front)
+    (know thermal-image s15-antenna-2 right)
+    (know signal-measurement s15-antenna-4 above)
 
-    ;cluster6
-    (know image s16-antenna-3 front-below)
-    (know thermal-image s16-antenna-1 below)
-    (know signal-measurement s17-antenna-4 right)
-    (know thermal-image s17-antenna-2 front)
-    (know-simultaneous signal-measurement s18-antenna-5 radiation-pattern dynamic-inspection360)
-    (know thermal-image s18-antenna-5 front)
-    (know image s18-antenna-4 left)
+    (know signal-measurement s16-antenna-6 left)
+    (know signal-measurement s16-antenna-1 left)
+    (know thermal-image s16-antenna-6 below)
+    (know thermal-image s17-antenna-5 below)
+    (know signal-measurement s17-antenna-4 left)
+    (know thermal-image s17-antenna-1 below)
+    (know signal-measurement s18-antenna-5 above)
+    (know image s18-antenna-3 above)
+    (know image s18-antenna-3 left)
 
-    ;cluster7
-    (know image s19-antenna-2 front)
-    (know-simultaneous signal-measurement s19-antenna-6 radiation-pattern dynamic-inspection360)
-    (know thermal-image s19-antenna-6 front)
-    (know signal-measurement s20-antenna-4 above)
-    (know image s20-antenna-1 front)
-    (know thermal-image s21-antenna-1 right)
+    (know image s19-antenna-2 above)
+    (know thermal-image s19-antenna-2 left)
+    (know signal-measurement s19-antenna-6 front-below)
+    (know signal-measurement s20-antenna-5 above)
+    (know signal-measurement s20-antenna-2 front)
+    (know image s20-antenna-3 below)
+    (know signal-measurement s21-antenna-1 front)
+    (know image s21-antenna-1 above)
     (know signal-measurement s21-antenna-6 below)
-
-
 
     )
   )

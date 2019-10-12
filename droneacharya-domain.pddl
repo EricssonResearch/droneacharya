@@ -25,7 +25,6 @@
     ;drone and battery predicates
     (has-capability ?d - drone ?c - capability)
     (is-at ?d - drone ?c - component ?p - perspective)
-    (different-drone ?d1 ?d2 - drone)
 
     ;prespective roles predicates
     (is-perspective ?p - perspective ?c - component)
@@ -75,12 +74,12 @@
       (at start(not (not_busy ?drone)))
       (at start(is-clear-perspective ?srcPersp ?srcComp))
       (at start(decrease(max-dock ?destComp) 1))
-      (at end(increase(max-dock ?srcComp) 1))
       (at start(not (is-at ?drone ?srcComp ?srcPersp)))
       (at start(not (is-at-component ?drone ?srcComp)))
       (at start(decrease (drone-charge ?drone) (/ (distance ?srcComp ?destComp) (velocity ?drone))))
       (at end(is-at ?drone ?destComp ?destPersp))
       (at end(is-at-component ?drone ?destComp))
+      (at end(increase(max-dock ?srcComp) 1))
       (at end(not_busy ?drone))
     )
   )
@@ -113,8 +112,6 @@
 
       (at start(not_busy ?staticDrone))
       (at start(not_busy ?movingDrone))
-
-      (at start(different-drone ?staticDrone ?movingDrone))
 
       (at start(is-available signal-measurement ?radiation))
       (at start(is-available signal-measurement ?dynamic360))
@@ -226,11 +223,11 @@
       (at start (= (drone-charge ?drone1)(max-charge-drone ?drone1)))
       (at start (= (drone-charge ?drone2)(max-charge-drone ?drone2)))
       (at start (not_busy ?drone1))
-      (at start (not_busy ?drone2))  
+      (at start (not_busy ?drone2))
     ) 
     :effect (and 
       (at start (not (not_busy ?drone1)))
-      (at start (not (not_busy ?drone2)))  
+      (at start (not (not_busy ?drone2)))
       (at end (mission_complete ?mission))
       (at end (not_busy ?drone1))
       (at end (not_busy ?drone2))  
@@ -239,5 +236,3 @@
 
 
 )
-
-

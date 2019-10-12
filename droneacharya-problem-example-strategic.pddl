@@ -33,6 +33,7 @@
     drone1 drone2 drone3 drone4 drone5 drone6 drone7 drone8 drone9 drone10 drone11 drone12 - drone
 
     mission1 mission2 mission3 mission4 mission5 mission6 mission7 - mission
+    ; mission11 mission21 mission31 mission41 mission51 mission61 mission71 mission111 mission211 mission311 mission411 mission511 mission611 - mission
 
   )
 
@@ -628,9 +629,74 @@
     (= (mission_duration mission5) 374)
     (= (mission_duration mission6) 374)
     (= (mission_duration mission7) 374)
+
+    ; (mission_at mission11 s1-tower-launchpad)
+    ; (mission_at mission21 s4-tower-launchpad)
+    ; (mission_at mission31 s7-tower-launchpad)
+    ; (mission_at mission41 s10-tower-launchpad)
+    ; (mission_at mission51 s13-tower-launchpad)
+    ; (mission_at mission61 s16-tower-launchpad)
+    ; (mission_at mission71 s19-tower-launchpad)
+            
+    ; ;duration is an approximation at this stage       
+    ; (= (mission_duration mission11) 374)
+    ; (= (mission_duration mission21) 374)
+    ; (= (mission_duration mission31) 374)
+    ; (= (mission_duration mission41) 374)
+    ; (= (mission_duration mission51) 374)
+    ; (= (mission_duration mission61) 374)
+    ; (= (mission_duration mission71) 374)
+
+    ; (mission_at mission111 s1-tower-launchpad)
+    ; (mission_at mission211 s4-tower-launchpad)
+    ; (mission_at mission311 s7-tower-launchpad)
+    ; (mission_at mission411 s10-tower-launchpad)
+    ; (mission_at mission511 s13-tower-launchpad)
+    ; (mission_at mission611 s16-tower-launchpad)
+    ; ;(mission_at mission711 s19-tower-launchpad)
+            
+    ; ;duration is an approximation at this stage       
+    ; (= (mission_duration mission111) 374)
+    ; (= (mission_duration mission211) 374)
+    ; (= (mission_duration mission311) 374)
+    ; (= (mission_duration mission411) 374)
+    ; (= (mission_duration mission511) 374)
+    ; (= (mission_duration mission611) 374)
+    ;(= (mission_duration mission711) 374)
+
+
   )
 
+  
   (:goal (and
+    ; 11 missions
+    ; States evaluated: 62768
+    ; Cost: 2650.204
+    ; Time 935.40
+
+    ; 12 missions
+    ; States evaluated: 3621
+    ; Cost: 2062.694
+    ; Time 39.84
+
+    ; 13 missions
+    ; States evaluated: 9798
+    ; Cost: 2062.695
+    ; Time 122.36
+
+    ; 14 missions
+    ; States evaluated: 16283
+    ; Cost: 2754.244
+    ; Time 133.42
+
+    ; 20 missions
+    ; Segmentation fault (core dumped)
+    ;
+
+
+
+
+
     (mission_complete mission1)
     (mission_complete mission2)
     (mission_complete mission3)
@@ -638,6 +704,20 @@
     (mission_complete mission5)
     (mission_complete mission6)
     (mission_complete mission7)
+    ; (mission_complete mission11)
+    ; (mission_complete mission21)
+    ; (mission_complete mission31)
+    ; (mission_complete mission41)
+    ; (mission_complete mission51)
+    ; (mission_complete mission61)
+    ; (mission_complete mission71)
+    ; (mission_complete mission111)
+    ; (mission_complete mission211)
+    ; (mission_complete mission311)
+    ; (mission_complete mission411)
+    ; (mission_complete mission511)
+    ;(mission_complete mission611)
+    ;(mission_complete mission711)
    
     )
   )
