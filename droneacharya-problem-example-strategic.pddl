@@ -30,10 +30,14 @@
     s21-tower-launchpad - component
 
     launch-pad dock - perspective 
-    drone1 drone2 drone3 drone4 drone5 drone6 drone7 drone8 drone9 drone10 drone11 drone12 - drone
+    drone1 drone2 - drone
+    drone3 - drone
+    ;drone4 drone5 drone6 drone7 drone8 drone9 drone10 drone11 drone12 - drone
 
     mission1 mission2 mission3 mission4 mission5 mission6 mission7 - mission
-    ; mission11 mission21 mission31 mission41 mission51 mission61 mission71 mission111 mission211 mission311 mission411 mission511 mission611 - mission
+    mission11 mission21 mission31 mission41 mission51 mission61 mission71 mission111 mission211 mission311 mission411 mission511 mission611 mission711 - mission
+    mission12 mission22 mission32 mission42 mission52 mission62 mission72 - mission
+    mission112 mission212 mission312 mission412 mission512 mission612 mission712 mission1112 mission2112 mission3112 mission4112 mission5112 mission6112 mission7112 - mission
 
   )
 
@@ -477,11 +481,11 @@
     (is-charging-dock s7-tower-launchpad launch-pad)
 
     (is-perspective launch-pad s10-tower-launchpad)
-    (= (max-dock s10-tower-launchpad) 0) 
+    (= (max-dock s10-tower-launchpad) 3) 
     (is-charging-dock s10-tower-launchpad launch-pad)
 
     (is-perspective launch-pad s13-tower-launchpad)
-    (= (max-dock s13-tower-launchpad) 0) 
+    (= (max-dock s13-tower-launchpad) 3) 
     (is-charging-dock s13-tower-launchpad launch-pad)
 
     (is-perspective launch-pad s16-tower-launchpad)
@@ -489,7 +493,7 @@
     (is-charging-dock s16-tower-launchpad launch-pad)
 
     (is-perspective launch-pad s19-tower-launchpad)
-    (= (max-dock s19-tower-launchpad) 0) 
+    (= (max-dock s19-tower-launchpad) 3) 
     (is-charging-dock s19-tower-launchpad launch-pad)
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -499,119 +503,41 @@
     (not_busy drone1)
     (not_busy drone2)
     (not_busy drone3)
-    (not_busy drone4)
-    (not_busy drone5)
-    (not_busy drone6)
-    (not_busy drone7)
-    (not_busy drone8)
-    (not_busy drone9)
-    (not_busy drone10)
-    (not_busy drone11)
-    (not_busy drone12)
 
-    ;;;;;;;;;;;;;;;drone start location 1
+    ; (drone-type1 drone1)
+    ; (drone-type2 drone2)
+    ; (drone-type3 drone3)
 
-    (has-capability drone1 camera)
+    ;;;; max drone velocity is 6
+    ;camera decreases velocity by 1
+    ;signal-measurer decresases velocity by 2
+    ;thermal-camera decreases velocity by 2
+
+;    (has-capability drone1 camera)
+;    (has-capability drone1 signal-measurer)
     (is-at drone1 s4-tower-launchpad launch-pad)
     (is-at-component drone1 s4-tower-launchpad)
-    (= (drone-charge drone1) 95)
+    (= (drone-charge drone1) 40)
     (= (max-charge-drone drone1) 300)
-    (= (velocity drone1) 5)
+    (= (velocity drone1) 3)
 
-    (has-capability drone2 camera)
-    (has-capability drone2 thermal-camera)
-    (has-capability drone2 signal-measurer)
+;    (has-capability drone2 thermal-camera)
+;    (has-capability drone2 signal-measurer)
     (is-at drone2 s4-tower-launchpad launch-pad)
     (is-at-component drone2 s4-tower-launchpad)
-    (= (drone-charge drone2) 190)
+    (= (drone-charge drone2) 25)
     (= (max-charge-drone drone2) 300)
-    (= (velocity drone2) 1)
+    (= (velocity drone2) 2)
 
-    (has-capability drone3 thermal-camera)
-    (has-capability drone3 signal-measurer)
+
+;    (has-capability drone3 camera)
     (is-at drone3 s4-tower-launchpad launch-pad)
     (is-at-component drone3 s4-tower-launchpad)
-    (= (drone-charge drone3) 200)
+    (= (drone-charge drone3) 45)
     (= (max-charge-drone drone3) 300)
-    (= (velocity drone3) 2)
+    (= (velocity drone3) 5)
 
-    ;;;;;;;;;;;;;;;drone start location 2
-
-    (has-capability drone4 camera)
-    (is-at drone4 s10-tower-launchpad launch-pad)
-    (is-at-component drone4 s10-tower-launchpad)
-    (= (drone-charge drone4) 95)
-    (= (max-charge-drone drone4) 300)
-    (= (velocity drone4) 5)
-
-    (has-capability drone5 camera)
-    (has-capability drone5 thermal-camera)
-    (has-capability drone5 signal-measurer)
-    (is-at drone5 s10-tower-launchpad launch-pad)
-    (is-at-component drone5 s10-tower-launchpad)
-    (= (drone-charge drone5) 190)
-    (= (max-charge-drone drone5) 300)
-    (= (velocity drone5) 1)
-
-    (has-capability drone6 thermal-camera)
-    (has-capability drone6 signal-measurer)
-    (is-at drone6 s10-tower-launchpad launch-pad)
-    (is-at-component drone6 s10-tower-launchpad)
-    (= (drone-charge drone6) 200)
-    (= (max-charge-drone drone6) 300)
-    (= (velocity drone6) 2)
-
-     ;;;;;;;;;;;;;;;drone start location 3
-
-    (has-capability drone7 camera)
-    (is-at drone7 s13-tower-launchpad launch-pad)
-    (is-at-component drone7 s13-tower-launchpad)
-    (= (drone-charge drone7) 95)
-    (= (max-charge-drone drone7) 300)
-    (= (velocity drone7) 5)
-
-    (has-capability drone8 camera)
-    (has-capability drone8 thermal-camera)
-    (has-capability drone8 signal-measurer)
-    (is-at drone8 s13-tower-launchpad launch-pad)
-    (is-at-component drone8 s13-tower-launchpad)
-    (= (drone-charge drone8) 190)
-    (= (max-charge-drone drone8) 300)
-    (= (velocity drone8) 1)
-
-    (has-capability drone9 thermal-camera)
-    (has-capability drone9 signal-measurer)
-    (is-at drone9 s13-tower-launchpad launch-pad)
-    (is-at-component drone9 s13-tower-launchpad)
-    (= (drone-charge drone9) 200)
-    (= (max-charge-drone drone9) 300)
-    (= (velocity drone9) 2)
-
-     ;;;;;;;;;;;;;;;drone start location 4
-
-    (has-capability drone10 camera)
-    (is-at drone10 s19-tower-launchpad launch-pad)
-    (is-at-component drone10 s19-tower-launchpad)
-    (= (drone-charge drone10) 95)
-    (= (max-charge-drone drone10) 300)
-    (= (velocity drone10) 5)
-
-    (has-capability drone11 camera)
-    (has-capability drone11 thermal-camera)
-    (has-capability drone11 signal-measurer)
-    (is-at drone11 s19-tower-launchpad launch-pad)
-    (is-at-component drone11 s19-tower-launchpad)
-    (= (drone-charge drone11) 190)
-    (= (max-charge-drone drone11) 300)
-    (= (velocity drone11) 1)
-
-    (has-capability drone12 thermal-camera)
-    (has-capability drone12 signal-measurer)
-    (is-at drone12 s19-tower-launchpad launch-pad)
-    (is-at-component drone12 s19-tower-launchpad)
-    (= (drone-charge drone12) 200)
-    (= (max-charge-drone drone12) 300)
-    (= (velocity drone12) 2)
+    (= (mission_total) 0)
 
     (mission_at mission1 s1-tower-launchpad)
     (mission_at mission2 s4-tower-launchpad)
@@ -630,72 +556,273 @@
     (= (mission_duration mission6) 374)
     (= (mission_duration mission7) 374)
 
-    ; (mission_at mission11 s1-tower-launchpad)
-    ; (mission_at mission21 s4-tower-launchpad)
-    ; (mission_at mission31 s7-tower-launchpad)
-    ; (mission_at mission41 s10-tower-launchpad)
-    ; (mission_at mission51 s13-tower-launchpad)
-    ; (mission_at mission61 s16-tower-launchpad)
-    ; (mission_at mission71 s19-tower-launchpad)
+    (mission_at mission11 s1-tower-launchpad)
+    (mission_at mission21 s4-tower-launchpad)
+    (mission_at mission31 s7-tower-launchpad)
+    (mission_at mission41 s10-tower-launchpad)
+    (mission_at mission51 s13-tower-launchpad)
+    (mission_at mission61 s16-tower-launchpad)
+    (mission_at mission71 s19-tower-launchpad)
             
-    ; ;duration is an approximation at this stage       
-    ; (= (mission_duration mission11) 374)
-    ; (= (mission_duration mission21) 374)
-    ; (= (mission_duration mission31) 374)
-    ; (= (mission_duration mission41) 374)
-    ; (= (mission_duration mission51) 374)
-    ; (= (mission_duration mission61) 374)
-    ; (= (mission_duration mission71) 374)
+    ;duration is an approximation at this stage       
+    (= (mission_duration mission11) 374)
+    (= (mission_duration mission21) 374)
+    (= (mission_duration mission31) 374)
+    (= (mission_duration mission41) 374)
+    (= (mission_duration mission51) 374)
+    (= (mission_duration mission61) 374)
+    (= (mission_duration mission71) 374)
 
-    ; (mission_at mission111 s1-tower-launchpad)
-    ; (mission_at mission211 s4-tower-launchpad)
-    ; (mission_at mission311 s7-tower-launchpad)
-    ; (mission_at mission411 s10-tower-launchpad)
-    ; (mission_at mission511 s13-tower-launchpad)
-    ; (mission_at mission611 s16-tower-launchpad)
-    ; ;(mission_at mission711 s19-tower-launchpad)
+    (mission_at mission111 s1-tower-launchpad)
+    (mission_at mission211 s4-tower-launchpad)
+    (mission_at mission311 s7-tower-launchpad)
+    (mission_at mission411 s10-tower-launchpad)
+    (mission_at mission511 s13-tower-launchpad)
+    (mission_at mission611 s16-tower-launchpad)
+    (mission_at mission711 s19-tower-launchpad)
             
-    ; ;duration is an approximation at this stage       
-    ; (= (mission_duration mission111) 374)
-    ; (= (mission_duration mission211) 374)
-    ; (= (mission_duration mission311) 374)
-    ; (= (mission_duration mission411) 374)
-    ; (= (mission_duration mission511) 374)
-    ; (= (mission_duration mission611) 374)
-    ;(= (mission_duration mission711) 374)
+    ;duration is an approximation at this stage       
+    (= (mission_duration mission111) 374)
+    (= (mission_duration mission211) 374)
+    (= (mission_duration mission311) 374)
+    (= (mission_duration mission411) 374)
+    (= (mission_duration mission511) 374)
+    (= (mission_duration mission611) 374)
+    (= (mission_duration mission711) 374)
 
+    (active mission1)
+    (active mission2)
+    (active mission3)
+    (active mission4)
+    (active mission5)
+    (active mission6)
+    (active mission7)
+    (active mission11)
+    (active mission21)
+    (active mission31)
+    (active mission41)
+    (active mission51)
+    (active mission61)
+    (active mission71)
+    (active mission111)
+    (active mission211)
+    (active mission311)
+    (active mission411)
+    (active mission511)
+    (active mission611)
+    (active mission711)
+
+
+
+    (= (mission_consumption mission1 drone1) 10)
+    (= (mission_consumption mission1 drone2) 10)
+    (= (mission_consumption mission2 drone1) 10)
+    (= (mission_consumption mission2 drone2) 10)
+    (= (mission_consumption mission3 drone1) 10)
+    (= (mission_consumption mission3 drone2) 10)
+    (= (mission_consumption mission4 drone1) 10)
+    (= (mission_consumption mission4 drone2) 10)
+    (= (mission_consumption mission5 drone1) 10)
+    (= (mission_consumption mission5 drone2) 10)
+    (= (mission_consumption mission6 drone1) 10)
+    (= (mission_consumption mission6 drone2) 10)
+    (= (mission_consumption mission7 drone1) 10)
+    (= (mission_consumption mission7 drone2) 10)
+    (= (mission_consumption mission11 drone1) 10)
+    (= (mission_consumption mission11 drone2) 10)
+    (= (mission_consumption mission21 drone1) 10)
+    (= (mission_consumption mission21 drone2) 10)
+    (= (mission_consumption mission31 drone1) 10)
+    (= (mission_consumption mission31 drone2) 10)
+    (= (mission_consumption mission41 drone1) 10)
+    (= (mission_consumption mission41 drone2) 10)
+    (= (mission_consumption mission51 drone1) 10)
+    (= (mission_consumption mission51 drone2) 10)
+    (= (mission_consumption mission61 drone1) 10)
+    (= (mission_consumption mission61 drone2) 10)
+    (= (mission_consumption mission71 drone1) 10)
+    (= (mission_consumption mission71 drone2) 10)
+    (= (mission_consumption mission111 drone1) 10)
+    (= (mission_consumption mission111 drone2) 10)
+    (= (mission_consumption mission211 drone1) 10)
+    (= (mission_consumption mission211 drone2) 10)
+    (= (mission_consumption mission311 drone1) 10)
+    (= (mission_consumption mission311 drone2) 10)
+    (= (mission_consumption mission411 drone1) 10)
+    (= (mission_consumption mission411 drone2) 10)
+    (= (mission_consumption mission511 drone1) 10)
+    (= (mission_consumption mission511 drone2) 10)
+    (= (mission_consumption mission611 drone1) 10)
+    (= (mission_consumption mission611 drone2) 10)
+    (= (mission_consumption mission711 drone1) 10)
+    (= (mission_consumption mission711 drone2) 10)
+
+    (= (mission_consumption mission1 drone3) 10)
+    (= (mission_consumption mission2 drone3) 10)
+    (= (mission_consumption mission3 drone3) 10)
+    (= (mission_consumption mission4 drone3) 10)
+    (= (mission_consumption mission5 drone3) 10)
+    (= (mission_consumption  mission6 drone3) 10)
+    (= (mission_consumption  mission7 drone3) 10)
+    (= (mission_consumption  mission11 drone3) 10)
+    (= (mission_consumption  mission21 drone3) 10)
+    (= (mission_consumption  mission31 drone3) 10)
+    (= (mission_consumption  mission41 drone3) 10)
+    (= (mission_consumption  mission51 drone3) 10)
+    (= (mission_consumption  mission61 drone3) 10)
+    (= (mission_consumption  mission71 drone3) 10)
+    (= (mission_consumption  mission111 drone3) 10)
+    (= (mission_consumption  mission211 drone3) 10)
+    (= (mission_consumption  mission311 drone3) 10)
+    (= (mission_consumption  mission411 drone3) 10)
+    (= (mission_consumption  mission511 drone3) 10)
+    (= (mission_consumption  mission611 drone3) 10)
+    (= (mission_consumption  mission711 drone3) 10)
+
+    (mission_at mission12 s1-tower-launchpad)
+    (mission_at mission22 s4-tower-launchpad)
+    (mission_at mission32 s7-tower-launchpad)
+    (mission_at mission42 s10-tower-launchpad)
+    (mission_at mission52 s13-tower-launchpad)
+    (mission_at mission62 s16-tower-launchpad)
+    (mission_at mission72 s19-tower-launchpad)
+            
+    ;duration is an approximation at this stage       
+    (= (mission_duration mission12) 374)
+    (= (mission_duration mission22) 374)
+    (= (mission_duration mission32) 374)
+    (= (mission_duration mission42) 374)
+    (= (mission_duration mission52) 374)
+    (= (mission_duration mission62) 374)
+    (= (mission_duration mission72) 374)
+
+    (mission_at mission112 s1-tower-launchpad)
+    (mission_at mission212 s4-tower-launchpad)
+    (mission_at mission312 s7-tower-launchpad)
+    (mission_at mission412 s10-tower-launchpad)
+    (mission_at mission512 s13-tower-launchpad)
+    (mission_at mission612 s16-tower-launchpad)
+    (mission_at mission712 s19-tower-launchpad)
+            
+    ;duration is an approximation at this stage       
+    (= (mission_duration mission112) 374)
+    (= (mission_duration mission212) 374)
+    (= (mission_duration mission312) 374)
+    (= (mission_duration mission412) 374)
+    (= (mission_duration mission512) 374)
+    (= (mission_duration mission612) 374)
+    (= (mission_duration mission712) 374)
+
+    (mission_at mission1112 s1-tower-launchpad)
+    (mission_at mission2112 s4-tower-launchpad)
+    (mission_at mission3112 s7-tower-launchpad)
+    (mission_at mission4112 s10-tower-launchpad)
+    (mission_at mission5112 s13-tower-launchpad)
+    (mission_at mission6112 s16-tower-launchpad)
+    (mission_at mission7112 s19-tower-launchpad)
+            
+    ;duration is an approximation at this stage       
+    (= (mission_duration mission1112) 374)
+    (= (mission_duration mission2112) 374)
+    (= (mission_duration mission3112) 374)
+    (= (mission_duration mission4112) 374)
+    (= (mission_duration mission5112) 374)
+    (= (mission_duration mission6112) 374)
+    (= (mission_duration mission7112) 374)
+
+    (active mission12)
+    (active mission22)
+    (active mission32)
+    (active mission42)
+    (active mission52)
+    (active mission62)
+    (active mission72)
+    (active mission112)
+    (active mission212)
+    (active mission312)
+    (active mission412)
+    (active mission512)
+    (active mission612)
+    (active mission712)
+    (active mission1112)
+    (active mission2112)
+    (active mission3112)
+    (active mission4112)
+    (active mission5112)
+    (active mission6112)
+    (active mission7112)
+
+
+
+    (= (mission_consumption mission12 drone1) 10)
+    (= (mission_consumption mission12 drone2) 10)
+    (= (mission_consumption mission22 drone1) 10)
+    (= (mission_consumption mission22 drone2) 10)
+    (= (mission_consumption mission32 drone1) 10)
+    (= (mission_consumption mission32 drone2) 10)
+    (= (mission_consumption mission42 drone1) 10)
+    (= (mission_consumption mission42 drone2) 10)
+    (= (mission_consumption mission52 drone1) 10)
+    (= (mission_consumption mission52 drone2) 10)
+    (= (mission_consumption mission62 drone1) 10)
+    (= (mission_consumption mission62 drone2) 10)
+    (= (mission_consumption mission72 drone1) 10)
+    (= (mission_consumption mission72 drone2) 10)
+    (= (mission_consumption mission112 drone1) 10)
+    (= (mission_consumption mission112 drone2) 10)
+    (= (mission_consumption mission212 drone1) 10)
+    (= (mission_consumption mission212 drone2) 10)
+    (= (mission_consumption mission312 drone1) 10)
+    (= (mission_consumption mission312 drone2) 10)
+    (= (mission_consumption mission412 drone1) 10)
+    (= (mission_consumption mission412 drone2) 10)
+    (= (mission_consumption mission512 drone1) 10)
+    (= (mission_consumption mission512 drone2) 10)
+    (= (mission_consumption mission612 drone1) 10)
+    (= (mission_consumption mission612 drone2) 10)
+    (= (mission_consumption mission712 drone1) 10)
+    (= (mission_consumption mission712 drone2) 10)
+    (= (mission_consumption mission1112 drone1) 10)
+    (= (mission_consumption mission1112 drone2) 10)
+    (= (mission_consumption mission2112 drone1) 10)
+    (= (mission_consumption mission2112 drone2) 10)
+    (= (mission_consumption mission3112 drone1) 10)
+    (= (mission_consumption mission3112 drone2) 10)
+    (= (mission_consumption mission4112 drone1) 10)
+    (= (mission_consumption mission4112 drone2) 10)
+    (= (mission_consumption mission5112 drone1) 10)
+    (= (mission_consumption mission5112 drone2) 10)
+    (= (mission_consumption mission6112 drone1) 10)
+    (= (mission_consumption mission6112 drone2) 10)
+    (= (mission_consumption mission7112 drone1) 10)
+    (= (mission_consumption mission7112 drone2) 10)
+
+    (= (mission_consumption mission12 drone3) 10)
+    (= (mission_consumption mission22 drone3) 10)
+    (= (mission_consumption mission32 drone3) 10)
+    (= (mission_consumption mission42 drone3) 10)
+    (= (mission_consumption mission52 drone3) 10)
+    (= (mission_consumption  mission62 drone3) 10)
+    (= (mission_consumption  mission72 drone3) 10)
+    (= (mission_consumption  mission112 drone3) 10)
+    (= (mission_consumption  mission212 drone3) 10)
+    (= (mission_consumption  mission312 drone3) 10)
+    (= (mission_consumption  mission412 drone3) 10)
+    (= (mission_consumption  mission512 drone3) 10)
+    (= (mission_consumption  mission612 drone3) 10)
+    (= (mission_consumption  mission712 drone3) 10)
+    (= (mission_consumption  mission1112 drone3) 10)
+    (= (mission_consumption  mission2112 drone3) 10)
+    (= (mission_consumption  mission3112 drone3) 10)
+    (= (mission_consumption  mission4112 drone3) 10)
+    (= (mission_consumption  mission5112 drone3) 10)
+    (= (mission_consumption  mission6112 drone3) 10)
+    (= (mission_consumption  mission7112 drone3) 10)
 
   )
 
   
   (:goal (and
-    ; 11 missions
-    ; States evaluated: 62768
-    ; Cost: 2650.204
-    ; Time 935.40
-
-    ; 12 missions
-    ; States evaluated: 3621
-    ; Cost: 2062.694
-    ; Time 39.84
-
-    ; 13 missions
-    ; States evaluated: 9798
-    ; Cost: 2062.695
-    ; Time 122.36
-
-    ; 14 missions
-    ; States evaluated: 16283
-    ; Cost: 2754.244
-    ; Time 133.42
-
-    ; 20 missions
-    ; Segmentation fault (core dumped)
-    ;
-
-
-
-
 
     (mission_complete mission1)
     (mission_complete mission2)
@@ -704,20 +831,42 @@
     (mission_complete mission5)
     (mission_complete mission6)
     (mission_complete mission7)
-    ; (mission_complete mission11)
-    ; (mission_complete mission21)
-    ; (mission_complete mission31)
-    ; (mission_complete mission41)
-    ; (mission_complete mission51)
-    ; (mission_complete mission61)
-    ; (mission_complete mission71)
-    ; (mission_complete mission111)
-    ; (mission_complete mission211)
-    ; (mission_complete mission311)
-    ; (mission_complete mission411)
-    ; (mission_complete mission511)
-    ;(mission_complete mission611)
-    ;(mission_complete mission711)
+    (mission_complete mission11)
+    (mission_complete mission21)
+    (mission_complete mission31)
+    (mission_complete mission41)
+    (mission_complete mission51)
+    (mission_complete mission61)
+    (mission_complete mission71)
+    (mission_complete mission111)
+    (mission_complete mission211)
+    (mission_complete mission311)
+    (mission_complete mission411)
+    (mission_complete mission511)
+    (mission_complete mission611)
+    (mission_complete mission711)
+
+    (mission_complete mission12)
+    (mission_complete mission22)
+    (mission_complete mission32)
+    (mission_complete mission42)
+    (mission_complete mission52)
+    (mission_complete mission62)
+    (mission_complete mission72)
+    (mission_complete mission112)
+    (mission_complete mission212)
+    (mission_complete mission312)
+    (mission_complete mission412)
+    (mission_complete mission512)
+    (mission_complete mission612)
+    (mission_complete mission712)
+    (mission_complete mission1112)
+    (mission_complete mission2112)
+    (mission_complete mission3112)
+    (mission_complete mission4112)
+    (mission_complete mission5112)
+    (mission_complete mission6112)
+    (mission_complete mission7112)
    
     )
   )
