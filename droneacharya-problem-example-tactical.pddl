@@ -16,8 +16,9 @@
     s12-tower-launchpad s12-antenna-1 s12-antenna-2 s12-antenna-3 s12-antenna-4 s12-antenna-5 s12-antenna-6 - component
     
     front above below left right front-below launch-pad dock radiation-pattern dynamic-inspection360 - perspective 
-    drone1 drone2 - drone
     drone3 - drone
+    drone1 drone2 - drone
+
   
   )
 
@@ -1084,33 +1085,36 @@
     (not_busy drone3)
 
 
-    ;max drone velocity is 6
+    ;max drone velocity is 5
     ;camera decreases velocity by 1
-    ;signal-measurer decresases velocity by 2
+    ;signal-measurer decresases velocity by 3
     ;thermal-camera decreases velocity by 2
 
-    (has-capability drone1 camera)
+
+
+    (has-capability drone1 camera);1
     (has-capability drone1 signal-measurer)
     (is-at drone1 s7-tower-launchpad launch-pad)
 ;    (is-at-component drone1 s7-tower-launchpad)
-    (= (drone-charge drone1) 190)
-    (= (max-charge-drone drone1) 200)
-    (= (velocity drone1) 3)
+    (= (drone-charge drone1) 300)
+    (= (max-charge-drone drone1) 300)
+    (= (velocity drone1) 2)
 
-    (has-capability drone2 thermal-camera)
-    (has-capability drone2 signal-measurer)
+    
+    (has-capability drone2 thermal-camera);2
     (is-at drone2 s7-tower-launchpad launch-pad)
 ;    (is-at-component drone2 s7-tower-launchpad)
-    (= (drone-charge drone2) 200)
-    (= (max-charge-drone drone2) 200)
-    (= (velocity drone2) 2)
+    (= (drone-charge drone2) 300)
+    (= (max-charge-drone drone2) 300)
+    (= (velocity drone2) 4)
 
-    (has-capability drone3 camera)
+    
+    (has-capability drone3 signal-measurer);3
     (is-at drone3 s7-tower-launchpad launch-pad)
 ;    (is-at-component drone3 s7-tower-launchpad)
-    (= (drone-charge drone3) 45)
-    (= (max-charge-drone drone3) 200)
-    (= (velocity drone3) 5)    
+    (= (drone-charge drone3) 300)
+    (= (max-charge-drone drone3) 300)
+    (= (velocity drone3) 3)    
 
 
 
@@ -1124,19 +1128,33 @@
     (is-at drone3 s7-tower-launchpad launch-pad)
 
     ;inspection goals
-    (know thermal-image s8-antenna-4 left)
+    (know image s8-antenna-4 left)
     (know-simultaneous signal-measurement s8-antenna-2 radiation-pattern dynamic-inspection360)
     (know-simultaneous signal-measurement s8-antenna-1 radiation-pattern dynamic-inspection360)
     (know image s8-antenna-2 left)
-    (know signal-measurement s8-antenna-3 above)
+    (know image s8-antenna-3 above)
     (know image s8-antenna-5 left)
 
-    (know image s8-antenna-2 front)
-    (know image s8-antenna-3 front-below)
-    (know signal-measurement s8-antenna-1 front)
-    (know signal-measurement s8-antenna-2 front-below)
+    (know thermal-image s8-antenna-2 front)
+    (know thermal-image s8-antenna-3 front-below)
+    (know thermal-image s8-antenna-1 front)
+    (know image s8-antenna-2 front-below)
     (know-simultaneous signal-measurement s8-antenna-5 radiation-pattern dynamic-inspection360)
     (know thermal-image s8-antenna-1 left)
+
+    ; (know image s8-antenna-1 left)
+    ; (know-simultaneous signal-measurement s8-antenna-3 radiation-pattern dynamic-inspection360)
+    ; (know-simultaneous signal-measurement s8-antenna-4 radiation-pattern dynamic-inspection360)
+    ; (know image s8-antenna-4 left)
+    ; (know image s8-antenna-5 above)
+    ; (know image s8-antenna-2 left)
+
+    ; (know thermal-image s8-antenna-4 front)
+    ; (know thermal-image s8-antenna-5 front-below)
+    ; (know thermal-image s8-antenna-2 front)
+    ; (know image s8-antenna-2 front-below)
+    ; (know-simultaneous signal-measurement s8-antenna-4 radiation-pattern dynamic-inspection360)
+    ; (know thermal-image s8-antenna-3 left)
 
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 5 x 3 goals not working

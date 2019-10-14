@@ -67,7 +67,6 @@
 
     :effect (and
       (at start(not (not_busy ?drone)))
-      (at start(is-clear-perspective ?srcPersp ?srcComp))
       (at start(decrease(max-dock ?destComp) 1))
       (at start(not (is-at ?drone ?srcComp ?srcPersp)))
       (at start(decrease (drone-charge ?drone) (/ (distance ?srcComp ?destComp) (velocity ?drone))))
