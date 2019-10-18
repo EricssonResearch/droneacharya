@@ -11,13 +11,12 @@
   drone 
   capability 
   knowledge
-  battery
   mission - object
   )
 
   (:constants 
   camera thermal-camera signal-measurer - capability 
-  image thermal-image signal-measurement - knowledge-object)
+  image thermal-image signal-measurement - knowledge)
   
   (:predicates 
 
@@ -34,9 +33,10 @@
     (is-clear-perspective ?p - perspective ?c - component)
 
     ;sensing related predicates
-    (is-available ?k - knowledge-object ?p - perspective)
-    (know ?k - knowledge-object ?c - component ?p - perspective)
-    (know-simultaneous ?k - knowledge-object ?c - component ?p1 ?p2 - perspective)
+    (inspects ?c - capability ?k - knowledge)
+    (is-available ?k - knowledge ?p - perspective)
+    (know ?k - knowledge ?c - component ?p - perspective)
+    (know-simultaneous ?k - knowledge ?c - component ?p1 ?p2 - perspective)
     (is-dynamic-inspection360 ?p - perspective)
     (is-radiation-pattern ?p - perspective)
     
@@ -49,11 +49,11 @@
     (velocity ?d - drone)
     (distance ?sc ?dc - component)
     (max-dock ?c - component)
-
-    (mission_duration ?m - mission)
+    (inspection-duration ?k - knowledge)
+    (capability-consumption ?c - capability)
   )
 
-  (:durative-action goto-tactical
+  (:durative-action goto-component-tactical
     :parameters (?drone - drone ?srcComp - component ?srcPersp - perspective ?destComp - component ?destPersp - perspective)
     :duration (= ?duration (/ (distance ?srcComp ?destComp) (velocity ?drone)))
     :condition (and
@@ -67,6 +67,7 @@
 
     :effect (and
       (at start(not (not_busy ?drone)))
+      (at start(is-clear-perspective ?srcPersp ?srcComp))
       (at start(decrease(max-dock ?destComp) 1))
       (at start(not (is-at ?drone ?srcComp ?srcPersp)))
       (at start(decrease (drone-charge ?drone) (/ (distance ?srcComp ?destComp) (velocity ?drone))))
@@ -97,7 +98,27 @@
     )
   )
 
-  (:durative-action inventory-mapping
+
+  (:durative-action individual-inspection
+    :parameters (?drone - drone ?component - component ?perspective - perspective ?capability - capability ?knowledge - knowledge)
+    :duration (= ?duration (inspection-duration ?knowledge))
+    :condition (and
+      (at start(inspects ?capability ?knowledge))
+      (at start(not_busy ?drone))
+      (at start(is-available ?knowledge ?perspective))
+      (at start(is-at ?drone ?component ?perspective))
+      (at start(has-capability ?drone ?capability))
+      (at start(> (drone-charge ?drone)(capability-consumption ?capability)))
+    )
+    :effect (and
+      (at start(not (not_busy ?drone)))
+      (at start(decrease (drone-charge ?drone) (capability-consumption ?capability)))
+      (at end(know ?knowledge ?component ?perspective))
+      (at end(not_busy ?drone))
+    )
+  )
+
+  (:durative-action cooperative-inspection
     :parameters (?staticDrone ?movingDrone - drone ?component - component ?radiation ?dynamic360 - perspective)
     :duration (= ?duration 2)
     :condition (and
@@ -131,57 +152,4 @@
     )
   )
 
-  (:durative-action take-image
-    :parameters (?drone - drone ?component - component ?perspective - perspective)
-    :duration (= ?duration 1)
-    :condition (and
-      (at start(not_busy ?drone))
-      (at start(is-available image ?perspective))
-      (at start(is-at ?drone ?component ?perspective))
-      (at start(has-capability ?drone camera))
-      (at start(> (drone-charge ?drone)2))
-  )
-    :effect (and
-      (at start(not (not_busy ?drone)))
-      (at start(decrease (drone-charge ?drone) 2))
-      (at end(know image ?component ?perspective))
-      (at end(not_busy ?drone))
-    )
-  )
-
-  (:durative-action take-thermal-image
-    :parameters (?drone - drone ?component - component ?perspective - perspective)
-    :duration (= ?duration 2)
-    :condition (and
-      (at start(not_busy ?drone))
-      (at start(is-available thermal-image ?perspective))
-      (at start(is-at ?drone ?component ?perspective))
-      (at start(has-capability ?drone thermal-camera))
-      (at start(> (drone-charge ?drone)2))
-    )
-    :effect (and
-      (at start(not (not_busy ?drone)))
-      (at start(decrease (drone-charge ?drone) 2))
-      (at end(know thermal-image ?component ?perspective))
-      (at end(not_busy ?drone))
-    )
-  )
-
-  (:durative-action take-signal-measurement
-    :parameters (?drone - drone ?component - component ?perspective - perspective)
-    :duration (= ?duration 2)
-    :condition (and
-      (at start(not_busy ?drone))
-      (at start(is-available signal-measurement ?perspective))
-      (at start(is-at ?drone ?component ?perspective))
-      (at start(has-capability ?drone signal-measurer))
-      (at start(> (drone-charge ?drone)2))
-    )
-    :effect (and
-      (at start(not (not_busy ?drone)))
-      (at start(decrease (drone-charge ?drone) 2))
-      (at end(know signal-measurement ?component ?perspective))
-      (at end(not_busy ?drone))
-    )
-  )
 )

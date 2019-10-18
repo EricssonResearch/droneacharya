@@ -24,8 +24,29 @@
 
   (:init
 
-    ;distance between components
+    ;individual inspection configurations
+    (= (inspection-duration image) 1)
+    (= (inspection-duration thermal-image) 2)
+    (= (inspection-duration signal-measurement) 2)
+    
+    (= (capability-consumption camera) 2)
+    (= (capability-consumption thermal-camera) 2)
+    (= (capability-consumption signal-measurer) 2)
 
+    (inspects camera image)
+    (inspects thermal-camera thermal-image)
+    (inspects signal-measurer signal-measurement)
+
+    ;!!!! ADD TILS !!!!!!
+
+
+;    in strand, single til of one type is at the same waypoint
+;    in pandora, mutiple tils of one type are at multiple waypoints
+;    in drones, mutiple tils of one type are at multiple waypoints
+;        which til?
+;            charge only in daytime - 
+
+    ;distance between components
     (= (distance s7-tower-launchpad s8-tower-launchpad) 40.6126148)
     (= (distance s7-tower-launchpad s9-tower-launchpad) 40.6126148)
     (= (distance s7-tower-launchpad s10-tower-launchpad) 217.145992)
@@ -1085,13 +1106,6 @@
     (not_busy drone3)
 
 
-    ;max drone velocity is 5
-    ;camera decreases velocity by 1
-    ;signal-measurer decresases velocity by 3
-    ;thermal-camera decreases velocity by 2
-
-
-
     (has-capability drone1 camera);1
     (has-capability drone1 signal-measurer)
     (is-at drone1 s7-tower-launchpad launch-pad)
@@ -1155,87 +1169,6 @@
     ; (know image s8-antenna-2 front-below)
     ; (know-simultaneous signal-measurement s8-antenna-4 radiation-pattern dynamic-inspection360)
     ; (know thermal-image s8-antenna-3 left)
-
-
-    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 5 x 3 goals not working
-
-    ; (know thermal-image s7-antenna-6 front)
-    ; (know thermal-image s7-antenna-1 front)
-    ; (know signal-measurement s7-antenna-4 below)
-    ; (know signal-measurement s7-antenna-3 below)
-    ; (know signal-measurement s7-antenna-1 right)
-    ; (know signal-measurement s8-antenna-6 below)
-    ; (know thermal-image s8-antenna-2 left)
-    ; (know thermal-image s8-antenna-4 right)
-    ; (know thermal-image s8-antenna-6 front)
-    ; (know image s8-antenna-1 left)
-    ; (know thermal-image s9-antenna-2 below)
-    ; (know signal-measurement s9-antenna-5 above)
-    ; (know thermal-image s9-antenna-4 left)
-    ; (know image s9-antenna-1 left)
-    ; (know image s9-antenna-2 left)
-
-    ; (know signal-measurement s7-antenna-1 front-below)
-    ; (know image s7-antenna-1 below)
-    ; (know image s7-antenna-6 front-below)
-    ; (know signal-measurement s7-antenna-4 front)
-    ; (know thermal-image s7-antenna-4 front-below)
-    ; (know signal-measurement s8-antenna-1 above)
-    ; (know image s8-antenna-2 above)
-    ; (know signal-measurement s8-antenna-4 above)
-    ; (know thermal-image s8-antenna-1 right)
-    ; (know thermal-image s8-antenna-3 front)
-    ; (know thermal-image s9-antenna-1 right)
-    ; (know image s9-antenna-3 front-below)
-    ; (know signal-measurement s9-antenna-6 below)
-    ; (know thermal-image s9-antenna-5 right)
-    ; (know thermal-image s9-antenna-1 front-below)
-
-    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 4 x 3 goals not working
-
-
-    ; States evaluated: 34653
-    ; Cost: 436.935
-    ; Time 1003.96
-    ; (know image s7-antenna-6 right)
-    ; (know signal-measurement s7-antenna-5 left)
-    ; (know image s7-antenna-5 left)
-    ; (know thermal-image s7-antenna-4 below)
-    ; (know signal-measurement s8-antenna-5 front-below)
-    ; (know image s8-antenna-2 right)
-    ; (know image s8-antenna-1 front-below)
-    ; (know signal-measurement s8-antenna-4 front)
-    ; (know image s9-antenna-3 above)
-    ; (know image s9-antenna-5 left)
-    ; (know image s9-antenna-2 below)
-    ; (know image s9-antenna-5 below)
-
-    ; (know signal-measurement s7-antenna-4 above)
-    ; (know thermal-image s7-antenna-4 below)
-    ; (know signal-measurement s7-antenna-4 above)
-    ; (know thermal-image s7-antenna-4 front-below)
-    ; (know signal-measurement s8-antenna-6 above)
-    ; (know thermal-image s8-antenna-3 front-below)
-    ; (know signal-measurement s8-antenna-4 left)
-    ; (know image s8-antenna-2 front)
-    ; (know image s9-antenna-3 above)
-    ; (know signal-measurement s9-antenna-2 right)
-    ; (know thermal-image s9-antenna-3 front)
-    ; (know image s9-antenna-2 above)
-
-        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 3 x 3 goals not working
-    ; 1 of 20
-    ; (know signal-measurement s7-antenna-1 front)
-    ; (know signal-measurement s7-antenna-2 below)
-    ; (know thermal-image s7-antenna-1 left)
-    ; (know signal-measurement s8-antenna-6 right)
-    ; (know thermal-image s8-antenna-5 front)
-    ; (know image s8-antenna-6 above)
-    ; (know signal-measurement s9-antenna-4 right)
-    ; (know signal-measurement s9-antenna-2 front)
-    ; (know image s9-antenna-2 below)
-
-
 
     )
   )

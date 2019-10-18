@@ -11,7 +11,6 @@
   drone 
   capability 
   knowledge
-  battery
   mission - object
   )
   
@@ -21,9 +20,6 @@
     ;drone predicates
     (is-at ?d - drone ?c - component ?p - perspective)
     (not_busy ?d - drone)
-    ; (drone-type1 ?d - drone)
-    ; (drone-type2 ?d - drone)
-    ; (drone-type3 ?d - drone)
 
     ;prespective roles predicates
     (is-perspective ?p - perspective ?c - component)
@@ -51,7 +47,7 @@
     (mission_consumption ?m - mission ?d - drone)
   )
 
-  (:durative-action goto-strategic
+  (:durative-action goto-component-strategic
     :parameters (?drone - drone ?srcComp - component ?srcPersp - perspective ?destComp - component ?destPersp - perspective)
     :duration (= ?duration (/ (distance ?srcComp ?destComp) (velocity ?drone)))
     :condition (and
@@ -100,13 +96,7 @@
       (at start (mission_at ?mission ?component))
       (at start (is-at-component ?drone1 ?component))
       (at start (is-at-component ?drone2 ?component))
-      (at start (is-at-component ?drone3 ?component)) 
-      ; States evaluated: 69200
-      ; Cost: 10184.966
-    ; Time 534.78   
-      ; (at start(drone-type1 ?drone1))
-      ; (at start(drone-type2 ?drone2))
-      ; (at start(drone-type3 ?drone3))          
+      (at start (is-at-component ?drone3 ?component))          
       (at start (>= (drone-charge ?drone1)(mission_consumption ?mission ?drone1)))
       (at start (>= (drone-charge ?drone2)(mission_consumption ?mission ?drone2)))
       (at start (>= (drone-charge ?drone3)(mission_consumption ?mission ?drone3)))    
