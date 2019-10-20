@@ -37,8 +37,6 @@
     (is-available ?k - knowledge ?p - perspective)
     (know ?k - knowledge ?c - component ?p - perspective)
     (know-simultaneous ?k - knowledge ?c - component ?p1 ?p2 - perspective)
-    (is-dynamic-inspection360 ?p - perspective)
-    (is-radiation-pattern ?p - perspective)
     
   )
 
@@ -128,9 +126,6 @@
 
       (at start(is-available signal-measurement ?radiation))
       (at start(is-available signal-measurement ?dynamic360))
-
-      (at start(is-radiation-pattern ?radiation))
-      (at start(is-dynamic-inspection360 ?dynamic360))
     
       (at start(is-at ?staticDrone ?component ?radiation))
       (at start(is-at ?movingDrone ?component ?dynamic360))

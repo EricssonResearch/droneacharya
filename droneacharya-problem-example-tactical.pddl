@@ -44,7 +44,8 @@
 ;    in pandora, mutiple tils of one type are at multiple waypoints
 ;    in drones, mutiple tils of one type are at multiple waypoints
 ;        which til?
-;            charge only in daytime - 
+;            charge only in daytime - no as in strategic level
+
 
     ;distance between components
     (= (distance s7-tower-launchpad s8-tower-launchpad) 40.6126148)
@@ -1098,8 +1099,8 @@
     (is-dock launch-pad)
     (is-dock dock)
 
-    (is-dynamic-inspection360 dynamic-inspection360)
-    (is-radiation-pattern radiation-pattern) 
+    ;(is-dynamic-inspection360 dynamic-inspection360)
+    ;(is-radiation-pattern radiation-pattern) 
 
     (not_busy drone1)
     (not_busy drone2)
