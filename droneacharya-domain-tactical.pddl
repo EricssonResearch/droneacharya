@@ -16,8 +16,9 @@
 
   (:constants 
   camera thermal-camera signal-measurer - capability 
-  image thermal-image signal-measurement - knowledge)
-  
+  image thermal-image signal-measurement - knowledge
+  front above below left right front-below launch-pad dock radiation-pattern dynamic-inspection360 - perspective
+  )
   (:predicates 
 
     
@@ -25,6 +26,9 @@
     (has-capability ?d - drone ?c - capability)
     (is-at ?d - drone ?c - component ?p - perspective)
     (not_busy ?d - drone)
+    (not-recovered ?d - drone)
+    (recovered ?d - drone)
+
 
     ;prespective roles predicates
     (is-perspective ?p - perspective ?c - component)
@@ -36,7 +40,7 @@
     (inspects ?c - capability ?k - knowledge)
     (is-available ?k - knowledge ?p - perspective)
     (know ?k - knowledge ?c - component ?p - perspective)
-    (know-simultaneous ?k - knowledge ?c - component ?p1 ?p2 - perspective)
+    (know-simultaneous ?k - knowledge ?c - component)
     
   )
 
@@ -49,6 +53,8 @@
     (max-dock ?c - component)
     (inspection-duration ?k - knowledge)
     (capability-consumption ?c - capability)
+
+    (mission_consumption ?m - mission ?d - drone)
   )
 
   (:durative-action goto-component-tactical
@@ -72,10 +78,12 @@
       (at end(is-at ?drone ?destComp ?destPersp))
       (at end(increase(max-dock ?srcComp) 1))
       (at end(not_busy ?drone))
+      (at end(not-recovered ?drone))
+      (at end(not (recovered ?drone)))
     )
   )
 
-  (:durative-action change-perspective
+    (:durative-action change-perspective
     :parameters (?drone - drone ?component - component ?srcPersp ?destPersp - perspective)
     :duration (= ?duration 2) 
     :condition (and
@@ -93,9 +101,27 @@
       (at start(decrease (drone-charge ?drone) 2))
       (at end(is-at ?drone ?component ?destPersp))
       (at end(not_busy ?drone))
+      (at end(not-recovered ?drone))
+      (at end(not (recovered ?drone)))
     )
   )
 
+  (:durative-action dynamic-charge-tatical
+    :parameters (?drone - drone ?component - component ?mission - mission)
+    :duration (= ?duration (mission_consumption ?mission ?drone))
+    :condition (and
+      (at start(not_busy ?drone))
+      (at start(is-at ?drone ?component launch-pad))
+      (at start(is-charging-dock ?component launch-pad))
+      (at start(not-recovered ?drone))
+    )
+    :effect (and
+      (at start(not (not_busy ?drone)))
+      (at end(not (not-recovered ?drone)))
+      (at end(increase (drone-charge ?drone) ?duration))
+      (at end(recovered ?drone))
+    )
+  )
 
   (:durative-action individual-inspection
     :parameters (?drone - drone ?component - component ?perspective - perspective ?capability - capability ?knowledge - knowledge)
@@ -113,22 +139,24 @@
       (at start(decrease (drone-charge ?drone) (capability-consumption ?capability)))
       (at end(know ?knowledge ?component ?perspective))
       (at end(not_busy ?drone))
+      (at end(not-recovered ?drone))
+      (at end(not (recovered ?drone)))
     )
   )
 
   (:durative-action cooperative-inspection
-    :parameters (?staticDrone ?movingDrone - drone ?component - component ?radiation ?dynamic360 - perspective)
+    :parameters (?staticDrone ?movingDrone - drone ?component - component)
     :duration (= ?duration 2)
     :condition (and
 
       (at start(not_busy ?staticDrone))
       (at start(not_busy ?movingDrone))
 
-      (at start(is-available signal-measurement ?radiation))
-      (at start(is-available signal-measurement ?dynamic360))
+      (at start(is-available signal-measurement radiation-pattern))
+      (at start(is-available signal-measurement dynamic-inspection360))
     
-      (at start(is-at ?staticDrone ?component ?radiation))
-      (at start(is-at ?movingDrone ?component ?dynamic360))
+      (at start(is-at ?staticDrone ?component radiation-pattern))
+      (at start(is-at ?movingDrone ?component dynamic-inspection360))
 
       (at start(has-capability ?staticDrone signal-measurer))
       (at start(has-capability ?movingDrone signal-measurer))
@@ -141,10 +169,15 @@
       (at start(not (not_busy ?movingDrone)))
       (at start(decrease (drone-charge ?staticDrone) 2))
       (at start(decrease (drone-charge ?movingDrone) 2))
-      (at end(know-simultaneous signal-measurement ?component ?radiation ?dynamic360))
+      (at end(know-simultaneous signal-measurement ?component))
       (at end(not_busy ?staticDrone))
       (at end(not_busy ?movingDrone))
+      (at end(not-recovered ?staticDrone))
+      (at end(not-recovered ?movingDrone))
+      (at end(not (recovered ?staticDrone)))
+      (at end(not (recovered ?movingDrone)))
     )
   )
+
 
 )

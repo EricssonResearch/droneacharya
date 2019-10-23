@@ -14,8 +14,8 @@
     s10-tower-launchpad s10-antenna-1 s10-antenna-2 s10-antenna-3 s10-antenna-4 s10-antenna-5 s10-antenna-6 - component
     s11-tower-launchpad s11-antenna-1 s11-antenna-2 s11-antenna-3 s11-antenna-4 s11-antenna-5 s11-antenna-6 - component
     s12-tower-launchpad s12-antenna-1 s12-antenna-2 s12-antenna-3 s12-antenna-4 s12-antenna-5 s12-antenna-6 - component
-    
-    front above below left right front-below launch-pad dock radiation-pattern dynamic-inspection360 - perspective 
+    currentMission - mission
+
     drone3 - drone
     drone1 drone2 - drone
 
@@ -24,18 +24,7 @@
 
   (:init
 
-    ;individual inspection configurations
-    (= (inspection-duration image) 1)
-    (= (inspection-duration thermal-image) 2)
-    (= (inspection-duration signal-measurement) 2)
-    
-    (= (capability-consumption camera) 2)
-    (= (capability-consumption thermal-camera) 2)
-    (= (capability-consumption signal-measurer) 2)
 
-    (inspects camera image)
-    (inspects thermal-camera thermal-image)
-    (inspects signal-measurer signal-measurement)
 
     ;!!!! ADD TILS !!!!!!
 
@@ -109,7 +98,7 @@
     (is-clear-perspective left s7-antenna-1)
     (is-clear-perspective right s7-antenna-1)
     (is-clear-perspective front-below s7-antenna-1)
-    (= (distance s7-antenna-1 s7-tower-launchpad) 29)
+    (= (distance s7-antenna-1 s7-tower-launchpad) 5)
     (= (distance s7-antenna-1 s7-antenna-2) 1)
     (= (distance s7-antenna-1 s7-antenna-3) 2)
     (= (distance s7-antenna-1 s7-antenna-4) 2)
@@ -133,7 +122,7 @@
     (is-clear-perspective left s7-antenna-2)
     (is-clear-perspective right s7-antenna-2)
     (is-clear-perspective front-below s7-antenna-2)
-    (= (distance s7-antenna-2 s7-tower-launchpad) 29)
+    (= (distance s7-antenna-2 s7-tower-launchpad) 5)
     (= (distance s7-antenna-2 s7-antenna-1) 1)
     (= (distance s7-antenna-2 s7-antenna-3) 2)
     (= (distance s7-antenna-2 s7-antenna-4) 2)
@@ -157,7 +146,7 @@
     (is-clear-perspective left s7-antenna-3)
     (is-clear-perspective right s7-antenna-3)
     (is-clear-perspective front-below s7-antenna-3)
-    (= (distance s7-antenna-3 s7-tower-launchpad) 30)
+    (= (distance s7-antenna-3 s7-tower-launchpad) 6)
     (= (distance s7-antenna-3 s7-antenna-1) 2)
     (= (distance s7-antenna-3 s7-antenna-2) 2)
     (= (distance s7-antenna-3 s7-antenna-4) 1)
@@ -181,7 +170,7 @@
     (is-clear-perspective left s7-antenna-4)
     (is-clear-perspective right s7-antenna-4)
     (is-clear-perspective front-below s7-antenna-4)
-    (= (distance s7-antenna-4 s7-tower-launchpad) 30)
+    (= (distance s7-antenna-4 s7-tower-launchpad) 6)
     (= (distance s7-antenna-4 s7-antenna-1) 2)
     (= (distance s7-antenna-4 s7-antenna-2) 2)
     (= (distance s7-antenna-4 s7-antenna-3) 1)
@@ -205,7 +194,7 @@
     (is-clear-perspective left s7-antenna-5)
     (is-clear-perspective right s7-antenna-5)
     (is-clear-perspective front-below s7-antenna-5)
-    (= (distance s7-antenna-5 s7-tower-launchpad) 29)
+    (= (distance s7-antenna-5 s7-tower-launchpad) 5)
     (= (distance s7-antenna-5 s7-antenna-1) 2)
     (= (distance s7-antenna-5 s7-antenna-2) 2)
     (= (distance s7-antenna-5 s7-antenna-3) 2)
@@ -229,7 +218,7 @@
     (is-clear-perspective left s7-antenna-6)
     (is-clear-perspective right s7-antenna-6)
     (is-clear-perspective front-below s7-antenna-6)
-    (= (distance s7-antenna-6 s7-tower-launchpad) 29)
+    (= (distance s7-antenna-6 s7-tower-launchpad) 5)
     (= (distance s7-antenna-6 s7-antenna-1) 2)
     (= (distance s7-antenna-6 s7-antenna-2) 2)
     (= (distance s7-antenna-6 s7-antenna-3) 2)
@@ -274,7 +263,7 @@
     (is-clear-perspective left s8-antenna-1)
     (is-clear-perspective right s8-antenna-1)
     (is-clear-perspective front-below s8-antenna-1)
-    (= (distance s8-antenna-1 s8-tower-launchpad) 29)
+    (= (distance s8-antenna-1 s8-tower-launchpad) 5)
     (= (distance s8-antenna-1 s8-antenna-2) 1)
     (= (distance s8-antenna-1 s8-antenna-3) 2)
     (= (distance s8-antenna-1 s8-antenna-4) 2)
@@ -298,7 +287,7 @@
     (is-clear-perspective left s8-antenna-2)
     (is-clear-perspective right s8-antenna-2)
     (is-clear-perspective front-below s8-antenna-2)
-    (= (distance s8-antenna-2 s8-tower-launchpad) 29)
+    (= (distance s8-antenna-2 s8-tower-launchpad) 5)
     (= (distance s8-antenna-2 s8-antenna-1) 1)
     (= (distance s8-antenna-2 s8-antenna-3) 2)
     (= (distance s8-antenna-2 s8-antenna-4) 2)
@@ -322,7 +311,7 @@
     (is-clear-perspective left s8-antenna-3)
     (is-clear-perspective right s8-antenna-3)
     (is-clear-perspective front-below s8-antenna-3)
-    (= (distance s8-antenna-3 s8-tower-launchpad) 30)
+    (= (distance s8-antenna-3 s8-tower-launchpad) 6)
     (= (distance s8-antenna-3 s8-antenna-1) 2)
     (= (distance s8-antenna-3 s8-antenna-2) 2)
     (= (distance s8-antenna-3 s8-antenna-4) 1)
@@ -346,7 +335,7 @@
     (is-clear-perspective left s8-antenna-4)
     (is-clear-perspective right s8-antenna-4)
     (is-clear-perspective front-below s8-antenna-4)
-    (= (distance s8-antenna-4 s8-tower-launchpad) 30)
+    (= (distance s8-antenna-4 s8-tower-launchpad) 6)
     (= (distance s8-antenna-4 s8-antenna-1) 2)
     (= (distance s8-antenna-4 s8-antenna-2) 2)
     (= (distance s8-antenna-4 s8-antenna-3) 1)
@@ -370,7 +359,7 @@
     (is-clear-perspective left s8-antenna-5)
     (is-clear-perspective right s8-antenna-5)
     (is-clear-perspective front-below s8-antenna-5)
-    (= (distance s8-antenna-5 s8-tower-launchpad) 29)
+    (= (distance s8-antenna-5 s8-tower-launchpad) 5)
     (= (distance s8-antenna-5 s8-antenna-1) 2)
     (= (distance s8-antenna-5 s8-antenna-2) 2)
     (= (distance s8-antenna-5 s8-antenna-3) 2)
@@ -394,7 +383,7 @@
     (is-clear-perspective left s8-antenna-6)
     (is-clear-perspective right s8-antenna-6)
     (is-clear-perspective front-below s8-antenna-6)
-    (= (distance s8-antenna-6 s8-tower-launchpad) 29)
+    (= (distance s8-antenna-6 s8-tower-launchpad) 5)
     (= (distance s8-antenna-6 s8-antenna-1) 2)
     (= (distance s8-antenna-6 s8-antenna-2) 2)
     (= (distance s8-antenna-6 s8-antenna-3) 2)
@@ -439,7 +428,7 @@
     (is-clear-perspective left s9-antenna-1)
     (is-clear-perspective right s9-antenna-1)
     (is-clear-perspective front-below s9-antenna-1)
-    (= (distance s9-antenna-1 s9-tower-launchpad) 29)
+    (= (distance s9-antenna-1 s9-tower-launchpad) 5)
     (= (distance s9-antenna-1 s9-antenna-2) 1)
     (= (distance s9-antenna-1 s9-antenna-3) 2)
     (= (distance s9-antenna-1 s9-antenna-4) 2)
@@ -463,7 +452,7 @@
     (is-clear-perspective left s9-antenna-2)
     (is-clear-perspective right s9-antenna-2)
     (is-clear-perspective front-below s9-antenna-2)
-    (= (distance s9-antenna-2 s9-tower-launchpad) 29)
+    (= (distance s9-antenna-2 s9-tower-launchpad) 5)
     (= (distance s9-antenna-2 s9-antenna-1) 1)
     (= (distance s9-antenna-2 s9-antenna-3) 2)
     (= (distance s9-antenna-2 s9-antenna-4) 2)
@@ -487,7 +476,7 @@
     (is-clear-perspective left s9-antenna-3)
     (is-clear-perspective right s9-antenna-3)
     (is-clear-perspective front-below s9-antenna-3)
-    (= (distance s9-antenna-3 s9-tower-launchpad) 30)
+    (= (distance s9-antenna-3 s9-tower-launchpad) 6)
     (= (distance s9-antenna-3 s9-antenna-1) 2)
     (= (distance s9-antenna-3 s9-antenna-2) 2)
     (= (distance s9-antenna-3 s9-antenna-4) 1)
@@ -511,7 +500,7 @@
     (is-clear-perspective left s9-antenna-4)
     (is-clear-perspective right s9-antenna-4)
     (is-clear-perspective front-below s9-antenna-4)
-    (= (distance s9-antenna-4 s9-tower-launchpad) 30)
+    (= (distance s9-antenna-4 s9-tower-launchpad) 6)
     (= (distance s9-antenna-4 s9-antenna-1) 2)
     (= (distance s9-antenna-4 s9-antenna-2) 2)
     (= (distance s9-antenna-4 s9-antenna-3) 1)
@@ -535,7 +524,7 @@
     (is-clear-perspective left s9-antenna-5)
     (is-clear-perspective right s9-antenna-5)
     (is-clear-perspective front-below s9-antenna-5)
-    (= (distance s9-antenna-5 s9-tower-launchpad) 29)
+    (= (distance s9-antenna-5 s9-tower-launchpad) 5)
     (= (distance s9-antenna-5 s9-antenna-1) 2)
     (= (distance s9-antenna-5 s9-antenna-2) 2)
     (= (distance s9-antenna-5 s9-antenna-3) 2)
@@ -559,7 +548,7 @@
     (is-clear-perspective left s9-antenna-6)
     (is-clear-perspective right s9-antenna-6)
     (is-clear-perspective front-below s9-antenna-6)
-    (= (distance s9-antenna-6 s9-tower-launchpad) 29)
+    (= (distance s9-antenna-6 s9-tower-launchpad) 5)
     (= (distance s9-antenna-6 s9-antenna-1) 2)
     (= (distance s9-antenna-6 s9-antenna-2) 2)
     (= (distance s9-antenna-6 s9-antenna-3) 2)
@@ -1099,8 +1088,23 @@
     (is-dock launch-pad)
     (is-dock dock)
 
-    ;(is-dynamic-inspection360 dynamic-inspection360)
-    ;(is-radiation-pattern radiation-pattern) 
+    ; (is-dynamic-inspection360 dynamic-inspection360)
+    ; (is-radiation-pattern radiation-pattern) 
+
+
+    ;drone consumption is 1 charge unit / 1 time unit
+    ;individual inspection configurations
+    (= (inspection-duration image) 1)
+    (= (inspection-duration thermal-image) 2)
+    (= (inspection-duration signal-measurement) 2)
+    
+    (= (capability-consumption camera) 2)
+    (= (capability-consumption thermal-camera) 2)
+    (= (capability-consumption signal-measurer) 2)
+
+    (inspects camera image)
+    (inspects thermal-camera thermal-image)
+    (inspects signal-measurer signal-measurement)
 
     (not_busy drone1)
     (not_busy drone2)
@@ -1111,68 +1115,135 @@
     (has-capability drone1 signal-measurer)
     (is-at drone1 s7-tower-launchpad launch-pad)
 ;    (is-at-component drone1 s7-tower-launchpad)
-    (= (drone-charge drone1) 300)
-    (= (max-charge-drone drone1) 300)
+    (= (drone-charge drone1) 350)
+    (= (max-charge-drone drone1) 350)
     (= (velocity drone1) 2)
 
     
     (has-capability drone2 thermal-camera);2
     (is-at drone2 s7-tower-launchpad launch-pad)
 ;    (is-at-component drone2 s7-tower-launchpad)
-    (= (drone-charge drone2) 300)
-    (= (max-charge-drone drone2) 300)
+    (= (drone-charge drone2) 350)
+    (= (max-charge-drone drone2) 350)
     (= (velocity drone2) 4)
 
     
     (has-capability drone3 signal-measurer);3
     (is-at drone3 s7-tower-launchpad launch-pad)
 ;    (is-at-component drone3 s7-tower-launchpad)
-    (= (drone-charge drone3) 300)
-    (= (max-charge-drone drone3) 300)
-    (= (velocity drone3) 3)    
+    (= (drone-charge drone3) 350)
+    (= (max-charge-drone drone3) 350)
+    (= (velocity drone3) 3)
 
+    (= (mission_consumption currentMission drone1) 350)    
+    (= (mission_consumption currentMission drone2) 350)  
+    (= (mission_consumption currentMission drone3) 350)  
 
-
+  
   )
 
   (:goal (and
 
-    ;cluster goals
+
     (is-at drone1 s7-tower-launchpad launch-pad)
-    (is-at drone2 s7-tower-launchpad launch-pad)
-    (is-at drone3 s7-tower-launchpad launch-pad)
+    ;(is-at drone2 s7-tower-launchpad launch-pad)
+    ;(is-at drone3 s7-tower-launchpad launch-pad)
 
-    ;inspection goals
-    (know image s8-antenna-4 left)
-    (know-simultaneous signal-measurement s8-antenna-2 radiation-pattern dynamic-inspection360)
-    (know-simultaneous signal-measurement s8-antenna-1 radiation-pattern dynamic-inspection360)
-    (know image s8-antenna-2 left)
-    (know image s8-antenna-3 above)
-    (know image s8-antenna-5 left)
+    (recovered drone1)
 
-    (know thermal-image s8-antenna-2 front)
-    (know thermal-image s8-antenna-3 front-below)
-    (know thermal-image s8-antenna-1 front)
-    (know image s8-antenna-2 front-below)
-    (know-simultaneous signal-measurement s8-antenna-5 radiation-pattern dynamic-inspection360)
-    (know thermal-image s8-antenna-1 left)
 
+    (know-simultaneous signal-measurement s7-antenna-1)
+    (know-simultaneous signal-measurement s7-antenna-2)
+    (know-simultaneous signal-measurement s7-antenna-3)
+    (know-simultaneous signal-measurement s7-antenna-4)
+    (know-simultaneous signal-measurement s7-antenna-5)
+    (know-simultaneous signal-measurement s7-antenna-6)
+
+    (know-simultaneous signal-measurement s8-antenna-1)
+    (know-simultaneous signal-measurement s8-antenna-2)
+    (know-simultaneous signal-measurement s8-antenna-3)
+    (know-simultaneous signal-measurement s8-antenna-4)
+    (know-simultaneous signal-measurement s8-antenna-5)
+    (know-simultaneous signal-measurement s8-antenna-6)
+
+    (know-simultaneous signal-measurement s9-antenna-1)
+    (know-simultaneous signal-measurement s9-antenna-2)
+    (know-simultaneous signal-measurement s9-antenna-3)
+    (know-simultaneous signal-measurement s9-antenna-4)
+    (know-simultaneous signal-measurement s9-antenna-5)
+    (know-simultaneous signal-measurement s9-antenna-6)
+
+
+
+    ; (know image s7-antenna-1 front)
+    ; (know image s7-antenna-1 above)
+    ; (know image s7-antenna-1 below)
+    ; (know image s7-antenna-1 left)
+    ; (know image s7-antenna-1 right)
+    ; (know image s7-antenna-1 front-below)
+    ; (know image s7-antenna-2 front)
+    ; (know image s7-antenna-2 above)
+    ; (know image s7-antenna-2 below)
+    ; (know image s7-antenna-2 left)
+    ; (know image s7-antenna-2 right)
+    ; (know image s7-antenna-2 front-below)
+    ; (know image s7-antenna-3 front)
+    ; (know image s7-antenna-3 above)
+    ; (know image s7-antenna-3 below)
+    ; (know image s7-antenna-3 left)
+    ; (know image s7-antenna-3 right)
+    ; (know image s7-antenna-3 front-below)
+    ; (know image s8-antenna-1 front)
+    ; (know image s8-antenna-1 above)
+    ; (know image s8-antenna-1 below)
     ; (know image s8-antenna-1 left)
-    ; (know-simultaneous signal-measurement s8-antenna-3 radiation-pattern dynamic-inspection360)
-    ; (know-simultaneous signal-measurement s8-antenna-4 radiation-pattern dynamic-inspection360)
-    ; (know image s8-antenna-4 left)
-    ; (know image s8-antenna-5 above)
+    ; (know image s8-antenna-1 right)
+    ; (know image s8-antenna-1 front-below)
+    ; (know image s8-antenna-2 front)
+    ; (know image s8-antenna-2 above)
+    ; (know image s8-antenna-2 below)
     ; (know image s8-antenna-2 left)
-
-    ; (know thermal-image s8-antenna-4 front)
-    ; (know thermal-image s8-antenna-5 front-below)
-    ; (know thermal-image s8-antenna-2 front)
+    ; (know image s8-antenna-2 right)
     ; (know image s8-antenna-2 front-below)
-    ; (know-simultaneous signal-measurement s8-antenna-4 radiation-pattern dynamic-inspection360)
-    ; (know thermal-image s8-antenna-3 left)
+    ; (know image s8-antenna-3 front)
+    ; (know image s8-antenna-3 above)
+    ; (know image s8-antenna-3 below)
+    ; (know image s8-antenna-3 left)
+    ; (know image s8-antenna-3 right)
+    ; (know image s8-antenna-3 front-below)
+    ; (know image s9-antenna-1 front)
+    ; (know image s9-antenna-1 above)
+    ; (know image s9-antenna-1 below)
+    ; (know image s9-antenna-1 left)
+    ; (know image s9-antenna-1 right)
+    ; (know image s9-antenna-1 front-below)
+    ; (know image s9-antenna-2 front)
+    ; (know image s9-antenna-2 above)
+    ; (know image s9-antenna-2 below)
+    ; (know image s9-antenna-2 left)
+    ; (know image s9-antenna-2 right)
+    ; (know image s9-antenna-2 front-below)
+    ; (know image s9-antenna-3 front)
+    ; (know image s9-antenna-3 above)
+    ; (know image s9-antenna-3 below)
+    ; (know image s9-antenna-3 left)
+    ; (know image s9-antenna-3 right)
+    ; (know image s9-antenna-3 front-below)
+
+
+; 3*2 + 1 per cluster = 7 * 7 clusters = 49 missions
+
+;(54 * 3 + 21) * 7
+
+    
 
     )
   )
 
   (:metric minimize (total-time))
 )
+
+
+
+
+; why
