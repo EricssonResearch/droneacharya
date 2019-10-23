@@ -139,7 +139,6 @@
       (at start (not (site-available ?component)))   
       (at end (mission_complete ?mission))
       (at end (increase (mission_total) 1))
-      (at end (assign (drone-charge ?drone1) (max-charge-drone ?drone1)))
       (at end (not (active ?mission)))
       (at end (not_busy ?drone1))
       (at end (site-available ?component))
@@ -164,7 +163,6 @@
       (at start (not (site-available ?component)))   
       (at end (mission_complete ?mission))
       (at end (increase (mission_total) 1))
-      (at end (assign (drone-charge ?drone1) (max-charge-drone ?drone1)))
       (at end (not (active ?mission)))
       (at end (not_busy ?drone1))
       (at end (site-available ?component))
@@ -185,19 +183,19 @@
       (at start (>= (drone-charge ?drone2)(mission_consumption ?mission ?drone2)))    
       (at start (not_busy ?drone1))
       (at start (not_busy ?drone2))
-      (at start (site-available ?component))
+      ;(at start (site-available ?component))
       (over all (active ?mission))
     ) 
     :effect (and 
       (at start (not (not_busy ?drone1)))
       (at start (not (not_busy ?drone2)))
-      (at start (not (site-available ?component)))    
+      ;(at start (not (site-available ?component)))    
       (at end (mission_complete ?mission))
       (at end (increase (mission_total) 1))
       (at end (not (active ?mission)))
       (at end (not_busy ?drone1))
       (at end (not_busy ?drone2))
-      (at end (site-available ?component))
+      ;(at end (site-available ?component))
     )
   )
 
@@ -292,4 +290,3 @@
   ; )
 
 )
-
