@@ -15,6 +15,7 @@
   )
 
   (:constants 
+  drone1 drone2 drone3 - drone
   camera thermal-camera signal-measurer - capability 
   image thermal-image signal-measurement - knowledge
   front above below left right front-below launch-pad dock radiation-pattern dynamic-inspection360 - perspective
@@ -28,6 +29,7 @@
     (not_busy ?d - drone)
     (not-recovered ?d - drone)
     (recovered ?d - drone)
+    (allow-execution ?d - drone)
 
 
     ;prespective roles predicates
@@ -41,6 +43,9 @@
     (is-available ?k - knowledge ?p - perspective)
     (know ?k - knowledge ?c - component ?p - perspective)
     (know-simultaneous ?k - knowledge ?c - component)
+
+    ;strategic tactical :predicates
+    (mission-allowed ?d - drone)
     
   )
 
@@ -55,12 +60,14 @@
     (capability-consumption ?c - capability)
 
     (mission_consumption ?m - mission ?d - drone)
+    (max-distance)
   )
 
   (:durative-action goto-component-tactical
     :parameters (?drone - drone ?srcComp - component ?srcPersp - perspective ?destComp - component ?destPersp - perspective)
     :duration (= ?duration (/ (distance ?srcComp ?destComp) (velocity ?drone)))
     :condition (and
+      (at start(allow-execution ?drone))
       (at start(not_busy ?drone))
       (at start(is-dock ?destPersp))
       (at start(>= (max-dock ?destComp) 1))
@@ -87,6 +94,7 @@
     :parameters (?drone - drone ?component - component ?srcPersp ?destPersp - perspective)
     :duration (= ?duration 2) 
     :condition (and
+      (at start(allow-execution ?drone))
       (at start(not_busy ?drone))
       (at start(is-clear-perspective ?destPersp ?component))
       (at start(is-at ?drone ?component ?srcPersp))
@@ -106,27 +114,11 @@
     )
   )
 
-  (:durative-action dynamic-charge-tatical
-    :parameters (?drone - drone ?component - component ?mission - mission)
-    :duration (= ?duration (mission_consumption ?mission ?drone))
-    :condition (and
-      (at start(not_busy ?drone))
-      (at start(is-at ?drone ?component launch-pad))
-      (at start(is-charging-dock ?component launch-pad))
-      (at start(not-recovered ?drone))
-    )
-    :effect (and
-      (at start(not (not_busy ?drone)))
-      (at end(not (not-recovered ?drone)))
-      (at end(increase (drone-charge ?drone) ?duration))
-      (at end(recovered ?drone))
-    )
-  )
-
   (:durative-action individual-inspection
     :parameters (?drone - drone ?component - component ?perspective - perspective ?capability - capability ?knowledge - knowledge)
     :duration (= ?duration (inspection-duration ?knowledge))
     :condition (and
+      (at start(allow-execution ?drone))
       (at start(inspects ?capability ?knowledge))
       (at start(not_busy ?drone))
       (at start(is-available ?knowledge ?perspective))
@@ -148,6 +140,9 @@
     :parameters (?staticDrone ?movingDrone - drone ?component - component)
     :duration (= ?duration 2)
     :condition (and
+
+      (at start(allow-execution ?staticDrone))
+      (at start(allow-execution ?movingDrone))
 
       (at start(not_busy ?staticDrone))
       (at start(not_busy ?movingDrone))
@@ -178,6 +173,30 @@
       (at end(not (recovered ?movingDrone)))
     )
   )
+
+    ; enable just for the pre-charge at the strategic level scenario
+  ; this action will leave the drone with the same charge as at the start of the mission
+    (:durative-action post-mission-recharge
+    :parameters (?drone - drone ?component - component ?mission - mission)
+    :duration (= ?duration (mission_consumption ?mission ?drone))
+    :condition (and
+      (at start(not_busy ?drone))
+      (at start(is-at ?drone ?component launch-pad))
+      (at start(is-charging-dock ?component launch-pad))
+      (at start(not-recovered ?drone))
+    )
+    :effect (and
+      (at start(not (not_busy ?drone)))
+      (at end(not (not-recovered ?drone)))
+      (at end(increase (drone-charge ?drone) ?duration))
+      (at end(recovered ?drone))
+      (at start(not (allow-execution drone1)))
+      (at start(not (allow-execution drone2)))
+
+    )
+  )
+
+
 
 
 )
