@@ -549,6 +549,9 @@
     ; in site 2-3 m/s    
     ; between sites 20m/s
 
+    ;start with random charge
+    ;different distances for station components
+
     (has-configuration drone1 config1)
     (has-capability drone1 camera)
     (has-capability drone1 signal-measurer)
@@ -655,22 +658,6 @@
     (= (velocity drone12) 3)
 
     (= (mission_total) 0)
-
-    (perspective_class_available s1-tower-launchpad a)
-    (perspective_class_available s4-tower-launchpad a)
-    (perspective_class_available s7-tower-launchpad a)
-    (perspective_class_available s10-tower-launchpad a)
-    (perspective_class_available s13-tower-launchpad a)
-    (perspective_class_available s16-tower-launchpad a)
-    (perspective_class_available s19-tower-launchpad a)
-
-    ; (perspective_class_available s1-tower-launchpad b)
-    ; (perspective_class_available s4-tower-launchpad b)
-    ; (perspective_class_available s7-tower-launchpad b)
-    ; (perspective_class_available s10-tower-launchpad b)
-    ; (perspective_class_available s13-tower-launchpad b)
-    ; (perspective_class_available s16-tower-launchpad b)
-    ; (perspective_class_available s19-tower-launchpad b)
 
     (mission_at mission1 s1-tower-launchpad)
     (mission_at mission2 s1-tower-launchpad)
@@ -1091,6 +1078,22 @@
     (active mission53)
     (active mission63)
     (active mission73)
+
+    (perspective_class_available s1-tower-launchpad a)
+    (perspective_class_available s4-tower-launchpad a)
+    (perspective_class_available s7-tower-launchpad a)
+    (perspective_class_available s10-tower-launchpad a)
+    (perspective_class_available s13-tower-launchpad a)
+    (perspective_class_available s16-tower-launchpad a)
+    (perspective_class_available s19-tower-launchpad a)
+
+    (perspective_class_available s1-tower-launchpad b)
+    (perspective_class_available s4-tower-launchpad b)
+    (perspective_class_available s7-tower-launchpad b)
+    (perspective_class_available s10-tower-launchpad b)
+    (perspective_class_available s13-tower-launchpad b)
+    (perspective_class_available s16-tower-launchpad b)
+    (perspective_class_available s19-tower-launchpad b)
 
   )
 
