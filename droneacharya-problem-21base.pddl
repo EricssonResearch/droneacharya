@@ -3400,6 +3400,17 @@
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
     ;s19-site
+    ;s19 thermal mission 
+    ; (is-at drone2 s19-tower-launchpad launch-pad)
+    ; (know thermal-image s19-antenna-1 above)
+    ; (know thermal-image s19-antenna-1 left)
+    ; (know thermal-image s19-antenna-1 front-below)
+    ; (know thermal-image s20-antenna-1 above)
+    ; (know thermal-image s20-antenna-1 left)
+    ; (know thermal-image s20-antenna-1 front-below)
+    ; (know thermal-image s21-antenna-1 above)
+    ; (know thermal-image s21-antenna-1 left)
+    ; (know thermal-image s21-antenna-1 front-below)
 
     (is-perspective launch-pad s19-tower-launchpad)
     (= (distance s19-tower-launchpad s19-antenna-1) 5)
@@ -3887,72 +3898,85 @@
     (= (max-dock s21-antenna-6) 3)
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    (= (max-dock s1-tower-launchpad) 0)
+    (= (max-dock s1-tower-launchpad) 3)
     (is-charging-dock s1-tower-launchpad launch-pad)
 
     (= (max-dock s2-tower-launchpad) 3)
-    (is-charging-dock s2-tower-launchpad launch-pad)
+    ;(is-charging-dock s2-tower-launchpad launch-pad)
 
     (= (max-dock s3-tower-launchpad) 3)
-    (is-charging-dock s3-tower-launchpad launch-pad)
+    ;(is-charging-dock s3-tower-launchpad launch-pad)
 
-    (= (max-dock s4-tower-launchpad) 3)
+    (= (max-dock s4-tower-launchpad) 0)
     (is-charging-dock s4-tower-launchpad launch-pad)
 
     (= (max-dock s5-tower-launchpad) 3)
-    (is-charging-dock s5-tower-launchpad launch-pad)
+    ;(is-charging-dock s5-tower-launchpad launch-pad)
 
     (= (max-dock s6-tower-launchpad) 3)
-    (is-charging-dock s6-tower-launchpad launch-pad)
+    ;(is-charging-dock s6-tower-launchpad launch-pad)
 
     (= (max-dock s7-tower-launchpad) 3)
     (is-charging-dock s7-tower-launchpad launch-pad)
 
     (= (max-dock s8-tower-launchpad) 3)
-    (is-charging-dock s8-tower-launchpad launch-pad)
+    ;(is-charging-dock s8-tower-launchpad launch-pad)
 
     (= (max-dock s9-tower-launchpad) 3)
-    (is-charging-dock s9-tower-launchpad launch-pad)
+    ;(is-charging-dock s9-tower-launchpad launch-pad)
 
     (= (max-dock s10-tower-launchpad) 3)
     (is-charging-dock s10-tower-launchpad launch-pad)
 
     (= (max-dock s11-tower-launchpad) 3)
-    (is-charging-dock s11-tower-launchpad launch-pad)
+    ;(is-charging-dock s11-tower-launchpad launch-pad)
 
     (= (max-dock s12-tower-launchpad) 3)
-    (is-charging-dock s12-tower-launchpad launch-pad)
+    ;(is-charging-dock s12-tower-launchpad launch-pad)
 
     (= (max-dock s13-tower-launchpad) 3)
     (is-charging-dock s13-tower-launchpad launch-pad)
 
     (= (max-dock s14-tower-launchpad) 3)
-    (is-charging-dock s14-tower-launchpad launch-pad)
+    ;(is-charging-dock s14-tower-launchpad launch-pad)
 
     (= (max-dock s15-tower-launchpad) 3)
-    (is-charging-dock s15-tower-launchpad launch-pad)
+    ;(is-charging-dock s15-tower-launchpad launch-pad)
 
     (= (max-dock s16-tower-launchpad) 3)
     (is-charging-dock s16-tower-launchpad launch-pad)
 
     (= (max-dock s17-tower-launchpad) 3)
-    (is-charging-dock s17-tower-launchpad launch-pad)
+    ;(is-charging-dock s17-tower-launchpad launch-pad)
 
     (= (max-dock s18-tower-launchpad) 3)
-    (is-charging-dock s18-tower-launchpad launch-pad)
+    ;(is-charging-dock s18-tower-launchpad launch-pad)
 
     (= (max-dock s19-tower-launchpad) 3)
     (is-charging-dock s19-tower-launchpad launch-pad)
 
     (= (max-dock s20-tower-launchpad) 3)
-    (is-charging-dock s20-tower-launchpad launch-pad)
+    ;(is-charging-dock s20-tower-launchpad launch-pad)
 
     (= (max-dock s21-tower-launchpad) 3)
-    (is-charging-dock s21-tower-launchpad launch-pad)
+    ;(is-charging-dock s21-tower-launchpad launch-pad)
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
     
+    ; (allow-execution drone1)
+    ; (allow-execution drone2)
+    ; (allow-execution drone3)
+    ; (allow-execution drone4)
+    ; (allow-execution drone5)
+    ; (allow-execution drone6)
+    ; (allow-execution drone7)
+    ; (allow-execution drone8)
+    ; (allow-execution drone9)
+    ; (allow-execution drone10)
+    ; (allow-execution drone11)
+    ; (allow-execution drone12)
+
     (not_busy drone1)
     (not_busy drone2)
     (not_busy drone3)
@@ -3966,109 +3990,109 @@
     (not_busy drone11)
     (not_busy drone12)
 
-    ;(has-configuration drone1 config1)
+    (has-configuration drone1 config1)
     (has-capability drone1 camera)
     (has-capability drone1 signal-measurer)
     (is-at drone1 s4-tower-launchpad launch-pad)
 ;    (is-at-component drone1 s4-tower-launchpad)
-    (= (drone-charge drone1) 600)
-    (= (max-charge-drone drone1) 600)
+    (= (current-charge drone1) 0)
+    (= (max-charge drone1) 300)
     (= (velocity drone1) 2)
 
-    ;(has-configuration drone2 config2)
+    (has-configuration drone2 config2)
     (has-capability drone2 thermal-camera)
     (is-at drone2 s4-tower-launchpad launch-pad)
 ;    (is-at-component drone2 s4-tower-launchpad)
-    (= (drone-charge drone2) 600)
-    (= (max-charge-drone drone2) 600)
+    (= (current-charge drone2) 0)
+    (= (max-charge drone2) 300)
     (= (velocity drone2) 4)
 
 
-    ;(has-configuration drone3 config3)
+    (has-configuration drone3 config3)
     (has-capability drone3 signal-measurer)
     (is-at drone3 s4-tower-launchpad launch-pad)
 ;    (is-at-component drone3 s4-tower-launchpad)
-    (= (drone-charge drone3) 600)
-    (= (max-charge-drone drone3) 600)
+    (= (current-charge drone3) 0)
+    (= (max-charge drone3) 300)
     (= (velocity drone3) 3)
 
-    ;(has-configuration drone4 config1)
+    (has-configuration drone4 config1)
     (has-capability drone4 camera)
     (has-capability drone4 signal-measurer)
     (is-at drone4 s4-tower-launchpad launch-pad)
 ;    (is-at-component drone4 s4-tower-launchpad)
-    (= (drone-charge drone4) 600)
-    (= (max-charge-drone drone4) 600)
+    (= (current-charge drone4) 0)
+    (= (max-charge drone4) 300)
     (= (velocity drone4) 2)
 
-    ;(has-configuration drone5 config2)
+    (has-configuration drone5 config2)
     (has-capability drone5 thermal-camera)
     (is-at drone5 s4-tower-launchpad launch-pad)
 ;    (is-at-component drone5 s4-tower-launchpad)
-    (= (drone-charge drone5) 600)
-    (= (max-charge-drone drone5) 600)
+    (= (current-charge drone5) 0)
+    (= (max-charge drone5) 300)
     (= (velocity drone5) 4)
 
 
-    ;(has-configuration drone6 config3)
+    (has-configuration drone6 config3)
     (has-capability drone6 signal-measurer)
     (is-at drone6 s4-tower-launchpad launch-pad)
 ;    (is-at-component drone6 s4-tower-launchpad)
-    (= (drone-charge drone6) 600)
-    (= (max-charge-drone drone6) 600)
+    (= (current-charge drone6) 0)
+    (= (max-charge drone6) 300)
     (= (velocity drone6) 3)
 
 
-    ;(has-configuration drone7 config1)
+    (has-configuration drone7 config1)
     (has-capability drone7 camera)
     (has-capability drone7 signal-measurer)
     (is-at drone7 s4-tower-launchpad launch-pad)
 ;    (is-at-component drone7 s4-tower-launchpad)
-    (= (drone-charge drone7) 600)
-    (= (max-charge-drone drone7) 600)
+    (= (current-charge drone7) 0)
+    (= (max-charge drone7) 300)
     (= (velocity drone7) 2)
 
-    ;(has-configuration drone8 config2)
+    (has-configuration drone8 config2)
     (has-capability drone8 thermal-camera)
     (is-at drone8 s4-tower-launchpad launch-pad)
 ;    (is-at-component drone8 s4-tower-launchpad)
-    (= (drone-charge drone8) 600)
-    (= (max-charge-drone drone8) 600)
+    (= (current-charge drone8) 0)
+    (= (max-charge drone8) 300)
     (= (velocity drone8) 4)
 
 
-    ;(has-configuration drone9 config3)
+    (has-configuration drone9 config3)
     (has-capability drone9 signal-measurer)
     (is-at drone9 s4-tower-launchpad launch-pad)
 ;    (is-at-component drone9 s4-tower-launchpad)
-    (= (drone-charge drone9) 330)
-    (= (max-charge-drone drone9) 330)
+    (= (current-charge drone9) 0)
+    (= (max-charge drone9) 300)
     (= (velocity drone9) 3)
 
-    ;(has-configuration drone10 config1)
+    (has-configuration drone10 config1)
     (has-capability drone10 camera)
     (has-capability drone10 signal-measurer)
     (is-at drone10 s4-tower-launchpad launch-pad)
 ;    (is-at-component drone10 s4-tower-launchpad)
-    (= (drone-charge drone10) 600)
-    (= (max-charge-drone drone10) 600)
+    (= (current-charge drone10) 0)
+    (= (max-charge drone10) 300)
     (= (velocity drone10) 2)
 
-    ;(has-configuration drone11 config2)
+    (has-configuration drone11 config2)
     (has-capability drone11 thermal-camera)
     (is-at drone11 s4-tower-launchpad launch-pad)
 ;    (is-at-component drone11 s4-tower-launchpad)
-    (= (drone-charge drone11) 600)
-    (= (max-charge-drone drone11) 600)
+    (= (current-charge drone11) 0)
+    (= (max-charge drone11) 300)
     (= (velocity drone11) 4)
 
 
-    ;(has-configuration drone12 config3)
+    (has-configuration drone12 config3)
     (has-capability drone12 signal-measurer)
     (is-at drone12 s4-tower-launchpad launch-pad)
 ;    (is-at-component drone12 s4-tower-launchpad)
-    (= (drone-charge drone12) 600)
-    (= (max-charge-drone drone12) 600)
+    (= (current-charge drone12) 0)
+    (= (max-charge drone12) 300)
     (= (velocity drone12) 3)
 
 
@@ -4089,24 +4113,24 @@
     (= (capability-consumption camera) 2)
     (= (capability-consumption thermal-camera) 2)
     (= (capability-consumption signal-measurer) 2)
-
-   
-    (is-available image front)
+    
+    
+    (is-available image front)   
     (is-available thermal-image front)
     (is-available signal-measurement front)
     (is-available image above)
     (is-available thermal-image above)
     (is-available signal-measurement above)
-    (is-available image below)
+    (is-available image below) 
     (is-available thermal-image below)
     (is-available signal-measurement below)
-    (is-available image left)
+    (is-available image left) 
     (is-available thermal-image left)
     (is-available signal-measurement left)
-    (is-available image right)
+    (is-available image right) 
     (is-available thermal-image right)
     (is-available signal-measurement right)
-    (is-available image front-below)
+    (is-available image front-below) 
     (is-available thermal-image front-below)
     (is-available signal-measurement front-below)
 
@@ -6397,7 +6421,6 @@
     (know image s21-antenna-6 front-below)
     (know thermal-image s21-antenna-6 front-below)
     (know signal-measurement s21-antenna-6 front-below)
-
     (know-simultaneous signal-measurement s1-antenna-1)
     (know-simultaneous signal-measurement s1-antenna-2)
     (know-simultaneous signal-measurement s1-antenna-3)

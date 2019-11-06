@@ -477,7 +477,7 @@
 
     (= (max-distance s4-tower-launchpad) 469.931032)
 
-    (= (max-dock s4-tower-launchpad) 0) 
+    (= (max-dock s4-tower-launchpad) 249) 
     (is-charging-dock s4-tower-launchpad launch-pad)
 
     (= (max-distance s7-tower-launchpad) 450.753404)
@@ -557,7 +557,7 @@
     (has-capability drone1 signal-measurer)
     (is-at drone1 s4-tower-launchpad launch-pad)
     (is-at-component drone1 s4-tower-launchpad)
-    (= (current-charge drone1) 0)
+    (= (current-charge drone1) 249)
     (= (max-charge drone1) 250)
     (= (velocity drone1) 2)
 
@@ -565,7 +565,7 @@
     (has-capability drone2 thermal-camera)
     (is-at drone2 s4-tower-launchpad launch-pad)
     (is-at-component drone2 s4-tower-launchpad)
-    (= (current-charge drone2) 0)
+    (= (current-charge drone2) 249)
     (= (max-charge drone2) 250)
     (= (velocity drone2) 4)
 
@@ -574,7 +574,7 @@
     (has-capability drone3 signal-measurer)
     (is-at drone3 s4-tower-launchpad launch-pad)
     (is-at-component drone3 s4-tower-launchpad)
-    (= (current-charge drone3) 0)
+    (= (current-charge drone3) 249)
     (= (max-charge drone3) 250)
     (= (velocity drone3) 3)
 
@@ -583,7 +583,7 @@
     (has-capability drone4 signal-measurer)
     (is-at drone4 s4-tower-launchpad launch-pad)
     (is-at-component drone4 s4-tower-launchpad)
-    (= (current-charge drone4) 0)
+    (= (current-charge drone4) 249)
     (= (max-charge drone4) 250)
     (= (velocity drone4) 2)
 
@@ -591,7 +591,7 @@
     (has-capability drone5 thermal-camera)
     (is-at drone5 s4-tower-launchpad launch-pad)
     (is-at-component drone5 s4-tower-launchpad)
-    (= (current-charge drone5) 0)
+    (= (current-charge drone5) 249)
     (= (max-charge drone5) 250)
     (= (velocity drone5) 4)
 
@@ -600,7 +600,7 @@
     (has-capability drone6 signal-measurer)
     (is-at drone6 s4-tower-launchpad launch-pad)
     (is-at-component drone6 s4-tower-launchpad)
-    (= (current-charge drone6) 0)
+    (= (current-charge drone6) 249)
     (= (max-charge drone6) 250)
     (= (velocity drone6) 3)
 
@@ -610,7 +610,7 @@
     (has-capability drone7 signal-measurer)
     (is-at drone7 s4-tower-launchpad launch-pad)
     (is-at-component drone7 s4-tower-launchpad)
-    (= (current-charge drone7) 0)
+    (= (current-charge drone7) 249)
     (= (max-charge drone7) 250)
     (= (velocity drone7) 2)
 
@@ -618,7 +618,7 @@
     (has-capability drone8 thermal-camera)
     (is-at drone8 s4-tower-launchpad launch-pad)
     (is-at-component drone8 s4-tower-launchpad)
-    (= (current-charge drone8) 0)
+    (= (current-charge drone8) 249)
     (= (max-charge drone8) 250)
     (= (velocity drone8) 4)
 
@@ -627,7 +627,7 @@
     (has-capability drone9 signal-measurer)
     (is-at drone9 s4-tower-launchpad launch-pad)
     (is-at-component drone9 s4-tower-launchpad)
-    (= (current-charge drone9) 0)
+    (= (current-charge drone9) 249)
     (= (max-charge drone9) 250)
     (= (velocity drone9) 3)
 
@@ -636,7 +636,7 @@
     (has-capability drone10 signal-measurer)
     (is-at drone10 s4-tower-launchpad launch-pad)
     (is-at-component drone10 s4-tower-launchpad)
-    (= (current-charge drone10) 0)
+    (= (current-charge drone10) 249)
     (= (max-charge drone10) 250)
     (= (velocity drone10) 2)
 
@@ -644,7 +644,7 @@
     (has-capability drone11 thermal-camera)
     (is-at drone11 s4-tower-launchpad launch-pad)
     (is-at-component drone11 s4-tower-launchpad)
-    (= (current-charge drone11) 0)
+    (= (current-charge drone11) 249)
     (= (max-charge drone11) 250)
     (= (velocity drone11) 4)
 
@@ -653,11 +653,28 @@
     (has-capability drone12 signal-measurer)
     (is-at drone12 s4-tower-launchpad launch-pad)
     (is-at-component drone12 s4-tower-launchpad)
-    (= (current-charge drone12) 0)
+    (= (current-charge drone12) 249)
     (= (max-charge drone12) 250)
     (= (velocity drone12) 3)
 
-    (= (mission_total) 0)
+
+    (perspective_class_available s1-tower-launchpad a)
+    (perspective_class_available s4-tower-launchpad a)
+    (perspective_class_available s7-tower-launchpad a)
+    (perspective_class_available s10-tower-launchpad a)
+    (perspective_class_available s13-tower-launchpad a)
+    (perspective_class_available s16-tower-launchpad a)
+    (perspective_class_available s19-tower-launchpad a)
+
+    (perspective_class_available s1-tower-launchpad b)
+    (perspective_class_available s4-tower-launchpad b)
+    (perspective_class_available s7-tower-launchpad b)
+    (perspective_class_available s10-tower-launchpad b)
+    (perspective_class_available s13-tower-launchpad b)
+    (perspective_class_available s16-tower-launchpad b)
+    (perspective_class_available s19-tower-launchpad b)
+
+    
 
     (mission_at mission1 s1-tower-launchpad)
     (mission_at mission2 s1-tower-launchpad)
@@ -711,62 +728,7 @@
     (mission_at mission63 s16-tower-launchpad)
     (mission_at mission73 s19-tower-launchpad)
 
-         
-    (= (mission_duration mission1) 592)
-    (= (mission_duration mission2) 592)
-    (= (mission_duration mission3) 592)
-    (= (mission_duration mission4) 592)
-    (= (mission_duration mission5) 592)
-    (= (mission_duration mission6) 592)
-    (= (mission_duration mission7) 592)
-     
-    (= (mission_duration mission11) 592)
-    (= (mission_duration mission21) 592)
-    (= (mission_duration mission31) 592)
-    (= (mission_duration mission41) 592)
-    (= (mission_duration mission51) 592)
-    (= (mission_duration mission61) 592)
-    (= (mission_duration mission71) 592)
-     
-    (= (mission_duration mission111) 592)
-    (= (mission_duration mission211) 592)
-    (= (mission_duration mission311) 592)
-    (= (mission_duration mission411) 592)
-    (= (mission_duration mission511) 592)
-    (= (mission_duration mission611) 592)
-    (= (mission_duration mission711) 592)
-     
-    (= (mission_duration mission12) 592)
-    (= (mission_duration mission22) 592)
-    (= (mission_duration mission32) 592)
-    (= (mission_duration mission42) 592)
-    (= (mission_duration mission52) 592)
-    (= (mission_duration mission62) 592)
-    (= (mission_duration mission72) 592)
-     
-    (= (mission_duration mission112) 592)
-    (= (mission_duration mission212) 592)
-    (= (mission_duration mission312) 592)
-    (= (mission_duration mission412) 592)
-    (= (mission_duration mission512) 592)
-    (= (mission_duration mission612) 592)
-    (= (mission_duration mission712) 592)
-      
-    (= (mission_duration mission1112) 592)
-    (= (mission_duration mission2112) 592)
-    (= (mission_duration mission3112) 592)
-    (= (mission_duration mission4112) 592)
-    (= (mission_duration mission5112) 592)
-    (= (mission_duration mission6112) 592)
-    (= (mission_duration mission7112) 592)
-              
-    (= (mission_duration mission13) 357)
-    (= (mission_duration mission23) 357)
-    (= (mission_duration mission33) 357)
-    (= (mission_duration mission43) 357)
-    (= (mission_duration mission53) 357)
-    (= (mission_duration mission63) 357)
-    (= (mission_duration mission73) 357)
+        
 
     (mission_type mission1 cm-1)   
     (mission_type mission2 tc-1)
@@ -907,126 +869,6 @@
     (mission_type mission63 im-c-2)
     (mission_type mission73 im-c-2)
 
-     (mission_perspectives mission1 a)   
-    (mission_perspectives mission2 a)
-    (mission_perspectives mission3 a)
-    (mission_perspectives mission3 a)
-    (mission_perspectives mission4 a)
-    (mission_perspectives mission5 a)
-    (mission_perspectives mission6 a)
-    (mission_perspectives mission6 a)
-    (mission_perspectives mission7 a)
-    (mission_perspectives mission11 a)
-    (mission_perspectives mission21 a)
-    (mission_perspectives mission21 a)
-    (mission_perspectives mission31 a)
-    (mission_perspectives mission41 a)
-    (mission_perspectives mission51 a)
-    (mission_perspectives mission51 a)
-    (mission_perspectives mission61 a)
-    (mission_perspectives mission71 a)
-    (mission_perspectives mission111 a)
-    (mission_perspectives mission111 a)
-    (mission_perspectives mission211 a)
-    (mission_perspectives mission311 a)
-    (mission_perspectives mission411 a)
-    (mission_perspectives mission411 a)
-    (mission_perspectives mission511 a)
-    (mission_perspectives mission611 a)
-    (mission_perspectives mission711 a)
-    (mission_perspectives mission711 a)
-
-    (mission_perspectives mission12 a)   
-    (mission_perspectives mission22 a)
-    (mission_perspectives mission32 a)
-    (mission_perspectives mission32 a)
-    (mission_perspectives mission42 a)
-    (mission_perspectives mission52 a)
-    (mission_perspectives mission62 a)
-    (mission_perspectives mission62 a)
-    (mission_perspectives mission72 a)
-    (mission_perspectives mission112 a)
-    (mission_perspectives mission212 a)
-    (mission_perspectives mission212 a)
-    (mission_perspectives mission312 a)
-    (mission_perspectives mission412 a)
-    (mission_perspectives mission512 a)
-    (mission_perspectives mission512 a)
-    (mission_perspectives mission612 a)
-    (mission_perspectives mission712 a)
-    (mission_perspectives mission1112 a)
-    (mission_perspectives mission1112 a)
-    (mission_perspectives mission2112 a)
-    (mission_perspectives mission3112 a)
-    (mission_perspectives mission4112 a)
-    (mission_perspectives mission4112 a)
-    (mission_perspectives mission5112 a)
-    (mission_perspectives mission6112 a)
-    (mission_perspectives mission7112 a)
-    (mission_perspectives mission7112 a)
-
-     (mission_perspectives mission1 b)   
-    (mission_perspectives mission2 b)
-    (mission_perspectives mission3 b)
-    (mission_perspectives mission3 b)
-    (mission_perspectives mission4 b)
-    (mission_perspectives mission5 b)
-    (mission_perspectives mission6 b)
-    (mission_perspectives mission6 b)
-    (mission_perspectives mission7 b)
-    (mission_perspectives mission11 b)
-    (mission_perspectives mission21 b)
-    (mission_perspectives mission21 b)
-    (mission_perspectives mission31 b)
-    (mission_perspectives mission41 b)
-    (mission_perspectives mission51 b)
-    (mission_perspectives mission51 b)
-    (mission_perspectives mission61 b)
-    (mission_perspectives mission71 b)
-    (mission_perspectives mission111 b)
-    (mission_perspectives mission111 b)
-    (mission_perspectives mission211 b)
-    (mission_perspectives mission311 b)
-    (mission_perspectives mission411 b)
-    (mission_perspectives mission411 b)
-    (mission_perspectives mission511 b)
-    (mission_perspectives mission611 b)
-    (mission_perspectives mission711 b)
-    (mission_perspectives mission711 b)
-
-    (mission_perspectives mission12 b)   
-    (mission_perspectives mission22 b)
-    (mission_perspectives mission32 b)
-    (mission_perspectives mission32 b)
-    (mission_perspectives mission42 b)
-    (mission_perspectives mission52 b)
-    (mission_perspectives mission62 b)
-    (mission_perspectives mission62 b)
-    (mission_perspectives mission72 b)
-    (mission_perspectives mission112 b)
-    (mission_perspectives mission212 b)
-    (mission_perspectives mission212 b)
-    (mission_perspectives mission312 b)
-    (mission_perspectives mission412 b)
-    (mission_perspectives mission512 b)
-    (mission_perspectives mission512 b)
-    (mission_perspectives mission612 b)
-    (mission_perspectives mission712 b)
-    (mission_perspectives mission1112 b)
-    (mission_perspectives mission1112 b)
-    (mission_perspectives mission2112 b)
-    (mission_perspectives mission3112 b)
-    (mission_perspectives mission4112 b)
-    (mission_perspectives mission4112 b)
-    (mission_perspectives mission5112 b)
-    (mission_perspectives mission6112 b)
-    (mission_perspectives mission7112 b)
-    (mission_perspectives mission7112 b)
-
-  
-
-    ;position1 > position2
-
     (active mission1)
     (active mission2)
     (active mission3)
@@ -1079,23 +921,26 @@
     (active mission63)
     (active mission73)
 
-    (perspective_class_available s1-tower-launchpad a)
-    (perspective_class_available s4-tower-launchpad a)
-    (perspective_class_available s7-tower-launchpad a)
-    (perspective_class_available s10-tower-launchpad a)
-    (perspective_class_available s13-tower-launchpad a)
-    (perspective_class_available s16-tower-launchpad a)
-    (perspective_class_available s19-tower-launchpad a)
 
-    (perspective_class_available s1-tower-launchpad b)
-    (perspective_class_available s4-tower-launchpad b)
-    (perspective_class_available s7-tower-launchpad b)
-    (perspective_class_available s10-tower-launchpad b)
-    (perspective_class_available s13-tower-launchpad b)
-    (perspective_class_available s16-tower-launchpad b)
-    (perspective_class_available s19-tower-launchpad b)
 
   )
+
+;active mission affects results
+
+; active 0 - not active 0 - active full - not active full
+
+;  popf 
+;  optic
+
+;  1  1  2  2 
+;  a  ab a  ab
+
+
+;===== results
+; popf  1 ab 2 ab
+; optic 1 ab 2 ab
+
+
 
   
   (:goal (and
