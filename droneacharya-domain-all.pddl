@@ -23,6 +23,7 @@
   cm-1 cm-2 tc-1 tc-2 sm-a-1 sm-b-1 sm-a-2 sm-b-2 sm-c-2 im-a-2 im-b-2 im-c-2 - inspection
   config1 config2 config3 - configuration
   a b - perspective_class
+  
   )
   
   (:predicates 
@@ -52,6 +53,7 @@
     (mission_complete ?mission - mission)
     (perspective_class_available ?component - component ?perspective - perspective_class)
     (active ?mission - mission)
+    ;(is-visible)
 
   )
 
@@ -70,7 +72,7 @@
 
 
 
-  (:durative-action goto-component-charged
+  (:durative-action goto_component_charged
     :parameters (?drone - drone ?srcComp ?destComp - component)
     :duration (= ?duration (/ (distance ?srcComp ?destComp) (velocity ?drone)))
     :condition (and
@@ -92,7 +94,7 @@
     )
   )
 
-    (:durative-action charge-and-goto
+    (:durative-action charge_and_goto
     :parameters (?drone - drone ?srcComp ?destComp - component)
     :duration (= ?duration (+ (/ (distance ?srcComp ?destComp) (velocity ?drone)) (-  (/ (distance ?srcComp ?destComp) (velocity ?drone)) (current-charge ?drone ))))    
     :condition (and
@@ -114,7 +116,99 @@
     )
   )
 
-(:durative-action complete-mission-im-a-2
+  (:durative-action complete_mission_cm_1
+    :parameters (?mission - mission ?drone1 - drone ?component - component ?perspective_class - perspective_class)
+    ;:duration (= ?duration 592)
+    :duration (= ?duration (mission_duration ?mission cm-1))
+    :condition (and 
+      ;(at start (active ?mission))
+      (at start (mission_type ?mission cm-1))
+      (at start (mission_at ?mission ?component))
+      (at start (is-at-component ?drone1 ?component))
+      (at start (has-configuration ?drone1 config1))     
+      (at start (not_busy ?drone1))
+      (at start (perspective_class_available ?component ?perspective_class))
+    ) 
+    :effect (and
+      ;(at start (not (active ?mission)))
+      (at start (not (not_busy ?drone1)))
+      (at start (not (perspective_class_available ?component ?perspective_class)))  
+      (at end (mission_complete ?mission))
+      (at end (not_busy ?drone1))
+      (at end (perspective_class_available ?component ?perspective_class))
+    )
+  )
+
+  (:durative-action complete_mission_tc_1
+    :parameters (?mission - mission ?drone1 - drone ?component - component ?perspective_class - perspective_class)
+    ;:duration (= ?duration 592)
+    :duration (= ?duration (mission_duration ?mission tc-1))
+    :condition (and 
+      ;(at start (active ?mission))
+      (at start (mission_type ?mission tc-1))
+      (at start (mission_at ?mission ?component))
+      (at start (is-at-component ?drone1 ?component))
+      (at start (has-configuration ?drone1 config2))       
+      (at start (not_busy ?drone1))
+      (at start (perspective_class_available ?component ?perspective_class))
+    ) 
+    :effect (and
+      ;(at start (not (active ?mission)))
+      (at start (not (not_busy ?drone1)))
+      (at start (not (perspective_class_available ?component ?perspective_class)))   
+      (at end (mission_complete ?mission))
+      (at end (not_busy ?drone1))
+      (at end (perspective_class_available ?component ?perspective_class))
+    )
+  )
+
+  (:durative-action complete_mission_sm_a_1
+    :parameters (?mission - mission ?drone1 - drone ?component - component ?perspective_class - perspective_class)
+    ;:duration (= ?duration 592)
+    :duration (= ?duration (mission_duration ?mission sm-a-1))
+    :condition (and 
+      ;(at start (active ?mission))
+      (at start (mission_type ?mission sm-a-1))
+      (at start (mission_at ?mission ?component))
+      (at start (is-at-component ?drone1 ?component))
+      (at start (has-configuration ?drone1 config1))        
+      (at start (not_busy ?drone1))
+      (at start (perspective_class_available ?component ?perspective_class))
+    ) 
+    :effect (and
+      ;(at start (not (active ?mission)))
+      (at start (not (not_busy ?drone1)))
+      (at start (not (perspective_class_available ?component ?perspective_class)))   
+      (at end (mission_complete ?mission))
+      (at end (not_busy ?drone1))
+      (at end (perspective_class_available ?component ?perspective_class))
+    )
+  )
+
+  (:durative-action complete_mission_sm_b_1
+    :parameters (?mission - mission ?drone1 - drone ?component - component ?perspective_class - perspective_class)
+    ;:duration (= ?duration 592)
+    :duration (= ?duration (mission_duration ?mission sm-b-1))
+    :condition (and 
+      ;(at start (active ?mission)) 
+      (at start (mission_type ?mission sm-b-1))
+      (at start (mission_at ?mission ?component))
+      (at start (is-at-component ?drone1 ?component))
+      (at start (has-configuration ?drone1 config3))      
+      (at start (not_busy ?drone1))
+      (at start (perspective_class_available ?component ?perspective_class))
+    ) 
+    :effect (and
+      ;(at start (not (active ?mission)))
+      (at start (not (not_busy ?drone1)))
+      (at start (not (perspective_class_available ?component ?perspective_class)))   
+      (at end (mission_complete ?mission))
+      (at end (not_busy ?drone1))
+      (at end (perspective_class_available ?component ?perspective_class))
+    )
+  ) 
+
+  (:durative-action complete_mission_im_a_2
     :parameters (?mission - mission ?drone1 ?drone2 - drone ?component - component)
     ;:duration (= ?duration 335)
     :duration (= ?duration (mission_duration ?mission im-a-2))
@@ -139,7 +233,7 @@
     )
   )
 
-  (:durative-action complete-mission-im-b-2
+  (:durative-action complete_mission_im_b_2
     :parameters (?mission - mission ?drone1 ?drone2 - drone ?component - component)
     ;:duration (= ?duration 335)
     :duration (= ?duration (mission_duration ?mission im-b-2))
@@ -164,7 +258,7 @@
     )
   )
 
-  (:durative-action complete-mission-im-c-2
+  (:durative-action complete_mission_im_c_2
     :parameters (?mission - mission ?drone1 ?drone2 - drone ?component - component)
     ;:duration (= ?duration 335)
     :duration (= ?duration (mission_duration ?mission im-c-2))
@@ -189,103 +283,10 @@
     )
   )  
 
-  (:durative-action complete-mission-cm-1
-    :parameters (?mission - mission ?drone1 - drone ?component - component ?perspective_class - perspective_class)
-    ;:duration (= ?duration 592)
-    :duration (= ?duration (mission_duration ?mission cm-1))
-    :condition (and 
-      ;(at start (active ?mission))
-      (at start (mission_type ?mission cm-1))
-      (at start (mission_at ?mission ?component))
-      (at start (is-at-component ?drone1 ?component))
-      (at start (has-configuration ?drone1 config1))     
-      (at start (not_busy ?drone1))
-      (at start (perspective_class_available ?component ?perspective_class))
-    ) 
-    :effect (and
-      ;(at start (not (active ?mission)))
-      (at start (not (not_busy ?drone1)))
-      (at start (not (perspective_class_available ?component ?perspective_class)))  
-      (at end (mission_complete ?mission))
-      (at end (not_busy ?drone1))
-      (at end (perspective_class_available ?component ?perspective_class))
-    )
-  )
-
-  (:durative-action complete-mission-tc-1
-    :parameters (?mission - mission ?drone1 - drone ?component - component ?perspective_class - perspective_class)
-    ;:duration (= ?duration 592)
-    :duration (= ?duration (mission_duration ?mission tc-1))
-    :condition (and 
-      ;(at start (active ?mission))
-      (at start (mission_type ?mission tc-1))
-      (at start (mission_at ?mission ?component))
-      (at start (is-at-component ?drone1 ?component))
-      (at start (has-configuration ?drone1 config2))       
-      (at start (not_busy ?drone1))
-      (at start (perspective_class_available ?component ?perspective_class))
-    ) 
-    :effect (and
-      ;(at start (not (active ?mission)))
-      (at start (not (not_busy ?drone1)))
-      (at start (not (perspective_class_available ?component ?perspective_class)))   
-      (at end (mission_complete ?mission))
-      (at end (not_busy ?drone1))
-      (at end (perspective_class_available ?component ?perspective_class))
-    )
-  )
-
-  (:durative-action complete-mission-sm-a-1
-    :parameters (?mission - mission ?drone1 - drone ?component - component ?perspective_class - perspective_class)
-    ;:duration (= ?duration 592)
-    :duration (= ?duration (mission_duration ?mission sm-a-1))
-    :condition (and 
-      ;(at start (active ?mission))
-      (at start (mission_type ?mission sm-a-1))
-      (at start (mission_at ?mission ?component))
-      (at start (is-at-component ?drone1 ?component))
-      (at start (has-configuration ?drone1 config1))        
-      (at start (not_busy ?drone1))
-      (at start (perspective_class_available ?component ?perspective_class))
-    ) 
-    :effect (and
-      ;(at start (not (active ?mission)))
-      (at start (not (not_busy ?drone1)))
-      (at start (not (perspective_class_available ?component ?perspective_class)))   
-      (at end (mission_complete ?mission))
-      (at end (not_busy ?drone1))
-      (at end (perspective_class_available ?component ?perspective_class))
-    )
-  )
-
-  (:durative-action complete-mission-sm-b-1
-    :parameters (?mission - mission ?drone1 - drone ?component - component ?perspective_class - perspective_class)
-    ;:duration (= ?duration 592)
-    :duration (= ?duration (mission_duration ?mission sm-b-1))
-    :condition (and 
-      ;(at start (active ?mission)) 
-      (at start (mission_type ?mission sm-b-1))
-      (at start (mission_at ?mission ?component))
-      (at start (is-at-component ?drone1 ?component))
-      (at start (has-configuration ?drone1 config3))      
-      (at start (not_busy ?drone1))
-      (at start (perspective_class_available ?component ?perspective_class))
-    ) 
-    :effect (and
-      ;(at start (not (active ?mission)))
-      (at start (not (not_busy ?drone1)))
-      (at start (not (perspective_class_available ?component ?perspective_class)))   
-      (at end (mission_complete ?mission))
-      (at end (not_busy ?drone1))
-      (at end (perspective_class_available ?component ?perspective_class))
-    )
-  ) 
-
-
 
   ;tactical actions
 
-  (:durative-action goto-component-tactical
+  (:durative-action goto_component_tactical
     :parameters (?drone - drone ?srcComp - component ?srcPersp - perspective ?destComp - component ?destPersp - perspective)
     :duration (= ?duration (/ (distance ?srcComp ?destComp) (velocity ?drone)))
     :condition (and
@@ -309,7 +310,7 @@
     )
   )
 
-    (:durative-action change-perspective
+    (:durative-action change_perspective
     :parameters (?drone - drone ?component - component ?srcPersp ?destPersp - perspective)
     :duration (= ?duration 2) 
     :condition (and
@@ -330,7 +331,7 @@
     )
   )
 
-  (:durative-action individual-inspection
+  (:durative-action individual_inspection
     :parameters (?drone - drone ?component - component ?perspective - perspective ?capability - capability ?knowledge - knowledge)
     :duration (= ?duration (inspection-duration ?knowledge))
     :condition (and
@@ -349,7 +350,7 @@
     )
   )
 
-  (:durative-action cooperative-inspection
+  (:durative-action cooperative_inspection
     :parameters (?staticDrone ?movingDrone - drone ?component - component)
     :duration (= ?duration 2)
     :condition (and
@@ -380,7 +381,7 @@
     )
   )
 
-  (:durative-action dynamic-charge
+  (:durative-action dynamic_charge
     :parameters (?drone - drone ?component - component)
     :duration (<= ?duration (- (max-charge ?drone) (current-charge ?drone)))
     :condition (and
