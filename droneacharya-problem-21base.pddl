@@ -101,7 +101,10 @@
     (= (distance s3-tower-launchpad s19-tower-launchpad) 235.52727)
     (= (distance s3-tower-launchpad s20-tower-launchpad) 201.098598)
     (= (distance s3-tower-launchpad s21-tower-launchpad) 229.777225)
+
     (= (distance s4-tower-launchpad s1-tower-launchpad) 228.344162)
+    ;(= (distance s4-tower-launchpad s1-tower-launchpad) 5.252)
+
     (= (distance s4-tower-launchpad s2-tower-launchpad) 253.737405)
     (= (distance s4-tower-launchpad s3-tower-launchpad) 255.390903)
     (= (distance s4-tower-launchpad s5-tower-launchpad) 40.6126148)
@@ -3869,70 +3872,6 @@
     (= (max-dock s21-antenna-5) 3) 
     (= (max-dock s21-antenna-6) 3)
 
-    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    (= (max-dock s1-tower-launchpad) 12)
-    (is-charging-dock s1-tower-launchpad launch-pad)
-
-    (= (max-dock s2-tower-launchpad) 12)
-    (is-charging-dock s2-tower-launchpad launch-pad)
-
-    (= (max-dock s3-tower-launchpad) 12)
-    (is-charging-dock s3-tower-launchpad launch-pad)
-
-    (= (max-dock s4-tower-launchpad) 12)
-    (is-charging-dock s4-tower-launchpad launch-pad)
-
-    (= (max-dock s5-tower-launchpad) 12)
-    (is-charging-dock s5-tower-launchpad launch-pad)
-
-    (= (max-dock s6-tower-launchpad) 12)
-    (is-charging-dock s6-tower-launchpad launch-pad)
-
-    (= (max-dock s7-tower-launchpad) 12)
-    (is-charging-dock s7-tower-launchpad launch-pad)
-
-    (= (max-dock s8-tower-launchpad) 12)
-    (is-charging-dock s8-tower-launchpad launch-pad)
-
-    (= (max-dock s9-tower-launchpad) 12)
-    (is-charging-dock s9-tower-launchpad launch-pad)
-
-    (= (max-dock s10-tower-launchpad) 12)
-    (is-charging-dock s10-tower-launchpad launch-pad)
-
-    (= (max-dock s11-tower-launchpad) 12)
-    (is-charging-dock s11-tower-launchpad launch-pad)
-
-    (= (max-dock s12-tower-launchpad) 12)
-    (is-charging-dock s12-tower-launchpad launch-pad)
-
-    (= (max-dock s13-tower-launchpad) 12)
-    (is-charging-dock s13-tower-launchpad launch-pad)
-
-    (= (max-dock s14-tower-launchpad) 12)
-    (is-charging-dock s14-tower-launchpad launch-pad)
-
-    (= (max-dock s15-tower-launchpad) 12)
-    (is-charging-dock s15-tower-launchpad launch-pad)
-
-    (= (max-dock s16-tower-launchpad) 12)
-    (is-charging-dock s16-tower-launchpad launch-pad)
-
-    (= (max-dock s17-tower-launchpad) 12)
-    (is-charging-dock s17-tower-launchpad launch-pad)
-
-    (= (max-dock s18-tower-launchpad) 12)
-    (is-charging-dock s18-tower-launchpad launch-pad)
-
-    (= (max-dock s19-tower-launchpad) 12)
-    (is-charging-dock s19-tower-launchpad launch-pad)
-
-    (= (max-dock s20-tower-launchpad) 12)
-    (is-charging-dock s20-tower-launchpad launch-pad)
-
-    (= (max-dock s21-tower-launchpad) 12)
-    (is-charging-dock s21-tower-launchpad launch-pad)
-
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -4073,34 +4012,68 @@
     ; (at 13500 (not (is-perspective launch-pad s21-tower-launchpad)))
 
 ;13583 (naive decomp) vs 13608.303 (stp)
-                        ;13692.605 (with is-visible til)
+                        ;13692.605 (with sunlight-favorable til)
 
-       ; (at 1(is-visible))
-       ; (at 600 (not (is-visible)))
-       ; (at 1440 (is-visible))
-       ; (at 2040 (not (is-visible)))
-       ; (at 2880 (is-visible))
-       ; (at 3480 (not (is-visible)))
-       ; (at 4320 (is-visible))
-       ; (at 4920 (not (is-visible)))
-       ; (at 5760 (is-visible))
-       ; (at 6360 (not (is-visible)))
-       ; (at 7200 (is-visible))
-       ; (at 7800 (not (is-visible)))
-       ; (at 8640 (is-visible))
-       ; (at 9240 (not (is-visible)))
-       ; (at 9840 (is-visible))
-       ; (at 10480 (not (is-visible)))
-       ; (at 10920 (is-visible))
-       ; (at 11520 (not (is-visible)))
-       ; (at 12140 (is-visible))
-       ; (at 13520 (not (is-visible)))  
+       ; sunlight
+       ; (at 1(sunlight-favorable))
+       ; (at 600 (not (sunlight-favorable)))
+       ; (at 1440 (sunlight-favorable))
+       ; (at 2040 (not (sunlight-favorable)))
+       ; (at 2880 (sunlight-favorable))
+       ; (at 3480 (not (sunlight-favorable)))
+       ; (at 4320 (sunlight-favorable))
+       ; (at 4920 (not (sunlight-favorable)))
+       ; (at 5760 (sunlight-favorable))
+       ; (at 6360 (not (sunlight-favorable)))
+       ; (at 7200 (sunlight-favorable))
+       ; (at 7800 (not (sunlight-favorable)))
+       ; (at 8640 (sunlight-favorable))
+       ; (at 9240 (not (sunlight-favorable)))
+       ; (at 9840 (sunlight-favorable))
+       ; (at 10480 (not (sunlight-favorable)))
+       ; (at 10920 (sunlight-favorable))
+       ; (at 11520 (not (sunlight-favorable)))
+       ; (at 12140 (sunlight-favorable))
+       ; (at 13520 (not (sunlight-favorable))) 
+
+       ; no-signal-interference   / train
+       ; (at 300(no-signal-interference))
+       ; (at 900 (not (no-signal-interference)))
+       ; (at 1740 (no-signal-interference))
+       ; (at 2340 (not (no-signal-interference)))
+       ; (at 3180 (no-signal-interference))
+       ; (at 3780 (not (no-signal-interference)))
+       ; (at 4620 (no-signal-interference))
+       ; (at 5220 (not (no-signal-interference)))
+       ; (at 6060 (no-signal-interference))
+       ; (at 6660 (not (no-signal-interference)))
+       ; (at 7500 (no-signal-interference))
+       ; (at 8100 (not (no-signal-interference)))
+       ; (at 8940 (no-signal-interference))
+       ; (at 9540 (not (no-signal-interference)))
+       ; (at 10140 (no-signal-interference))
+       ; (at 10780 (not (no-signal-interference)))
+       ; (at 11220 (no-signal-interference))
+       ; (at 11820 (not (no-signal-interference)))
+       ; (at 12440 (no-signal-interference))
+       ; (at 13820 (not (no-signal-interference))) 
+
+       ; wind - no fly possible
+       ; (at 1700 (not (is-perspective launch-pad s13-tower-launchpad)))
+       ; (at 1700 (not (is-perspective launch-pad s14-tower-launchpad)))
+       ; (at 1700 (not (is-perspective launch-pad s15-tower-launchpad)))
+
+
+
+       ;in c++
+       ;weather disturbance - extra wind no fly possible
+       ;drone failure 
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
     (is-at drone1 s1-tower-launchpad launch-pad)
-    (is-at drone2 s4-tower-launchpad launch-pad)
-    (is-at drone3 s4-tower-launchpad launch-pad)
+    (is-at drone2 s1-tower-launchpad launch-pad)
+    (is-at drone3 s1-tower-launchpad launch-pad)
     (is-at drone4 s4-tower-launchpad launch-pad)
     (is-at drone5 s4-tower-launchpad launch-pad)
     (is-at drone6 s4-tower-launchpad launch-pad)
@@ -4112,8 +4085,8 @@
     (is-at drone12 s4-tower-launchpad launch-pad)
 
     (is-at-component drone1 s1-tower-launchpad)
-    (is-at-component drone2 s4-tower-launchpad)
-    (is-at-component drone3 s4-tower-launchpad)
+    (is-at-component drone2 s1-tower-launchpad)
+    (is-at-component drone3 s1-tower-launchpad)
     (is-at-component drone4 s4-tower-launchpad)
     (is-at-component drone5 s4-tower-launchpad)
     (is-at-component drone6 s4-tower-launchpad)
@@ -4125,30 +4098,30 @@
     (is-at-component drone12 s4-tower-launchpad)
 
     (not_busy_tactical drone1)
-    ; (not_busy_tactical drone2)
-    ; (not_busy_tactical drone3)
-    ; (not_busy_tactical drone4)
-    ; (not_busy_tactical drone5)
-    ; (not_busy_tactical drone6)
-    ; (not_busy_tactical drone7)
-    ; (not_busy_tactical drone8)
-    ; (not_busy_tactical drone9)
-    ; (not_busy_tactical drone10)
-    ; (not_busy_tactical drone11)
-    ; (not_busy_tactical drone12)
+     (not_busy_tactical drone2)
+     (not_busy_tactical drone3)
+    (not_busy_tactical drone4)
+    (not_busy_tactical drone5)
+    (not_busy_tactical drone6)
+    (not_busy_tactical drone7)
+    (not_busy_tactical drone8)
+    (not_busy_tactical drone9)
+    (not_busy_tactical drone10)
+    (not_busy_tactical drone11)
+    (not_busy_tactical drone12)
 
     (not_busy_strategic drone1)
-    ; (not_busy_strategic drone2)
-    ; (not_busy_strategic drone3)
-    ; (not_busy_strategic drone4)
-    ; (not_busy_strategic drone5)
-    ; (not_busy_strategic drone6)
-    ; (not_busy_strategic drone7)
-    ; (not_busy_strategic drone8)
-    ; (not_busy_strategic drone9)
-    ; (not_busy_strategic drone10)
-    ; (not_busy_strategic drone11)
-    ; (not_busy_strategic drone12)
+     (not_busy_strategic drone2)
+     (not_busy_strategic drone3)
+    (not_busy_strategic drone4)
+    (not_busy_strategic drone5)
+    (not_busy_strategic drone6)
+    (not_busy_strategic drone7)
+    (not_busy_strategic drone8)
+    (not_busy_strategic drone9)
+    (not_busy_strategic drone10)
+    (not_busy_strategic drone11)
+    (not_busy_strategic drone12)
 
     (has-configuration drone1 config1)
     (has-capability drone1 camera)
@@ -4238,17 +4211,17 @@
     ;===========================================================   
     
     ;individual inspection configurations
-    (inspects camera image)
-    (inspects thermal-camera thermal-image)
-    (inspects signal-measurer signal-measurement)
+    ; (inspects camera image)
+    ; (inspects thermal-camera thermal-image)
+    ; (inspects signal-measurer signal-measurement)
 
-    (= (inspection-duration image) 1)
-    (= (inspection-duration thermal-image) 2)
-    (= (inspection-duration signal-measurement) 2)
+    ; (= (inspection-duration image) 1)
+    ; (= (inspection-duration thermal-image) 2)
+    ; (= (inspection-duration signal-measurement) 2)
     
-    (= (capability-consumption camera) 2)
-    (= (capability-consumption thermal-camera) 2)
-    (= (capability-consumption signal-measurer) 2)
+    ; (= (capability-consumption camera) 2)
+    ; (= (capability-consumption thermal-camera) 2)
+    ; (= (capability-consumption signal-measurer) 2)
     
     
       
@@ -4302,7 +4275,7 @@
     (and
 
     (know image s1-antenna-1 front)
-    ;(know thermal-image s1-antenna-1 front)
+    (know thermal-image s1-antenna-1 front)
     ; (know signal-measurement s1-antenna-1 front)
     ; (know image s1-antenna-1 above)
     ; (know thermal-image s1-antenna-1 above)

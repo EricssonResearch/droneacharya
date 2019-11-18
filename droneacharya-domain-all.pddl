@@ -53,10 +53,11 @@
     (station-available ?component - component)
     (mission_type ?mission - mission ?inspection - inspection)
     (mission_complete ?mission - mission)
-    (has-configuration ?drone - drone ?configuration - configuration)
     (active ?mission - mission)
 
-    (is-visible)
+    (sunlight-favorable)
+    ;(no-signal-interference)
+
 
   )
 
@@ -84,6 +85,7 @@
       (at start(not_busy_strategic ?drone))
       (at start(>= (max-dock ?destComp) 1))
       (at start(is-at-component ?drone ?srcComp))
+      (at start(is-perspective launch-pad ?srcComp))
       (at start(is-perspective launch-pad ?destComp))
       (at start(>= (current-charge ?drone)(/ (distance ?srcComp ?destComp) (velocity ?drone))))
     )
@@ -108,8 +110,10 @@
     :condition (and
       (at start(not_busy_tactical ?drone))
       (at start(not_busy_strategic ?drone))
+      (at start(>= (max-dock ?destComp) 1))
       (at start(is-charging-dock ?srcComp launch-pad))
       (at start(is-at-component ?drone ?srcComp))
+      (at start(is-perspective launch-pad ?srcComp))
       (at start(is-perspective launch-pad ?destComp))
       (at start(< (current-charge ?drone)(/ (distance ?srcComp ?destComp) (velocity ?drone))))  
       ;(at start(>= (max-charge ?drone)(/ (distance ?srcComp ?destComp) (velocity ?drone)))) 
@@ -121,6 +125,8 @@
       (at start(not (not_busy_strategic ?drone)))
       (at start(not (is-at-component ?drone ?srcComp)))
       (at start(assign (current-charge ?drone) 0))
+      (at start(decrease(max-dock ?destComp) 1))
+      (at end(increase(max-dock ?srcComp) 1))
       (at end(is-at-component ?drone ?destComp))
       (at end(not_busy_tactical ?drone))
       (at end(not_busy_strategic ?drone))
@@ -134,7 +140,8 @@
     :condition (and 
       ;(at start (active ?mission))
       ;(at start (>=(mission_duration ?mission tc-1)500))
-      ;(over all (is-visible))
+      (over all (active ?mission))
+      ;(over all (sunlight-favorable))
       (at start (mission_type ?mission cm-1))
       (at start (mission_site ?mission ?site))
       (at start (mission_station ?mission ?station))  
@@ -162,6 +169,7 @@
     :condition (and 
       ;(at start (active ?mission))
       ;(at start (>=(mission_duration ?mission tc-1)500))
+      (over all (active ?mission))
       (at start (mission_type ?mission tc-1))
       (at start (mission_site ?mission ?site))
       (at start (mission_station ?mission ?station))  
@@ -189,6 +197,8 @@
     :condition (and 
       ;(at start (active ?mission))
       ;(at start (>=(mission_duration ?mission sm-a-1)500))
+      (over all (active ?mission))
+      ;(at start (no-signal-interference))
       (at start (mission_type ?mission sm-a-1))
       (at start (mission_site ?mission ?site))
       (at start (mission_station ?mission ?station))  
@@ -216,6 +226,8 @@
     :condition (and 
       ;(at start (active ?mission))
       ;(at start (>=(mission_duration ?mission sm-b-1)500))
+      (over all (active ?mission))
+      ;(at start (no-signal-interference))
       (at start (mission_type ?mission sm-b-1))
       (at start (mission_site ?mission ?site))
       (at start (mission_station ?mission ?station))  
@@ -243,6 +255,8 @@
     :condition (and 
       ;(at start (active ?mission))
       ;(at start (>=(mission_duration ?mission im-a-2)500))
+      (over all (active ?mission))
+      ;(at start (no-signal-interference))
       (at start (mission_type ?mission im-a-2))
       (at start (mission_site ?mission ?site))  
       (at start (is-at-component ?drone1 ?site))
@@ -272,6 +286,8 @@
     :condition (and 
       ;(at start (active ?mission))
       ;(at start (>=(mission_duration ?mission im-b-2)500))
+      (over all (active ?mission))
+      ;(at start (no-signal-interference))
       (at start (mission_type ?mission im-b-2))
       (at start (mission_site ?mission ?site))  
       (at start (is-at-component ?drone1 ?site))
@@ -301,6 +317,8 @@
     :condition (and 
       ;(at start (active ?mission))
       ;(at start (>=(mission_duration ?mission im-c-2)500))
+      (over all (active ?mission))
+      ;(at start (no-signal-interference))
       (at start (mission_type ?mission im-c-2))
       (at start (mission_site ?mission ?site))  
       (at start (is-at-component ?drone1 ?site))
@@ -371,21 +389,75 @@
     )
   )
 
-  (:durative-action individual_inspection
-    :parameters (?drone - drone ?component - component ?perspective - perspective ?capability - capability ?knowledge - knowledge)
-    :duration (= ?duration (inspection-duration ?knowledge))
+  ; (:durative-action individual_inspection
+  ;   :parameters (?drone - drone ?component - component ?perspective - perspective ?capability - capability ?knowledge - knowledge)
+  ;   :duration (= ?duration (inspection-duration ?knowledge))
+  ;   :condition (and
+  ;     (at start(inspects ?capability ?knowledge))
+  ;     (at start(not_busy_tactical ?drone))
+  ;     (at start(is-available ?knowledge ?perspective))
+  ;     (at start(is-at ?drone ?component ?perspective))
+  ;     (at start(has-capability ?drone ?capability))
+  ;     (at start(> (current-charge ?drone)(capability-consumption ?capability)))
+  ;   )
+  ;   :effect (and
+  ;     (at start(not (not_busy_tactical ?drone)))
+  ;     (at start(decrease (current-charge ?drone) (capability-consumption ?capability)))
+  ;     (at end(know ?knowledge ?component ?perspective))
+  ;     (at end(not_busy_tactical ?drone))
+  ;   )
+  ; )
+
+    (:durative-action take_image
+    :parameters (?drone - drone ?component - component ?perspective - perspective)
+    :duration (= ?duration 1)
     :condition (and
-      (at start(inspects ?capability ?knowledge))
       (at start(not_busy_tactical ?drone))
-      (at start(is-available ?knowledge ?perspective))
+      (at start(is-available image ?perspective))
       (at start(is-at ?drone ?component ?perspective))
-      (at start(has-capability ?drone ?capability))
-      (at start(> (current-charge ?drone)(capability-consumption ?capability)))
+      (at start(has-capability ?drone camera))
+      (at start(> (current-charge ?drone) 2))
+  )
+    :effect (and
+      (at start(not (not_busy_tactical ?drone)))
+      (at start(decrease (current-charge ?drone) 2))
+      (at end(know image ?component ?perspective))
+      (at end(not_busy_tactical ?drone))
+    )
+  )
+
+  (:durative-action take_thermal_image
+    :parameters (?drone - drone ?component - component ?perspective - perspective)
+    :duration (= ?duration 2)
+    :condition (and
+      (at start(not_busy_tactical ?drone))
+      (at start(is-available thermal-image ?perspective))
+      (at start(is-at ?drone ?component ?perspective))
+      (at start(has-capability ?drone thermal-camera))
+      (at start(> (current-charge ?drone) 2))
     )
     :effect (and
       (at start(not (not_busy_tactical ?drone)))
-      (at start(decrease (current-charge ?drone) (capability-consumption ?capability)))
-      (at end(know ?knowledge ?component ?perspective))
+      (at start(decrease (current-charge ?drone) 2))
+      (at end(know thermal-image ?component ?perspective))
+      (at end(not_busy_tactical ?drone))
+    )
+  )
+
+  (:durative-action take_signal_measurement
+    :parameters (?drone - drone ?component - component ?perspective - perspective)
+    :duration (= ?duration 2)
+    :condition (and
+      (at start(not_busy_tactical ?drone))
+      (at start(is-available signal-measurement ?perspective))
+      (at start(is-at ?drone ?component ?perspective))
+      (at start(has-capability ?drone signal-measurer))
+      (at start(> (current-charge ?drone) 2))
+    )
+    :effect (and
+      (at start(not (not_busy_tactical ?drone)))
+      (at start(decrease (current-charge ?drone) 2))
+      (at end(know signal-measurement ?component ?perspective))
       (at end(not_busy_tactical ?drone))
     )
   )
