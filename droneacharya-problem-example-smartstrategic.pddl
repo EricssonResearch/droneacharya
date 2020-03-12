@@ -2,6 +2,7 @@
 ; added the is-clear-perspective for the relevant perspectives in the initial state
 
 
+;91028835901
 
 (define (problem asi-dur-problem-fullswap)
   (:domain asi-dur-domain-fullswap)
@@ -470,56 +471,70 @@
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
     (= (max-distance s1-tower-launchpad) 283.661084)
-    (is-perspective launch-pad s1-tower-launchpad)
+
     (= (max-dock s1-tower-launchpad) 3) 
     (is-charging-dock s1-tower-launchpad launch-pad)
 
     (= (max-distance s4-tower-launchpad) 469.931032)
-    (is-perspective launch-pad s4-tower-launchpad)
-    (= (max-dock s4-tower-launchpad) 0) 
+
+    (= (max-dock s4-tower-launchpad) 249) 
     (is-charging-dock s4-tower-launchpad launch-pad)
 
     (= (max-distance s7-tower-launchpad) 450.753404)
-    (is-perspective launch-pad s7-tower-launchpad)
+
     (= (max-dock s7-tower-launchpad) 3) 
     (is-charging-dock s7-tower-launchpad launch-pad)
 
     (= (max-distance s10-tower-launchpad) 457.375735) 
-    (is-perspective launch-pad s10-tower-launchpad)
+
     (= (max-dock s10-tower-launchpad) 3) 
     (is-charging-dock s10-tower-launchpad launch-pad)
 
     (= (max-distance s13-tower-launchpad) 469.931032)
-    (is-perspective launch-pad s13-tower-launchpad)
+
     (= (max-dock s13-tower-launchpad) 3) 
     (is-charging-dock s13-tower-launchpad launch-pad)
 
     (= (max-distance s16-tower-launchpad) 480.432471)
-    (is-perspective launch-pad s16-tower-launchpad)
+
     (= (max-dock s16-tower-launchpad) 3) 
     (is-charging-dock s16-tower-launchpad launch-pad)
 
     (= (max-distance s19-tower-launchpad) 480.432471)
-    (is-perspective launch-pad s19-tower-launchpad)
     (= (max-dock s19-tower-launchpad) 3) 
     (is-charging-dock s19-tower-launchpad launch-pad)
 
+
+
+
+
+
+    (is-perspective launch-pad s1-tower-launchpad)
+    (is-perspective launch-pad s4-tower-launchpad)
+    (is-perspective launch-pad s7-tower-launchpad)
+    (is-perspective launch-pad s10-tower-launchpad)
+    (is-perspective launch-pad s13-tower-launchpad)
+    (is-perspective launch-pad s16-tower-launchpad)
+    (is-perspective launch-pad s19-tower-launchpad)
+
+
+  
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     
     ;(is-dock launch-pad)
 
-    (not_busy drone1)
-    (not_busy drone2)
-    (not_busy drone3)
-    (not_busy drone4)
-    (not_busy drone5)
-    (not_busy drone6)
-    (not_busy drone7)
-    (not_busy drone8)
-    (not_busy drone9)
-    (not_busy drone10)
-    (not_busy drone11)
-    (not_busy drone12)
+   (not_busy drone1)
+   (not_busy drone2)
+   (not_busy drone3)
+   (not_busy drone4)
+   (not_busy drone5)
+   (not_busy drone6)
+   (not_busy drone7)
+   (not_busy drone8)
+   (not_busy drone9)
+   (not_busy drone10)
+   (not_busy drone11)
+   (not_busy drone12)
 
     ;;;; max drone velocity is 5
     ;camera decreases velocity by 1
@@ -534,21 +549,24 @@
     ; in site 2-3 m/s    
     ; between sites 20m/s
 
+    ;start with random charge
+    ;different distances for station components
+
     (has-configuration drone1 config1)
     (has-capability drone1 camera)
     (has-capability drone1 signal-measurer)
     (is-at drone1 s4-tower-launchpad launch-pad)
     (is-at-component drone1 s4-tower-launchpad)
-    (= (drone-charge drone1) 600)
-    (= (max-charge-drone drone1) 600)
+    (= (current-charge drone1) 249)
+    (= (max-charge drone1) 250)
     (= (velocity drone1) 2)
 
     (has-configuration drone2 config2)
     (has-capability drone2 thermal-camera)
     (is-at drone2 s4-tower-launchpad launch-pad)
     (is-at-component drone2 s4-tower-launchpad)
-    (= (drone-charge drone2) 600)
-    (= (max-charge-drone drone2) 600)
+    (= (current-charge drone2) 249)
+    (= (max-charge drone2) 250)
     (= (velocity drone2) 4)
 
 
@@ -556,8 +574,8 @@
     (has-capability drone3 signal-measurer)
     (is-at drone3 s4-tower-launchpad launch-pad)
     (is-at-component drone3 s4-tower-launchpad)
-    (= (drone-charge drone3) 600)
-    (= (max-charge-drone drone3) 600)
+    (= (current-charge drone3) 249)
+    (= (max-charge drone3) 250)
     (= (velocity drone3) 3)
 
     (has-configuration drone4 config1)
@@ -565,16 +583,16 @@
     (has-capability drone4 signal-measurer)
     (is-at drone4 s4-tower-launchpad launch-pad)
     (is-at-component drone4 s4-tower-launchpad)
-    (= (drone-charge drone4) 600)
-    (= (max-charge-drone drone4) 600)
+    (= (current-charge drone4) 249)
+    (= (max-charge drone4) 250)
     (= (velocity drone4) 2)
 
     (has-configuration drone5 config2)
     (has-capability drone5 thermal-camera)
     (is-at drone5 s4-tower-launchpad launch-pad)
     (is-at-component drone5 s4-tower-launchpad)
-    (= (drone-charge drone5) 600)
-    (= (max-charge-drone drone5) 600)
+    (= (current-charge drone5) 249)
+    (= (max-charge drone5) 250)
     (= (velocity drone5) 4)
 
 
@@ -582,8 +600,8 @@
     (has-capability drone6 signal-measurer)
     (is-at drone6 s4-tower-launchpad launch-pad)
     (is-at-component drone6 s4-tower-launchpad)
-    (= (drone-charge drone6) 600)
-    (= (max-charge-drone drone6) 600)
+    (= (current-charge drone6) 249)
+    (= (max-charge drone6) 250)
     (= (velocity drone6) 3)
 
 
@@ -592,16 +610,16 @@
     (has-capability drone7 signal-measurer)
     (is-at drone7 s4-tower-launchpad launch-pad)
     (is-at-component drone7 s4-tower-launchpad)
-    (= (drone-charge drone7) 600)
-    (= (max-charge-drone drone7) 600)
+    (= (current-charge drone7) 249)
+    (= (max-charge drone7) 250)
     (= (velocity drone7) 2)
 
     (has-configuration drone8 config2)
     (has-capability drone8 thermal-camera)
     (is-at drone8 s4-tower-launchpad launch-pad)
     (is-at-component drone8 s4-tower-launchpad)
-    (= (drone-charge drone8) 600)
-    (= (max-charge-drone drone8) 600)
+    (= (current-charge drone8) 249)
+    (= (max-charge drone8) 250)
     (= (velocity drone8) 4)
 
 
@@ -609,8 +627,8 @@
     (has-capability drone9 signal-measurer)
     (is-at drone9 s4-tower-launchpad launch-pad)
     (is-at-component drone9 s4-tower-launchpad)
-    (= (drone-charge drone9) 330)
-    (= (max-charge-drone drone9) 330)
+    (= (current-charge drone9) 249)
+    (= (max-charge drone9) 250)
     (= (velocity drone9) 3)
 
     (has-configuration drone10 config1)
@@ -618,16 +636,16 @@
     (has-capability drone10 signal-measurer)
     (is-at drone10 s4-tower-launchpad launch-pad)
     (is-at-component drone10 s4-tower-launchpad)
-    (= (drone-charge drone10) 600)
-    (= (max-charge-drone drone10) 600)
+    (= (current-charge drone10) 249)
+    (= (max-charge drone10) 250)
     (= (velocity drone10) 2)
 
     (has-configuration drone11 config2)
     (has-capability drone11 thermal-camera)
     (is-at drone11 s4-tower-launchpad launch-pad)
     (is-at-component drone11 s4-tower-launchpad)
-    (= (drone-charge drone11) 600)
-    (= (max-charge-drone drone11) 600)
+    (= (current-charge drone11) 249)
+    (= (max-charge drone11) 250)
     (= (velocity drone11) 4)
 
 
@@ -635,19 +653,28 @@
     (has-capability drone12 signal-measurer)
     (is-at drone12 s4-tower-launchpad launch-pad)
     (is-at-component drone12 s4-tower-launchpad)
-    (= (drone-charge drone12) 600)
-    (= (max-charge-drone drone12) 600)
+    (= (current-charge drone12) 249)
+    (= (max-charge drone12) 250)
     (= (velocity drone12) 3)
 
-    (= (mission_total) 0)
 
-    (site-available s1-tower-launchpad)
-    (site-available s4-tower-launchpad)
-    (site-available s7-tower-launchpad)
-    (site-available s10-tower-launchpad)
-    (site-available s13-tower-launchpad)
-    (site-available s16-tower-launchpad)
-    (site-available s19-tower-launchpad)
+    (perspective_class_available s1-tower-launchpad a)
+    (perspective_class_available s4-tower-launchpad a)
+    (perspective_class_available s7-tower-launchpad a)
+    (perspective_class_available s10-tower-launchpad a)
+    (perspective_class_available s13-tower-launchpad a)
+    (perspective_class_available s16-tower-launchpad a)
+    (perspective_class_available s19-tower-launchpad a)
+
+    (perspective_class_available s1-tower-launchpad b)
+    (perspective_class_available s4-tower-launchpad b)
+    (perspective_class_available s7-tower-launchpad b)
+    (perspective_class_available s10-tower-launchpad b)
+    (perspective_class_available s13-tower-launchpad b)
+    (perspective_class_available s16-tower-launchpad b)
+    (perspective_class_available s19-tower-launchpad b)
+
+    
 
     (mission_at mission1 s1-tower-launchpad)
     (mission_at mission2 s1-tower-launchpad)
@@ -701,62 +728,7 @@
     (mission_at mission63 s16-tower-launchpad)
     (mission_at mission73 s19-tower-launchpad)
 
-         
-    (= (mission_duration mission1) 592)
-    (= (mission_duration mission2) 592)
-    (= (mission_duration mission3) 592)
-    (= (mission_duration mission4) 592)
-    (= (mission_duration mission5) 592)
-    (= (mission_duration mission6) 592)
-    (= (mission_duration mission7) 592)
-     
-    (= (mission_duration mission11) 592)
-    (= (mission_duration mission21) 592)
-    (= (mission_duration mission31) 592)
-    (= (mission_duration mission41) 592)
-    (= (mission_duration mission51) 592)
-    (= (mission_duration mission61) 592)
-    (= (mission_duration mission71) 592)
-     
-    (= (mission_duration mission111) 592)
-    (= (mission_duration mission211) 592)
-    (= (mission_duration mission311) 592)
-    (= (mission_duration mission411) 592)
-    (= (mission_duration mission511) 592)
-    (= (mission_duration mission611) 592)
-    (= (mission_duration mission711) 592)
-     
-    (= (mission_duration mission12) 592)
-    (= (mission_duration mission22) 592)
-    (= (mission_duration mission32) 592)
-    (= (mission_duration mission42) 592)
-    (= (mission_duration mission52) 592)
-    (= (mission_duration mission62) 592)
-    (= (mission_duration mission72) 592)
-     
-    (= (mission_duration mission112) 592)
-    (= (mission_duration mission212) 592)
-    (= (mission_duration mission312) 592)
-    (= (mission_duration mission412) 592)
-    (= (mission_duration mission512) 592)
-    (= (mission_duration mission612) 592)
-    (= (mission_duration mission712) 592)
-      
-    (= (mission_duration mission1112) 592)
-    (= (mission_duration mission2112) 592)
-    (= (mission_duration mission3112) 592)
-    (= (mission_duration mission4112) 592)
-    (= (mission_duration mission5112) 592)
-    (= (mission_duration mission6112) 592)
-    (= (mission_duration mission7112) 592)
-              
-    (= (mission_duration mission13) 357)
-    (= (mission_duration mission23) 357)
-    (= (mission_duration mission33) 357)
-    (= (mission_duration mission43) 357)
-    (= (mission_duration mission53) 357)
-    (= (mission_duration mission63) 357)
-    (= (mission_duration mission73) 357)
+        
 
     (mission_type mission1 cm-1)   
     (mission_type mission2 tc-1)
@@ -816,7 +788,7 @@
     (mission_type mission7112 sm-a-1)
     (mission_type mission7112 sm-b-1)
 
-        (mission_type mission1 cm-2)   
+    (mission_type mission1 cm-2)   
     (mission_type mission2 tc-2)
     (mission_type mission3 sm-a-2)
     (mission_type mission3 sm-b-2)
@@ -897,249 +869,6 @@
     (mission_type mission63 im-c-2)
     (mission_type mission73 im-c-2)
 
-    ;position1 > position2
-
-    (= (mission_consumption mission1 cm-1 position1) 330)   
-    (= (mission_consumption mission2 tc-1 position1) 330)
-    (= (mission_consumption mission3 sm-a-1 position1) 330)
-    (= (mission_consumption mission3 sm-b-1 position1) 330)
-    (= (mission_consumption mission4 cm-1 position1) 330)
-    (= (mission_consumption mission5 tc-1 position1) 330)
-    (= (mission_consumption mission6 sm-a-1 position1) 330)
-    (= (mission_consumption mission6 sm-b-1 position1) 330)
-    (= (mission_consumption mission7 cm-1 position1) 330)
-    (= (mission_consumption mission11 tc-1 position1) 330)
-    (= (mission_consumption mission21 sm-a-1 position1) 330)
-    (= (mission_consumption mission21 sm-b-1 position1) 330)
-    (= (mission_consumption mission31 cm-1 position1) 330)
-    (= (mission_consumption mission41 tc-1 position1) 330)
-    (= (mission_consumption mission51 sm-a-1 position1) 330)
-    (= (mission_consumption mission51 sm-b-1 position1) 330)
-    (= (mission_consumption mission61 cm-1 position1) 330)
-    (= (mission_consumption mission71 tc-1 position1) 330)
-    (= (mission_consumption mission111 sm-a-1 position1) 330)
-    (= (mission_consumption mission111 sm-b-1 position1) 330)
-    (= (mission_consumption mission211 cm-1 position1) 330)
-    (= (mission_consumption mission311 tc-1 position1) 330)
-    (= (mission_consumption mission411 sm-a-1 position1) 330)
-    (= (mission_consumption mission411 sm-b-1 position1) 330)
-    (= (mission_consumption mission511 cm-1 position1) 330)
-    (= (mission_consumption mission611 tc-1 position1) 330)
-    (= (mission_consumption mission711 sm-a-1 position1) 330)
-    (= (mission_consumption mission711 sm-b-1 position1) 330)
-
-    (= (mission_consumption mission12 cm-1 position1) 330)   
-    (= (mission_consumption mission22 tc-1 position1) 330)
-    (= (mission_consumption mission32 sm-a-1 position1) 330)
-    (= (mission_consumption mission32 sm-b-1 position1) 330)
-    (= (mission_consumption mission42 cm-1 position1) 330)
-    (= (mission_consumption mission52 tc-1 position1) 330)
-    (= (mission_consumption mission62 sm-a-1 position1) 330)
-    (= (mission_consumption mission62 sm-b-1 position1) 330)
-    (= (mission_consumption mission72 cm-1 position1) 330)
-    (= (mission_consumption mission112 tc-1 position1) 330)
-    (= (mission_consumption mission212 sm-a-1 position1) 330)
-    (= (mission_consumption mission212 sm-b-1 position1) 330)
-    (= (mission_consumption mission312 cm-1 position1) 330)
-    (= (mission_consumption mission412 tc-1 position1) 330)
-    (= (mission_consumption mission512 sm-a-1 position1) 330)
-    (= (mission_consumption mission512 sm-b-1 position1) 330)
-    (= (mission_consumption mission612 cm-1 position1) 330)
-    (= (mission_consumption mission712 tc-1 position1) 330)
-    (= (mission_consumption mission1112 sm-a-1 position1) 330)
-    (= (mission_consumption mission1112 sm-b-1 position1) 330)
-    (= (mission_consumption mission2112 cm-1 position1) 330)
-    (= (mission_consumption mission3112 tc-1 position1) 330)
-    (= (mission_consumption mission4112 sm-a-1 position1) 330)
-    (= (mission_consumption mission4112 sm-b-1 position1) 330)
-    (= (mission_consumption mission5112 cm-1 position1) 330)
-    (= (mission_consumption mission6112 tc-1 position1) 330)
-    (= (mission_consumption mission7112 sm-a-1 position1) 330)
-    (= (mission_consumption mission7112 sm-b-1 position1) 330)
-
-
-    (= (mission_consumption mission13 im-a-2 position1) 330)   
-    (= (mission_consumption mission23 im-a-2 position1) 330)
-    (= (mission_consumption mission33 im-a-2 position1) 330)
-    (= (mission_consumption mission43 im-a-2 position1) 330)
-    (= (mission_consumption mission53 im-a-2 position1) 330)
-    (= (mission_consumption mission63 im-a-2 position1) 330)
-    (= (mission_consumption mission73 im-a-2 position1) 330)
-
-    (= (mission_consumption mission13 im-a-2 position2) 330)   
-    (= (mission_consumption mission23 im-a-2 position2) 330)
-    (= (mission_consumption mission33 im-a-2 position2) 330)
-    (= (mission_consumption mission43 im-a-2 position2) 330)
-    (= (mission_consumption mission53 im-a-2 position2) 330)
-    (= (mission_consumption mission63 im-a-2 position2) 330)
-    (= (mission_consumption mission73 im-a-2 position2) 330)
-
-
-    (= (mission_consumption mission13 im-b-2 position1) 330)   
-    (= (mission_consumption mission23 im-b-2 position1) 330)
-    (= (mission_consumption mission33 im-b-2 position1) 330)
-    (= (mission_consumption mission43 im-b-2 position1) 330)
-    (= (mission_consumption mission53 im-b-2 position1) 330)
-    (= (mission_consumption mission63 im-b-2 position1) 330)
-    (= (mission_consumption mission73 im-b-2 position1) 330)
-
-    (= (mission_consumption mission13 im-b-2 position2) 330)   
-    (= (mission_consumption mission23 im-b-2 position2) 330)
-    (= (mission_consumption mission33 im-b-2 position2) 330)
-    (= (mission_consumption mission43 im-b-2 position2) 330)
-    (= (mission_consumption mission53 im-b-2 position2) 330)
-    (= (mission_consumption mission63 im-b-2 position2) 330)
-    (= (mission_consumption mission73 im-b-2 position2) 330)
-
-
-    (= (mission_consumption mission13 im-c-2 position1) 330)   
-    (= (mission_consumption mission23 im-c-2 position1) 330)
-    (= (mission_consumption mission33 im-c-2 position1) 330)
-    (= (mission_consumption mission43 im-c-2 position1) 330)
-    (= (mission_consumption mission53 im-c-2 position1) 330)
-    (= (mission_consumption mission63 im-c-2 position1) 330)
-    (= (mission_consumption mission73 im-c-2 position1) 330)
-    
-    (= (mission_consumption mission13 im-c-2 position2) 330)   
-    (= (mission_consumption mission23 im-c-2 position2) 330)
-    (= (mission_consumption mission33 im-c-2 position2) 330)
-    (= (mission_consumption mission43 im-c-2 position2) 330)
-    (= (mission_consumption mission53 im-c-2 position2) 330)
-    (= (mission_consumption mission63 im-c-2 position2) 330)
-    (= (mission_consumption mission73 im-c-2 position2) 330)
-
-
-    (= (mission_consumption mission1 cm-2 position1) 330)   
-    (= (mission_consumption mission2 tc-2 position1) 330)
-    (= (mission_consumption mission3 sm-a-2 position1) 330)
-    (= (mission_consumption mission3 sm-b-2 position1) 330)
-    (= (mission_consumption mission4 cm-2 position1) 330)
-    (= (mission_consumption mission5 tc-2 position1) 330)
-    (= (mission_consumption mission6 sm-a-2 position1) 330)
-    (= (mission_consumption mission6 sm-b-2 position1) 330)
-    (= (mission_consumption mission7 cm-2 position1) 330)
-    (= (mission_consumption mission11 tc-2 position1) 330)
-    (= (mission_consumption mission21 sm-a-2 position1) 330)
-    (= (mission_consumption mission21 sm-b-2 position1) 330)
-    (= (mission_consumption mission31 cm-2 position1) 330)
-    (= (mission_consumption mission41 tc-2 position1) 330)
-    (= (mission_consumption mission51 sm-a-2 position1) 330)
-    (= (mission_consumption mission51 sm-b-2 position1) 330)
-    (= (mission_consumption mission61 cm-2 position1) 330)
-    (= (mission_consumption mission71 tc-2 position1) 330)
-    (= (mission_consumption mission111 sm-a-2 position1) 330)
-    (= (mission_consumption mission111 sm-b-2 position1) 330)
-    (= (mission_consumption mission211 cm-2 position1) 330)
-    (= (mission_consumption mission311 tc-2 position1) 330)
-    (= (mission_consumption mission411 sm-a-2 position1) 330)
-    (= (mission_consumption mission411 sm-b-2 position1) 330)
-    (= (mission_consumption mission511 cm-2 position1) 330)
-    (= (mission_consumption mission611 tc-2 position1) 330)
-    (= (mission_consumption mission711 sm-a-2 position1) 330)
-    (= (mission_consumption mission711 sm-b-2 position1) 330)
-
-    (= (mission_consumption mission12 cm-2 position1) 330)   
-    (= (mission_consumption mission22 tc-2 position1) 330)
-    (= (mission_consumption mission32 sm-a-2 position1) 330)
-    (= (mission_consumption mission32 sm-b-2 position1) 330)
-    (= (mission_consumption mission42 cm-2 position1) 330)
-    (= (mission_consumption mission52 tc-2 position1) 330)
-    (= (mission_consumption mission62 sm-a-2 position1) 330)
-    (= (mission_consumption mission62 sm-b-2 position1) 330)
-    (= (mission_consumption mission72 cm-2 position1) 330)
-    (= (mission_consumption mission112 tc-2 position1) 330)
-    (= (mission_consumption mission212 sm-a-2 position1) 330)
-    (= (mission_consumption mission212 sm-b-2 position1) 330)
-    (= (mission_consumption mission312 cm-2 position1) 330)
-    (= (mission_consumption mission412 tc-2 position1) 330)
-    (= (mission_consumption mission512 sm-a-2 position1) 330)
-    (= (mission_consumption mission512 sm-b-2 position1) 330)
-    (= (mission_consumption mission612 cm-2 position1) 330)
-    (= (mission_consumption mission712 tc-2 position1) 330)
-    (= (mission_consumption mission1112 sm-a-2 position1) 330)
-    (= (mission_consumption mission1112 sm-b-2 position1) 330)
-    (= (mission_consumption mission2112 cm-2 position1) 330)
-    (= (mission_consumption mission3112 tc-2 position1) 330)
-    (= (mission_consumption mission4112 sm-a-2 position1) 330)
-    (= (mission_consumption mission4112 sm-b-2 position1) 330)
-    (= (mission_consumption mission5112 cm-2 position1) 330)
-    (= (mission_consumption mission6112 tc-2 position1) 330)
-    (= (mission_consumption mission7112 sm-a-2 position1) 330)
-    (= (mission_consumption mission7112 sm-b-2 position1) 330)
-
-    (= (mission_consumption mission1 cm-2 position2) 330)   
-    (= (mission_consumption mission2 tc-2 position2) 330)
-    (= (mission_consumption mission3 sm-a-2 position2) 330)
-    (= (mission_consumption mission3 sm-b-2 position2) 330)
-    (= (mission_consumption mission3 sm-c-2 position2) 330)
-    (= (mission_consumption mission4 cm-2 position2) 330)
-    (= (mission_consumption mission5 tc-2 position2) 330)
-    (= (mission_consumption mission6 sm-a-2 position2) 330)
-    (= (mission_consumption mission6 sm-b-2 position2) 330)
-    (= (mission_consumption mission6 sm-c-2 position2) 330)
-    (= (mission_consumption mission7 cm-2 position2) 330)
-    (= (mission_consumption mission11 tc-2 position2) 330)
-    (= (mission_consumption mission21 sm-a-2 position2) 330)
-    (= (mission_consumption mission21 sm-b-2 position2) 330)
-    (= (mission_consumption mission21 sm-c-2 position2) 330)
-    (= (mission_consumption mission31 cm-2 position2) 330)
-    (= (mission_consumption mission41 tc-2 position2) 330)
-    (= (mission_consumption mission51 sm-a-2 position2) 330)
-    (= (mission_consumption mission51 sm-b-2 position2) 330)
-    (= (mission_consumption mission51 sm-c-2 position2) 330)
-    (= (mission_consumption mission61 cm-2 position2) 330)
-    (= (mission_consumption mission71 tc-2 position2) 330)
-    (= (mission_consumption mission111 sm-a-2 position2) 330)
-    (= (mission_consumption mission111 sm-b-2 position2) 330)
-    (= (mission_consumption mission111 sm-c-2 position2) 330)
-    (= (mission_consumption mission211 cm-2 position2) 330)
-    (= (mission_consumption mission311 tc-2 position2) 330)
-    (= (mission_consumption mission411 sm-a-2 position2) 330)
-    (= (mission_consumption mission411 sm-b-2 position2) 330)
-    (= (mission_consumption mission411 sm-c-2 position2) 330)
-    (= (mission_consumption mission511 cm-2 position2) 330)
-    (= (mission_consumption mission611 tc-2 position2) 330)
-    (= (mission_consumption mission711 sm-a-2 position2) 330)
-    (= (mission_consumption mission711 sm-b-2 position2) 330)
-    (= (mission_consumption mission711 sm-c-2 position2) 330)
-
-    (= (mission_consumption mission12 cm-2 position2) 330)   
-    (= (mission_consumption mission22 tc-2 position2) 330)
-    (= (mission_consumption mission32 sm-a-2 position2) 330)
-    (= (mission_consumption mission32 sm-b-2 position2) 330)
-    (= (mission_consumption mission32 sm-c-2 position2) 330)
-    (= (mission_consumption mission42 cm-2 position2) 330)
-    (= (mission_consumption mission52 tc-2 position2) 330)
-    (= (mission_consumption mission62 sm-a-2 position2) 330)
-    (= (mission_consumption mission62 sm-b-2 position2) 330)
-    (= (mission_consumption mission62 sm-c-2 position2) 330)
-    (= (mission_consumption mission72 cm-2 position2) 330)
-    (= (mission_consumption mission112 tc-2 position2) 330)
-    (= (mission_consumption mission212 sm-a-2 position2) 330)
-    (= (mission_consumption mission212 sm-b-2 position2) 330)
-    (= (mission_consumption mission212 sm-c-2 position2) 330)
-    (= (mission_consumption mission312 cm-2 position2) 330)
-    (= (mission_consumption mission412 tc-2 position2) 330)
-    (= (mission_consumption mission512 sm-a-2 position2) 330)
-    (= (mission_consumption mission512 sm-b-2 position2) 330)
-    (= (mission_consumption mission512 sm-c-2 position2) 330)
-    (= (mission_consumption mission612 cm-2 position2) 330)
-    (= (mission_consumption mission712 tc-2 position2) 330)
-    (= (mission_consumption mission1112 sm-a-2 position2) 330)
-    (= (mission_consumption mission1112 sm-b-2 position2) 330)
-    (= (mission_consumption mission1112 sm-c-2 position2) 330)
-    (= (mission_consumption mission2112 cm-2 position2) 330)
-    (= (mission_consumption mission3112 tc-2 position2) 330)
-    (= (mission_consumption mission4112 sm-a-2 position2) 330)
-    (= (mission_consumption mission4112 sm-b-2 position2) 330)
-    (= (mission_consumption mission4112 sm-c-2 position2) 330)
-    (= (mission_consumption mission5112 cm-2 position2) 330)
-    (= (mission_consumption mission6112 tc-2 position2) 330)
-    (= (mission_consumption mission7112 sm-a-2 position2) 330)
-    (= (mission_consumption mission7112 sm-b-2 position2) 330)
-
-
-
     (active mission1)
     (active mission2)
     (active mission3)
@@ -1194,12 +923,24 @@
 
 
 
-
-
-
-
-
   )
+
+;active mission affects results
+
+; active 0 - not active 0 - active full - not active full
+
+;  popf 
+;  optic
+
+;  1  1  2  2 
+;  a  ab a  ab
+
+
+;===== results
+; popf  1 ab 2 ab
+; optic 1 ab 2 ab
+
+
 
   
   (:goal (and
@@ -1207,44 +948,44 @@
      (mission_complete mission1)
      (mission_complete mission2)
      (mission_complete mission3)
-     (mission_complete mission4)
+      (mission_complete mission4)
      (mission_complete mission5)
      (mission_complete mission6)
-     (mission_complete mission7)
+      (mission_complete mission7)
     (mission_complete mission11)
     (mission_complete mission21)
-    (mission_complete mission31)
+     (mission_complete mission31)
     (mission_complete mission41)
     (mission_complete mission51)
-    (mission_complete mission61)
+     (mission_complete mission61)
     (mission_complete mission71)
     (mission_complete mission111)
-    (mission_complete mission211)
+     (mission_complete mission211)
     (mission_complete mission311)
     (mission_complete mission411)
-    (mission_complete mission511)
+     (mission_complete mission511)
     (mission_complete mission611)
     (mission_complete mission711)
 
-    (mission_complete mission12)
+     (mission_complete mission12)
     (mission_complete mission22)
     (mission_complete mission32)
-    (mission_complete mission42)
+     (mission_complete mission42)
     (mission_complete mission52)
     (mission_complete mission62)
-    (mission_complete mission72)
+     (mission_complete mission72)
     (mission_complete mission112)
     (mission_complete mission212)
-    (mission_complete mission312)
+     (mission_complete mission312)
     (mission_complete mission412)
     (mission_complete mission512)
-    (mission_complete mission612)
-    (mission_complete mission712)
+     (mission_complete mission612)
+     (mission_complete mission712)
     (mission_complete mission1112)
-    (mission_complete mission2112)
+     (mission_complete mission2112)
     (mission_complete mission3112)
     (mission_complete mission4112)
-    (mission_complete mission5112)
+     (mission_complete mission5112)
     (mission_complete mission6112)
     (mission_complete mission7112)
    
