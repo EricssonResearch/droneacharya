@@ -56,7 +56,7 @@
     (active ?mission - mission)
 
     (sunlight-favorable)
-    ;(no-signal-interference)
+    (no-signal-interference)
 
 
   )
@@ -141,7 +141,7 @@
       ;(at start (active ?mission))
       ;(at start (>=(mission_duration ?mission tc-1)500))
       (over all (active ?mission))
-      (over all (sunlight-favorable))
+      ;(over all (sunlight-favorable))
       (at start (mission_type ?mission cm-1))
       (at start (mission_site ?mission ?site))
       (at start (mission_station ?mission ?station))  
@@ -466,30 +466,25 @@
   ; )
 
   (:durative-action cooperative_inspection
-    :parameters (?staticDrone ?movingDrone - drone ?component - component)
+    :parameters (?staticDrone ?movingDrone - drone ?component - component )
     :duration (= ?duration 2)
     :condition (and
-
       (at start(not_busy_tactical ?staticDrone))
       (at start(not_busy_tactical ?movingDrone))
-
       (at start(is-available signal-measurement radiation-pattern))
       (at start(is-available signal-measurement dynamic-inspection360))
-    
       (at start(is-at ?staticDrone ?component radiation-pattern))
       (at start(is-at ?movingDrone ?component dynamic-inspection360))
-
       (at start(has-capability ?staticDrone signal-measurer))
       (at start(has-capability ?movingDrone signal-measurer))
-
       (at start(> (current-charge ?staticDrone)2))
       (at start(> (current-charge ?movingDrone)2))
     )
     :effect (and
       (at start(not (not_busy_tactical ?staticDrone)))
       (at start(not (not_busy_tactical ?movingDrone)))
-      (at start(decrease (current-charge ?staticDrone) 2))
-      (at start(decrease (current-charge ?movingDrone) 2))
+      (at start(decrease (current-charge ?staticDrone)2))
+      (at start(decrease (current-charge ?movingDrone)2))
       (at end(know-simultaneous signal-measurement ?component))
       (at end(not_busy_tactical ?staticDrone))
       (at end(not_busy_tactical ?movingDrone))
@@ -511,127 +506,4 @@
       (at end(not_busy_tactical ?drone))
     )
   )
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-
-  (:durative-action dynamic_charge
-    :parameters (?drone - drone ?component - component)
-    :duration (<= ?duration (- (max-charge ?drone) (current-charge ?drone)))
-    :condition (and
-      (at start(not_busy_tactical ?drone))
-      (at start(is-at ?drone ?component launch-pad))
-      (at start(is-charging-dock ?component launch-pad))
-      (at start(< (current-charge ?drone) (max-charge ?drone)))
-    )
-    :effect (and
-      (at start(not (not_busy_tactical ?drone)))
-      (at end(increase (current-charge ?drone) ?duration))
-      (at end(not_busy_tactical ?drone))
-    )
-  )
-
-
-(:durative-action individual_inspection
-    :parameters (?drone - drone ?component - component ?perspective - perspective ?capability - capability ?knowledge - knowledge)
-    :duration (= ?duration (inspection-duration ?knowledge))
-    :condition (and
-      (at start(inspects ?capability ?knowledge))
-      (at start(not_busy_tactical ?drone))
-      (at start(is-available ?knowledge ?perspective))
-      (at start(is-at ?drone ?component ?perspective))
-      (at start(has-capability ?drone ?capability))
-      (at start(> (current-charge ?drone)(capability-consumption ?capability)))
-    )
-    :effect (and
-      (at start(not (not_busy_tactical ?drone)))
-      (at start(decrease (current-charge ?drone) (capability-consumption ?capability)))
-      (at end(know ?knowledge ?component ?perspective))
-      (at end(not_busy_tactical ?drone))
-    )
-  )
-
- 
-(:durative-action cooperative_inspection
-    :parameters (?staticDrone ?movingDrone - drone ?component - component)
-    :duration (= ?duration 2)
-    :condition (and
-      (at start(not_busy_tactical ?staticDrone))
-      (at start(not_busy_tactical ?movingDrone))
-      (at start(is-available signal-measurement radiation-pattern))
-      (at start(is-available signal-measurement dynamic-inspection360))
-      (at start(is-at ?staticDrone ?component radiation-pattern))
-      (at start(is-at ?movingDrone ?component dynamic-inspection360))
-      (at start(has-capability ?staticDrone signal-measurer))
-      (at start(has-capability ?movingDrone signal-measurer))
-      (at start(> (current-charge ?staticDrone)2))
-      (at start(> (current-charge ?movingDrone)2))
-    )
-    :effect (and
-      (at start(not (not_busy_tactical ?staticDrone)))
-      (at start(not (not_busy_tactical ?movingDrone)))
-      (at start(decrease (current-charge ?staticDrone) 2))
-      (at start(decrease (current-charge ?movingDrone) 2))
-      (at end(know-simultaneous signal-measurement ?component))
-      (at end(not_busy_tactical ?staticDrone))
-      (at end(not_busy_tactical ?movingDrone))
-    )
-  )
-
-(:durative-action complete_mission_sm_a_2
-    :parameters (?mission - mission ?drone1 ?drone2 - drone ?site ?station - component)
-    :duration (= ?duration (mission_duration ?mission sm-a-1))
-    :condition (and 
-      (over all (active ?mission))
-      (at start (mission_type ?mission sm-a-1))
-      (at start (mission_site ?mission ?site))
-      (at start (mission_station ?mission ?station))  
-      (at start (is-at-component ?drone1 ?site))
-      (at start (is-at-component ?drone2 ?site))
-      (at start (has-configuration ?drone1 config1))     
-      (at start (has-configuration ?drone2 config3))
-      (at start (not_busy_tactical ?drone1))    
-      (at start (not_busy_tactical ?drone2))
-      (at start (not_busy_strategic ?drone1))
-      (at start (not_busy_strategic ?drone2))
-      (at start (station-available ?station))
-    ) 
-    :effect (and
-      (at start (not (not_busy_strategic ?drone1)))
-      (at start (not (not_busy_strategic ?drone2)))
-      (at start (not (station-available ?station)))   
-      (at end (mission_complete ?mission))
-      (at end (not_busy_strategic ?drone1))
-      (at end (not_busy_strategic ?drone2))
-      (at end (station-available ?station))
-      (at end (increase (mission_total) 1))
-      (at end (not (active ?mission)))
-    )
-  )
-
-
- (:durative-action charge_and_goto
-    :parameters (?drone - drone ?srcComp ?destComp - component)
-    :duration (= ?duration (+ (/ (distance ?srcComp ?destComp) (velocity ?drone)) (-  (/ (distance ?srcComp ?destComp) (velocity ?drone)) (current-charge ?drone ))))    
-    :condition (and
-      (at start(not_busy_tactical ?drone))
-      (at start(not_busy_strategic ?drone))
-      (at start(is-charging-dock ?srcComp launch-pad))
-      (at start(is-at-component ?drone ?srcComp))
-      (at start(is-perspective launch-pad ?srcComp))
-      (at start(is-perspective launch-pad ?destComp))
-      (at start(< (current-charge ?drone)(/ (distance ?srcComp ?destComp) (velocity ?drone))))  
-    )
-    :effect (and
-      (at start(not (not_busy_tactical ?drone)))
-      (at start(not (not_busy_strategic ?drone)))
-      (at start(not (is-at-component ?drone ?srcComp)))
-      (at start(assign (current-charge ?drone) 0))
-      (at end(is-at-component ?drone ?destComp))
-      (at end(not_busy_tactical ?drone))
-      (at end(not_busy_strategic ?drone))
-    )
-  )  
-
 )
