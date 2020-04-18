@@ -1,0 +1,28 @@
+; Plan found with metric 48.363
+; States evaluated so far: 153
+; States pruned based on pre-heuristic cost lower bound: 0
+; Time 7.88
+; 0.000: (dynamic_charge drone2 s1-tower-launchpad)  [24.174]
+; 2.569: (dynamic_charge drone1 s1-tower-launchpad)  [21.606]
+; 24.175: (goto_component_tactical drone2 s1-tower-launchpad launch-pad s1-antenna-4 dock)  [2.872]
+; 24.176: (goto_component_tactical drone1 s1-tower-launchpad launch-pad s1-antenna-4 dock)  [2.872]
+; 27.048: (change_perspective drone2 s1-antenna-4 dock radiation-pattern)  [2.000]
+; 27.049: (change_perspective drone1 s1-antenna-4 dock dynamic-inspection360)  [2.000]
+; 29.050: (cooperative_inspection drone2 drone1 s1-antenna-4)  [2.000]
+; 31.051: (goto_component_tactical drone2 s1-antenna-4 radiation-pattern s1-antenna-3 dock)  [0.652]
+; 31.051: (goto_component_tactical drone1 s1-antenna-4 dynamic-inspection360 s1-antenna-2 dock)  [0.895]
+; 31.704: (change_perspective drone2 s1-antenna-3 dock radiation-pattern)  [2.000]
+; 31.947: (change_perspective drone1 s1-antenna-2 dock radiation-pattern)  [2.000]
+; 33.705: (goto_component_tactical drone2 s1-antenna-3 radiation-pattern s1-antenna-2 dock)  [0.811]
+; 34.517: (change_perspective drone2 s1-antenna-2 dock dynamic-inspection360)  [2.000]
+; 36.518: (cooperative_inspection drone1 drone2 s1-antenna-2)  [2.000]
+; 38.519: (goto_component_tactical drone1 s1-antenna-2 radiation-pattern s1-antenna-3 dock)  [0.811]
+; 38.520: (goto_component_tactical drone2 s1-antenna-2 dynamic-inspection360 s1-antenna-3 dock)  [0.811]
+; 39.331: (change_perspective drone1 s1-antenna-3 dock radiation-pattern)  [2.000]
+; 39.332: (change_perspective drone2 s1-antenna-3 dock dynamic-inspection360)  [2.000]
+; 41.333: (cooperative_inspection drone1 drone2 s1-antenna-3)  [2.000]
+; 43.334: (goto_component_tactical drone1 s1-antenna-3 radiation-pattern s1-antenna-1 dock)  [1.026]
+; 43.335: (goto_component_tactical drone2 s1-antenna-3 dynamic-inspection360 s1-antenna-1 dock)  [1.026]
+; 44.361: (change_perspective drone1 s1-antenna-1 dock radiation-pattern)  [2.000]
+; 44.362: (change_perspective drone2 s1-antenna-1 dock dynamic-inspection360)  [2.000]
+; 46.363: (cooperative_inspection drone1 drone2 s1-antenna-1)  [2.000]
