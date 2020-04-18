@@ -13,4 +13,6 @@ Both STP files and purely tactical files are available, so that the significant 
 
 We recommend to first try the Simplified scenario. 
 
+![Simulation](https://github.com/EricssonResearch/droneacharya/blob/master/doc/drones-tower.png)
+
 Strategic tactical planning is implemented is Rosplan, and its source may be found [here](https://github.com/KCL-Planning/rosplan_interface_strategic). For further details on the STP implementation, PDDL domain, use case or environment, please contact [b-dorian](https://github.com/b-dorian) or [anushapm](https://github.com/anushapm).
