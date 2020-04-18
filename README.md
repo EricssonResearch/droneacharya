@@ -6,12 +6,16 @@ Intent-driven Strategic Tactical Planning (ISTP) is an end-to-end solution in th
 
 This repo contains the PDDL problem and domain files used in planning our site inspection tasks with drones. These may be run with the [Optic](https://nms.kcl.ac.uk/planning/software/optic.html) planner. This repo contains a precompiled [optic-cplex](https://github.com/EricssonResearch/droneacharya/blob/master/optic-cplex) planner. This planner requires the Ubuntu 16.04 OS.
 
-Both STP files and purely tactical files are available, so that the significant state space size reduction can be observed. The repo includes two scenarios:
+Both STP files and purely tactical files are available in this repo. The repo includes two scenarios:
 
  - [Simplified scenario](https://github.com/EricssonResearch/droneacharya/tree/master/simplified-scenarios-4-to-40-goals) with 6 drones and an incremental number of base stations from 1-10, with each base station having 4 inventory mapping goals.
  - [Complete scenario](https://github.com/EricssonResearch/droneacharya/tree/master/complete-environment-2394-goals-STP) with 12 drones and 21 base stations. This corresponds to a total of 2394 goals.
 
-We recommend to first try the Simplified scenario. 
+We recommend to first try the simplified scenario, first with the [purely tactical](https://github.com/EricssonResearch/droneacharya/tree/master/simplified-scenarios-4-to-40-goals/Purely-Tactical) problem files, and then with the [strategic and tactical](https://github.com/EricssonResearch/droneacharya/tree/master/simplified-scenarios-4-to-40-goals/STP) problem files. Significant state space size reduction can be observed between the tactical and STP approaches, which is shown in the Table below. 
+
+![STP vs Tactical](https://github.com/EricssonResearch/droneacharya/blob/master/doc/stpvstactical-table.png)
+
+This improvement of complexity is expected to be even higher in the complete scenario. Unfortunately, this is not currently measurable, since the complete scenario state space is extremely large, and the planner does not even manage to load in the problem, thus preventing us from precisely observing the state space size.
 
 ![Simulation](https://github.com/EricssonResearch/droneacharya/blob/master/doc/drones-tower.png)
 
